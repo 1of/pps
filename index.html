@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru" ng-app='app'>
+<head>
+  <meta charset="UTF-8">
+  <title>Сервис публичных обещаний</title>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body ng-controller="Main">
+
+<ng-include src="'app/views/main_page/header.template.html'"> </ng-include>
+
+<main ng-view> </main>
+
+<ng-include src="'app/views/main_page/footer.template.html'"> </ng-include>
+
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="app/app.module.js"></script>
+  <script src="app/app.routes.js"></script>
+  <script src="app/app.config.js"></script> <!--все конфигурации-->
+  <script src="app/controllers/main.controller.js"></script>
+  <script src="app/controllers/home.controller.js"></script>
+  <script src="app/controllers/login.controller.js"></script>
+  <script src="node_modules/angular-route/angular-route.min.js"></script>
+</body>
+</html>

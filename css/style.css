@@ -1,0 +1,20 @@
+img {
+    max-width: 100%;
+}
+section {
+    border: 1px solid #000;
+}
+
+nav.navbar {
+display: block;
+}
+
+form.login {
+    margin-top: 50px;
+}
+
+}
+footer {
+    color: rebeccapurple;
+    font-size: 3em;
+}
