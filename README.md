@@ -1,5 +1,3 @@
-/*Для запуска*/ 
+/*for Start*/ 
 
-package.json
-
-//Подробнее в package.json
+npm run server
