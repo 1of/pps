@@ -1,9 +1,46 @@
- <link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
+ <link rel="stylesheet" type="text/css" href="../../../css/login.css"/>
 
- <div class="container" >
- <form class="login">
-		<h1>Вход</h1>
-		<input type="text" name="email" ng-model='searchString' placeholder="EMAIL">
-		<input type="password" name="password" ng-model='searchString' placeholder="Password">
-</form>
+ <div class="container">
+
+	 <form class="login">
+	  <h1>Войти на сервис</h1>
+			<label for="email" class="center-block">Email или логин</label>
+			<input type="email" class="form-control" placeholder="email@example.com" ng-model='email' id="email">
+			<label for="password">Пароль</label>		
+			<input type="password" class="form-control" ng-model='login' >
+			<label for="remember">Запомнить</label>
+			<input type="checkbox" id="remember"  value="true" checked />
+			</br>
+			<input type="submit" class="btn btn-info" value="Войти" />
+			 <div>
+			 	<p>
+			 		Нет аккаунта? Пройдите <a href="" data-toggle="modal" data-target="#myModal">регистрацию</a>
+			 	</p>
+			 </div>
+	</form>
+
  </div>
+
+ <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
+      </div>
+      <div class="modal-body">
+	        <label for="email">Email</label>
+			<input type="email" class="form-control" placeholder="email@example.com" ng-model='email' >
+			<label for="text">Логин</label>
+			<input type="email" class="form-control" placeholder="email@example.com" ng-model='email' >
+			<label for="password">Пароль</label>
+			<input type="password" class="form-control" placeholder="email@example.com" ng-model='email' >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary">Зарегестрироваться</button>
+      </div>
+    </div>
+  </div>
+</div>
