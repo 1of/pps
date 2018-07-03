@@ -2,16 +2,16 @@
 
  <div class="container">
 
-	 <form class="login">
+	 <form class="login" ng-submit="login()">
 	  <h1>Войти на сервис</h1>
 			<label for="email" class="center-block">Email или логин</label>
-			<input type="email" class="form-control" placeholder="email@example.com" ng-model='email' id="email">
+			<input type="email" class="form-control" ng-model='user.email' value="admin@gmail.com" id="email">
 			<label for="password">Пароль</label>		
-			<input type="password" class="form-control" ng-model='login' >
+			<input type="password" class="form-control" placeholder="qQ1!1111" ng-model='user.password' >
 			<label for="remember">Запомнить</label>
 			<input type="checkbox" id="remember"  value="true" checked />
 			</br>
-			<input type="submit" class="btn btn-info" value="Войти" />
+			<input type="submit" class="btn btn-info" value="Войти"/>
 			 <div>
 			 	<p>
 			 		Нет аккаунта? Пройдите <a href="" data-toggle="modal" data-target="#myModal">регистрацию</a>
