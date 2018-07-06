@@ -9,6 +9,10 @@ app.config(function($routeProvider, $locationProvider) {
 		templateUrl: 'app/views/login_page/login.template.html',
 		controller: 'Login'
 	})
+	.when('/user', {
+		templateUrl: 'app/views/personal_cabinet/logged_ok.html',
+		//controller: 'Account'
+	})
 		.otherwise('/');
 	
 });
