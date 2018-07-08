@@ -12,7 +12,7 @@ app.service('utils', ['notify', function(notify) {
 		notify({message: data.message, classes: 'alert-' + data.type});
 	};
 	this.isLogged = function() {
-		return localStorage.getItem('token') ? true : false;
+		return localStorage.getItem('authToken') ? true : false;
 	};
 }]);
 })();

@@ -1,5 +1,6 @@
  <link rel="stylesheet" type="text/css" href="../../../css/login.css"/>
 <link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
+<link rel="stylesheet" type="text/css" href="app/views/login_page/login.template.css"/>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -17,21 +18,27 @@
         </div>
     </div>
 </nav>
+<body>
+  
+
  <div class="container">
 
-	 <form class="login" ng-submit="login()">
-	  <h1>Войти на сервис</h1>
-			<label for="email" class="center-block">Email или логин</label>
-			<input type="email" class="form-control" ng-model='user.email' value="admin@gmail.com" id="email">
-			<label for="password">Пароль</label>		
-			<input type="password" class="form-control" placeholder="qQ1!1111" ng-model='user.password' >
-			<label for="remember">Запомнить</label>
-			<input type="checkbox" id="remember"  value="true" checked />
+	 <form class="login" name="loginForm" ng-submit="login()">
+	  <h1 class="animated slideInDown">Войти на сервис</h1>
+        <br>
+			<label for="email" class="animated slideInRight">Email</label>
+
+       <!-- ng-pattern="/^@[a-zA-Z0-9]+(?:,\s*@[a-zA-Z0-9]+)*$/" -->
+			<input type="text" class="form-control animated slideInLeft"  ng-model='user.email' placeholder="example@email.com" id="email" uib-popover="Адрес электронной почты. Пример: test@gmail.com" popover-trigger="'mouseenter'" popover-placement='right' ng-change="validateEmail()" ng-class="{'alert-success' : changeEmail === true, 'alert-danger' : changeEmail === false}">
+
+    <br>
+			<label for="password" class="animated slideInRight">Пароль</label>		
+			<input type="password" class="form-control animated slideInLeft" placeholder="Введите свой пароль" ng-model='user.password'  uib-popover="{{popoverText}}" popover-trigger="'mouseenter'" popover-placement='right' ng-class="{'alert-success' : changePas === true, 'alert-danger' : changePas === false}" ng-change="validatePass()">
 			</br>
-			<input type="submit" class="btn btn-info" value="Войти"/>
-			 <div>
+			<input type="submit" class="btn btn-info animated slideInUp" value="Войти"/>
+			 <div class="text">
 			 	<p>
-			 		Нет аккаунта? Пройдите <a href="" data-toggle="modal" data-target="#myModal">регистрацию</a>
+			 		Нет аккаунта? Пройдите <a href="" data-toggle="modal" data-target="#myModal" ng-click="clear()">регистрацию</a>
 			 	</p>
 			 </div>
 	</form>
@@ -43,21 +50,23 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" ng-click="ccc" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
       </div>
       <div class="modal-body">
-	        <label for="email">Email</label>
-			<input type="email" class="form-control" placeholder="email@example.com" ng-model='email' >
-			<label for="text">Логин</label>
-			<input type="email" class="form-control" placeholder="email@example.com" ng-model='email' >
-			<label for="password">Пароль</label>
-			<input type="password" class="form-control" placeholder="email@example.com" ng-model='email' >
+      <form name="regForm" ng-submit="register()">
+	   <label for="reg_email">Email</label>
+			<input id="reg_email" type="email" class="form-control" placeholder="email@example.com" ng-model='new_user.email' uib-popover="Адрес электронной почты. Пример: test@gmail.com" popover-trigger="'mouseenter'" popover-placement='right' ng-change="validateRegEmail()" ng-class="{'alert-success' : changeRegEmail === true, 'alert-danger' : changeRegEmail === false, 'animated shake' : emailNotification === true}" >
+			<label for="reg_password">Пароль</label>
+			<input id="reg_password" type="password" class="form-control" placeholder="не менее 6 символов" ng-model='new_user.password' uib-popover="{{popoverText}}" popover-trigger="'mouseenter'" popover-placement='right' ng-class="{'alert-success' : changeRegPas === true, 'alert-danger' : changeRegPas === false, 'animated shake' : passNotification === true}" ng-change="validateRegPass()" >
+      </form>
+      <div class="responce-text">{{responceText}}</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-        <button type="button" class="btn btn-primary">Зарегестрироваться</button>
+        <button type="button" class="btn btn-primary" ng-click="register()">Зарегестрироваться</button>
       </div>
     </div>
   </div>
 </div>
+</body>

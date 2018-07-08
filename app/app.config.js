@@ -17,7 +17,7 @@ app.config(['$httpProvider', function($httpProvider) {
 			},
 			responseError: function(response) {
 				if (response.status === 401) {
-					$location.path('/');
+					$location.path('/login');
 				}
 				return $q.reject(response);
 			}
