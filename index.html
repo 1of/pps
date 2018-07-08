@@ -9,7 +9,8 @@
 
 <body ng-controller="Main">
 
-<ng-include src="'app/views/main_page/header.template.html'"> </ng-include>
+<div ng-if="token === false" ng-include="'app/views/main_page/header.template.html'"></div>
+<div ng-if="token === true" ng-include="'app/views/main_logged/header.html'"></div>
 
 <main ng-view> </main>
 
@@ -21,6 +22,7 @@
   <script src="app/app.config.js"></script> <!--все конфигурации-->
   <script src="app/controllers/main.controller.js"></script>
   <script src="app/controllers/home.controller.js"></script>
+  <script src="app/controllers/home_logged.controller.js"></script>
   <script src="app/controllers/login.controller.js"></script>
   <script src="node_modules/angular-route/angular-route.min.js"></script>
 </body>
