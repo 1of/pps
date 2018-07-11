@@ -1,0 +1,46 @@
+<nav class="navbar navbar-default navbar-top" role="navigation" ng-controller="Header_logged">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" ng-class="{active: currentMenuItem == '/'}">
+                LOGO
+            </a>
+        </div>
+        <div aria-expanded="true" aria-hidden="false" class="navbar-collapse collapse in " id="navbar">
+            <ul class="nav navbar-nav" id="nav_menu">
+                <li ng-class="{active: currentMenuItem === '/'}">
+                    <a href="#/">
+                        Главная    
+                    </a>
+                </li>
+                <li ng-class="{active: currentMenuItem === '/my_tasks'}">
+                    <a href="#/my_tasks">
+                        Мои обещания
+                        <span class="badge">0</span>      
+                    </a>
+                </li>
+                <li ng-class="{active: currentMenuItem === '/tracking_tasks'}">
+                    <a href="#/tracking_tasks">
+                        Отслеживаемые
+                        <span class="badge">0</span>
+                    </a>
+                </li>
+                <li ng-class="{active: currentMenuItem === '/my_bets'}">
+                    <a href="#/my_bets">
+                        Ставки
+                        <span class="badge">0</span>
+                    </a>
+                </li>
+                <li ng-class="{active: currentMenuItem === '/account'}">
+                    <a href="#/account">
+                        Личный кабинет
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button class="btn btn-default" ng-click="exit()" id="exit-btn">Выйти</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,9 +1,103 @@
- <link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
-
- <div class="container" >
-     <form class="login">
-         <h1>Вход</h1>
-         <input type="text" name="email" ng-model='searchString' placeholder="EMAIL">
-         <input type="password" name="password" ng-model='searchString' placeholder="Password">
-     </form>
- </div>
+<link href="../../../css/login.css" rel="stylesheet" type="text/css"/>
+<link href="../../../css/style.css" rel="stylesheet" type="text/css"/>
+<link href="app/views/login_page/login.template.css" rel="stylesheet" type="text/css"/>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" ng-class="{active: currentMenuItem == '/'}">
+                LOGO
+            </a>
+        </div>
+        <div aria-expanded="true" aria-hidden="false" class="navbar-collapse collapse in " id="navbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/#how">
+                        ---------------->
+                    </a>
+                </li>
+                <li class="active" ng-class="{active: currentMenuItem == '/login'}">
+                    <a href="#/login">
+                        Войти
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<body>
+    <div class="container">
+        <form class="login" name="loginForm" ng-submit="login()">
+            <h1 class="animated slideInDown">
+                Войти на сервис
+            </h1>
+            <br>
+                <label class="animated slideInRight" for="email">
+                    Email
+                </label>
+                <!-- ng-pattern="/^@[a-zA-Z0-9]+(?:,\s*@[a-zA-Z0-9]+)*$/" -->
+                <input class="form-control animated slideInLeft" id="email" ng-change="validateEmail()" ng-class="{'alert-success' : changeEmail === true, 'alert-danger' : changeEmail === false}" ng-model="user.email" placeholder="example@email.com" popover-placement="right" popover-trigger="'mouseenter'" type="text" uib-popover="Адрес электронной почты. Пример: test@gmail.com">
+                    <br>
+                        <label class="animated slideInRight" for="password">
+                            Пароль
+                        </label>
+                        <input class="form-control animated slideInLeft" ng-change="validatePass()" ng-class="{'alert-success' : changePas === true, 'alert-danger' : changePas === false}" ng-model="user.password" placeholder="Введите свой пароль" popover-placement="right" popover-trigger="'mouseenter'" type="password" uib-popover="{{popoverText}}">
+                        </input>
+                    </br>
+                    <input class="btn btn-info animated slideInUp" type="submit" value="Войти"/>
+                    <div class="text">
+                        <p>
+                            Нет аккаунта? Пройдите
+                            <a data-target="#myModal" data-toggle="modal" href="" ng-click="clear()">
+                                регистрацию
+                            </a>
+                        </p>
+                    </div>
+                </input>
+            </br>
+        </form>
+    </div>
+    <!-- Modal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" class="close" data-dismiss="modal" ng-click="ccc" type="button">
+                        ×
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Регистрация
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form name="regForm" ng-submit="register()">
+                        <label for="reg_email">
+                            Email
+                        </label>
+                        <input class="form-control" id="reg_email" ng-change="validateRegEmail()" ng-class="{'alert-success' : changeRegEmail === true, 'alert-danger' : changeRegEmail === false, 'animated shake' : emailNotification === true}" ng-model="new_user.email" placeholder="email@example.com" popover-placement="right" popover-trigger="'mouseenter'" type="email" uib-popover="Адрес электронной почты. Пример: test@gmail.com">
+                            <label for="reg_password">
+                                Пароль
+                            </label>
+                            <input class="form-control" id="reg_password" ng-change="validateRegPass()" ng-class="{'alert-success' : changeRegPas === true, 'alert-danger' : changeRegPas === false, 'animated shake' : passNotification === true}" ng-model="new_user.password" placeholder="не менее 6 символов" popover-placement="right" popover-trigger="'mouseenter'" type="password" uib-popover="{{popoverText}}">
+                            </input>
+                        </input>
+                    </form>
+                    <div class="responce-text">
+                        {{responceText}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" type="button">
+                        Закрыть
+                    </button>
+                    <button class="btn btn-primary" ng-click="register()" type="button">
+                        Зарегестрироваться
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
