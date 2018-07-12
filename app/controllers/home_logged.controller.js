@@ -1,10 +1,18 @@
 (function () {
 'use strict';
 
-	app.controller('Home_logged', ['$scope', function($scope) {
+	app.controller('Home_logged', ['$scope', 'tasks.repository',function($scope, taskRepository) {
 
 		console.log("OK_Home_logged");
-		console.log($scope)
+		
+		$scope.tasks = taskRepository.getTasks()
+		.then(function (response){
+            $scope.tasks = response.data;
+        }, function (error)
+            {
+                alert(error);
+            }
+        );
 
 		$scope.search = function() {
 			console.log($scope.searchString);

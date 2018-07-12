@@ -22,3 +22,42 @@ footer {
 main {
     margin-top: 10px;
 }
+#home_aside {
+	width: 30%;
+	margin-top: 20px;
+}
+.categories {
+	width: 100%;
+}
+.category {
+	width: calc( (100% / 3) - 3px );
+	display: inline-block;
+	margin: 10px auto;
+}
+.category img {
+	width: 50px;
+}
+.filter-select {
+	margin: 10px 0;
+}
+.filter-btn {
+	margin: 10px auto;
+	display: block;
+}
+.social { 
+	border-top: 1px solid #CCCCCC;
+}
+.social a {
+	display: inline-block;
+	width: 50px;
+	text-decoration: none;
+	margin: 5px;
+}
+.social a:hover {
+	opacity: 0.5;
+}
+#main_content {
+	width: calc( 70% - 10px );
+	border: none;
+	margin-top: 20px;
+}
