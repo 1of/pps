@@ -4,17 +4,21 @@ img {
 section {
     border: 1px solid #000;
 }
-
 nav.navbar {
-display: block;
+    display: block;
 }
-
 form.login {
     margin-top: 50px;
 }
-
 }
 footer {
     color: rebeccapurple;
     font-size: 3em;
+}
+#exit-btn {
+    margin: 8px;
+}
+#nav_menu {}
+main {
+    margin-top: 10px;
 }

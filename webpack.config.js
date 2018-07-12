@@ -7,7 +7,7 @@ const config = {
 		app: './app/app.module.js',
 	},
 	devServer: {
-		port: 9000,
+		port: 7000,
 		stats: 'errors-only'
 	}
 };

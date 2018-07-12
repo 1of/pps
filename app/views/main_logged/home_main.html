@@ -1,5 +1,12 @@
 <main>
     <form class="form-inline text-center" ng-submit="search()">
+    	<select class="form-control" name="city" id="city">
+    		<option disabled selected>Выберите город</option>
+    		<option value="Харьков">Харьков</option>
+    		<option value="Харьков">Киев</option>
+    		<option value="Харьков">Днепр</option>
+    		<option value="Харьков">Львов</option>
+    	</select>
         <input class="form-control" type="text" placeholder="Введите запрос..." ng-model="searchString">
         <button class="btn btn-secondary" type="submit">Поиск</button>
     </form>
