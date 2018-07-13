@@ -1,11 +1,9 @@
 (function () {
     'use strict';
     
-        app.controller('Account', ['$scope', 'tasks.repository',function($scope, taskRepository) {
+    app.controller('Account', ['$scope', 'tasks.repository','$location', function($scope, taskRepository, $location) {
+      
+    }
     
-            console.log("OK_Account");
-            
-        }
-    
-        ]);
-    })();
+    ]);
+})();

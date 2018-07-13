@@ -1,9 +1,9 @@
 (function () {
 'use strict';
-app.controller('Main', function($scope) {
+app.controller('Main',  ['$scope', '$location', function($scope, $location) {
 	console.log("OK_Main");
-	$scope.x = 2;
-	console.log($scope);
-});
+	
+            
+}]);
 
 })();
