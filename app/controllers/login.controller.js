@@ -55,11 +55,8 @@ app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', '
 				accountRepository.login($scope.new_user).then(function(responce){
 					localStorage.setItem('authToken', responce.data.authToken);
 				}, function(error){})};
-<<<<<<< HEAD
-		$location.path('/user'); //адресс куда переходить после логина
-=======
+
 		$location.path('/') ? $window.location.reload() : $location.path('/'); //адресс куда переходить после логина
->>>>>>> Anton
 		utils.notify({message: $scope.new_user.email + ', приветсвуем Вас на сервисе!', type: 'success'});
 		localStorage.setItem('authToken', responce.data.authToken);
 	}, function(error){
