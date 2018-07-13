@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', function($scope, accountRepository, $location, utils) {
+app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', '$window', function($scope, accountRepository, $location, utils, $window) {
 	$scope.user = {
 		email: "test@gmail.com", //test@gmail.com
 		password: "111111"
@@ -10,10 +10,10 @@ app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', f
 
 	$scope.login = function() {	 //АВТОРИЗАЦИЯ
 		accountRepository.login($scope.user).then(function(responce){
-		$location.path('/user'); //адресс куда переходить после логина
+		$location.path('/') ? $window.location.reload() : $location.path('/'); //адресс куда переходить после логина
 		utils.notify({message: responce.data.firstname + ', добро пожаловать на сервис!', type: 'success'});
 		localStorage.setItem('authToken', responce.data.authToken);
-	}, function(error){		
+	}, function(error){
 	utils.notify({message: 'Ошибка, Вы ввели неправильные данные!!!', type: 'danger'});
 	})
 	};
@@ -55,14 +55,18 @@ app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', f
 				accountRepository.login($scope.new_user).then(function(responce){
 					localStorage.setItem('authToken', responce.data.authToken);
 				}, function(error){})};
+<<<<<<< HEAD
 		$location.path('/user'); //адресс куда переходить после логина
+=======
+		$location.path('/') ? $window.location.reload() : $location.path('/'); //адресс куда переходить после логина
+>>>>>>> Anton
 		utils.notify({message: $scope.new_user.email + ', приветсвуем Вас на сервисе!', type: 'success'});
 		localStorage.setItem('authToken', responce.data.authToken);
 	}, function(error){
 		utils.notify({message: 'Вы ввели неправильные данные!', type: 'success'});
 		if (error.status == 403) {
 			$scope.responceText = "Такой пользователь уже зарегестрирован!";
-		} 
+		}
 		else if (error.status == 452) {
 			$scope.responceText = "Неверный Email...";
 			$scope.emailNotification = true;
@@ -86,7 +90,7 @@ app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', f
 		}
 		else if (error.status == 422) {
 			$scope.responceText = "Неверный ввод данных";
-		} 
+		}
 
 	})
 	};

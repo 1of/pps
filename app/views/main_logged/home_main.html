@@ -1,0 +1,85 @@
+<main>
+    <form class="form-inline text-center" id="search_form" ng-submit="search()">
+    	<select class="form-control" name="city" id="city">
+    		<option disabled selected>Выберите город</option>
+    		<option value="Харьков">Харьков</option>
+    		<option value="Киев">Киев</option>
+    		<option value="Днепр">Днепр</option>
+    		<option value="Львов">Львов</option>
+    	</select>
+        <input class="form-control" type="text" placeholder="Введите запрос..." ng-model="searchString">
+        <button class="btn btn-secondary" type="submit">Поиск</button>
+    </form>
+    <aside class="panel panel-default pull-left" id="home_aside">
+    	<div class="panel-heading text-center">Фильтр</div>
+  		<div class="panel-body">
+  			<div class="categories">
+  				<p class="text-center">Выберите категорию(и)</p>
+  				<div class="category text-center" id="competition">
+  					<p>Спорт</p>
+  					<img src="../../../app/img/competitions.png" alt="competition">
+  				</div>
+  				<div class="category text-center" id="habit">
+  					<p>Привычки</p>
+  					<img src="../../../app/img/habit.png" alt="habit">
+  				</div>
+  				<div class="category text-center" id="work">
+  					<p>Работа</p>
+  					<img src="../../../app/img/work.png" alt="work">
+  				</div>
+  				<div class="category text-center" id="study">
+  					<p>Учеба</p>
+  					<img src="../../../app/img/study.png" alt="study">
+  				</div>
+  				<div class="category text-center" id="purchase">
+  					<p>Покупки</p>
+  					<img src="../../../app/img/purchase.png" alt="purchase">
+  				</div>
+  				<div class="category text-center" id="else">
+  					<p>Другое</p>
+  					<img src="../../../app/img/else.png" alt="else">
+  				</div>
+  			</div>
+  			<form class="form-inline text-center" ng-submit="">
+		    	<select class="form-control filter-select" name="difficulty" id="difficulty">
+		    		<option disabled selected>Выберите сложность</option>
+		    		<option value="easy">Легко</option>
+		    		<option value="medium">Средне</option>
+		    		<option value="hard">Сложно</option>
+		    	</select>
+		    	<select class="form-control filter-select" name="currency" id="currency">
+		    		<option disabled selected>Выберите стоимость</option>
+		    		<option value="easy">0-50</option>
+		    		<option value="medium">50-200</option>
+		    		<option value="hard">200+</option>
+		    	</select>
+		    	<button class="btn btn-default filter-btn" ng-click="">Сбросить</button>
+		        <button class="btn btn-default filter-btn" type="submit">Отфильтровать</button>
+		    </form>
+  		</div>
+  		<div class="panel-body text-center social">
+  			<p>Мы в соцсетях</p>
+			<a href="http://instagram.com"><img src="../../../app/img/instagram.jpeg" alt="instagram"></img></a>
+			<a href="http://twitter.com"><img src="../../../app/img/twitter.jpeg" alt="twitter"></img></a>
+			<a href="http://facebook.com"><img src="../../../app/img/facebook.jpeg" alt="facebook"></img></a>
+			<br>
+			<a href="http://linkedin.com"><img src="../../../app/img/linkedin.jpeg" alt="linkedin"></img></a>
+			<a href="http://vk.com"><img src="../../../app/img/vk.png" alt="vk"></img></a>
+  		</div>
+ 		<div class="panel-footer text-center"><p>Copyright &copy; 2018, A-Level students<p></div>
+    </aside>
+    <section class="pull-right" id="main_content">
+    	<div class="panel panel-default">
+			<div class="panel-heading text-center">Обещания</div>
+			<div class="panel-body">
+				<div class="panel panel-default" ng-repeat="task in tasks">
+					<div class="panel-body text-center">						
+						<h1 class="text-center">{{task.name}}</h1>
+						<img style="display: inline-block;" ng-src="{{task.picture}}"" alt="no_image">
+						<p>{{task.description}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
