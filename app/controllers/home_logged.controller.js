@@ -13,7 +13,7 @@
                 alert(error);
             }
         );
-
+        
 		$scope.search = function() {
 			console.log($scope.searchString);
 			console.log($scope)

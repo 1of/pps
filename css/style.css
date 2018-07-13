@@ -49,7 +49,7 @@ main {
 }
 .social a {
 	display: inline-block;
-	width: 50px;
+	width: 40px;
 	text-decoration: none;
 	margin: 5px;
 }
@@ -60,4 +60,10 @@ main {
 	width: calc( 70% - 10px );
 	border: none;
 	margin-top: 20px;
+}
+.content {
+	padding: 0 1%;
+}
+body {
+	margin-top: -11px;
 }
