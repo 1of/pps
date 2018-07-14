@@ -2,21 +2,23 @@ label {
 animation-duration: 3s;
 animation-delay: 1s;
 color: red;
-  margin: 0 auto;
-  font-family: "Roboto Slab";
-  font-weight: 900;
-  font-size: 1.5em;
-  background: linear-gradient(330deg, #e05252 0%, #99e052 25%, #52e0e0 50%, #9952e0 75%, #e05252 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 50px;
+margin: 0 auto;
+font-family: "Roboto Slab";
+font-weight: 900;
+font-size: 1.5em;
+background: linear-gradient(90deg, #000 0%, #9952e0 75%, #000 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+line-height: 50px;
 }
 input[type="submit"] {
 display: flex;
-animation-duration: 1s;
+animation-duration: 1.2s;
 color: black;
 font-weight: 900;
-width: 30%;
+width: 50%;
+justify-content: center;
+align-self: center;
 }
 div.modal-body {
   display: flex;
@@ -32,7 +34,7 @@ div.responce-text {
    width: 50%;
 }
 .text {
-  color: gray;
+  color: black;
   margin-top: 5px;
 }
 .text a{
@@ -50,4 +52,42 @@ div.responce-text {
 }
 .modal {
 margin-top: 10%;
+}
+
+form.login {
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid gray;
+  background-color: rgba(255, 255, 200, 0.15);
+}
+
+input[type="text"], [type="password"], div.text, h1 {
+justify-content: center;
+align-self: center;
+width: 50%;
+text-align: center;
+}
+
+body {
+
+}
+div.bg-wrapper {
+ 
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: url("login_bg.jpg"), skyblue;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-filter: blur(8px);
+  -moz-filter: blur(8px);
+  filter: blur(8px);
+}
+div.container {
+ position: relative;
+ z-index: 2;
 }
