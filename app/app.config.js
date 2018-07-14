@@ -1,15 +1,18 @@
+//currentMenuItem
 app.run(function($rootScope, $location) {
-
 	$rootScope.$on('$routeChangeSuccess', function() {
 		$rootScope.currentMenuItem = $location.path() || '/';
 	});
-	
-	$rootScope.$on('$routeChangeStart', function (event, current, previous, reject) {                //проверка Авторизован пользователь, или нет, если нет, то перенаправляем на главную /
+});
+
+//проверка Авторизован пользователь, или нет, если нет, то перенаправляем на главную /
+app.run(function($rootScope, $location) {
+	$rootScope.$on('$routeChangeStart', function (event, current, previous, reject) {
 		if (!localStorage.getItem('authToken') && $location.path() !== '/login'){
 			$location.path('/');
 		};
 	})
-	
+
 });
 
 // check authorization
