@@ -1,5 +1,5 @@
 {
-  "name": "helloworld",
+  "name": "pps",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -19,9 +19,19 @@
     "@cgross/angular-notify": "^2.5.1",
     "angular": "^1.6.6",
     "angular-route": "^1.7.1",
+    "jquery": "^3.3.1",
     "angular-ui-bootstrap": "^2.5.6",
+    "angular-xeditable": "^0.8.1",
     "animate.css": "^3.6.1",
-    "bootstrap": "^3.3.7",
-    "jquery": "^3.3.1"
-  }
+    "bootstrap": "^3.3.7"
+  },
+  "bundleDependencies": [
+    "angular",
+    "angular-route",
+    "@cgross/angular-notify",
+    "angular-ui-bootstrap",
+    "jquery",
+    "bootstrap",
+    "angular-xeditable"
+  ]
 }
