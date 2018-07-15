@@ -10,7 +10,7 @@
             $scope.tasks = response.data;
         }, function (error)
             {
-                alert(error);
+                console.log(error);    //ошибка выскакивала, когда нажимали Выйти,... (до этого стоял alert)
             }
         );
         

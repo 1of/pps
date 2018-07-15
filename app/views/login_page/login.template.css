@@ -1,93 +1,135 @@
 label {
-animation-duration: 3s;
-animation-delay: 1s;
-color: red;
-margin: 0 auto;
-font-family: "Roboto Slab";
-font-weight: 900;
-font-size: 1.5em;
-background: linear-gradient(90deg, #000 0%, #9952e0 75%, #000 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-line-height: 50px;
+	animation-duration: 3s;
+	animation-delay: 1s;
+	color: red;
+	margin: 0 auto;
+	font-family: "Roboto Slab";
+	font-weight: 900;
+	font-size: 1.5em;
+	background: linear-gradient(90deg, #000 0%, #9952e0 75%, #000 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	line-height: 50px;
 }
 input[type="submit"] {
-display: flex;
-animation-duration: 1.2s;
-color: black;
-font-weight: 900;
-width: 50%;
-justify-content: center;
-align-self: center;
+	display: flex;
+	animation-duration: 1.2s;
+	color: black;
+	font-weight: 900;
+	width: 50%;
+	justify-content: center;
+	align-self: center;
 }
 div.modal-body {
-  display: flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 form[name="regForm"] {
-  width: 50%;
+	width: 50%;
 }
 form[name="regForm"] input {
-  width: 90%;
+	width: 90%;
 }
 div.responce-text {
-   width: 50%;
+	width: 50%;
 }
 .text {
-  color: black;
-  margin-top: 5px;
+	color: black;
+	margin-top: 5px;
 }
 .text a{
-  font-size: 1.2em;
-  text-decoration: none;
+	font-size: 1.2em;
+	text-decoration: none;
 }
 .text a:hover{
-  transition: all 1s ease-in;
-  color: black;
-  font-size: 1.22em;
+	transition: all 1s ease-in;
+	color: black;
+	font-size: 1.22em;
 }
 .modal-backdrop{
-  opacity: 1 !important;
-  filter: blur(150px);
+	opacity: 1 !important;
+	filter: blur(150px);
 }
 .modal {
-margin-top: 10%;
+	margin-top: 10%;
 }
 
 form.login {
-  margin-top: 20%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  border: 1px solid gray;
-  background-color: rgba(255, 255, 200, 0.15);
+	margin-top: 20%;
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	border: 1px solid gray;
+	background-color: rgba(255, 255, 200, 0.15);
 }
 
 input[type="text"], [type="password"], div.text, h1 {
-justify-content: center;
-align-self: center;
-width: 50%;
-text-align: center;
+	justify-content: center;
+	align-self: center;
+	width: 50%;
+	text-align: center;
 }
 
 body {
 
 }
 div.bg-wrapper {
- 
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background: url("login_bg.jpg"), skyblue;
-  background-size: cover;
-  background-repeat: no-repeat;
-  -webkit-filter: blur(8px);
-  -moz-filter: blur(8px);
-  filter: blur(8px);
+	z-index: -2;
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	background: url("login_bg.jpg"), skyblue;
+	background-size: cover;
+	background-repeat: no-repeat;
+	-webkit-filter: blur(8px);
+	-moz-filter: blur(8px);
+	filter: blur(8px);
 }
 div.container {
- position: relative;
- z-index: 2;
+	position: relative;
+	z-index: 2;
+}
+/*registration template style */
+div.reg-container {
+	position: relative;
+	z-index: 2;
+	overflow: hidden;
+}
+div.bg-r-wrapper {
+	z-index: -2;
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: url("login_bg.jpg"), skyblue;
+	background-size: cover;
+	background-repeat: no-repeat;
+	-webkit-filter: blur(15px);
+	-moz-filter: blur(15px);
+	filter: blur(15px);
+}
+button{
+
+	-o-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+button.btn:hover{
+	transform: scale(1.05);
+	background: rgba(255, 255, 255, .8);
+	color: rgba(51,122,183,1);
+}
+div.reg-container input {
+	opacity: 0.8;
+}
+div.reg-container input:focus {
+	opacity: 1;
+	font-size: 1.1em;
+}
+div.reg-container label{
+
 }

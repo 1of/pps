@@ -18,6 +18,9 @@ app.config(function($routeProvider, $locationProvider) {
     }).when('/account', {
         templateUrl: 'app/views/account/account.html',
         controller: 'Account'
+    }).when('/:taskId', {
+        templateUrl: 'app/views/task_id/task_id.html',
+        controller: 'TaskId'
     })
     .otherwise('/');
 });

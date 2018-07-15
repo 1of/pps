@@ -3,9 +3,9 @@
     app.factory('tasks.repository', ['webApi', '$http', function(webApi, $http) {
         return {
             getTasks: _getTasks,
-            /*getBookById: _getBookById,
-            getAuthors: _getAuthors,
-            updateBookById: _updateBookById,
+            getTasksById: _getTasksById,
+            getUserById: _getUserById,
+            /*updateBookById: _updateBookById,
             addBook: _addBook,
             deleteBook: _deleteBook,
             searchBy: _searchBy,*/
@@ -15,14 +15,14 @@
             return $http.get(webApi.DOMAIN + '/api/v1/tasks');
         }
 
-        /*function _getBookById(id) {
-            return $http.get(webApi.DOMAIN + '/api/v2/books/' + id);
+        function _getTasksById(id) {
+            return $http.get(webApi.DOMAIN + '/api/v1/tasks/' + id);
         }
 
-        function _getAuthors() {
-            return $http.get(webApi.DOMAIN + '/api/v2/authors');
+        function _getUserById(id) {
+            return $http.get(webApi.DOMAIN + '/api/v1/users/' + id);
         }
-
+/*
         function _updateBookById(id, data) {
         	return $http.put(webApi.DOMAIN + '/api/v2/books/' + id, data);
         }
