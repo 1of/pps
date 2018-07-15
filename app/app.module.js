@@ -1,5 +1,6 @@
-var app = angular.module('app', [
+window.app = angular.module('app', [
 	'ngRoute',
 	'ui.bootstrap',
-	'cgNotify'
+	'cgNotify',
+	'xeditable'
 	]);

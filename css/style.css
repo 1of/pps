@@ -67,3 +67,13 @@ main {
 body {
 	margin-top: -11px;
 }
+
+.navbar-brand {
+	font-family: "system";
+	font-size: 2em;
+	font-weight: 700;
+}
+.navbar-brand:hover {
+	font-weight: 900;
+	font-family: Helvetica;
+}
