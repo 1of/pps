@@ -7,8 +7,8 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl: 'app/views/login_page/login.template.html',
         controller: 'Login'
     }).when('/my_tasks', {
-        templateUrl: localStorage.authToken ? 'app/views/my_tasks/my_tasks.html' : 'app/views/main_page/main.template.html',
-        controller: localStorage.authToken ? 'MyTasks' : 'Home'
+        templateUrl:  'app/views/my_tasks/my_tasks.html' ,
+        controller: 'MyTasks' 
     }).when('/tracking_tasks', {
         templateUrl: 'app/views/tracking_tasks/tracking_tasks.html',
         controller: 'TrackingTasks'
