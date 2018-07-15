@@ -13,7 +13,7 @@ app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', '
 		$location.path('/') ? $window.location.reload() : $location.path('/'); //адресс куда переходить после логина
 		utils.notify({message: responce.data.firstname + ', добро пожаловать на сервис!', type: 'success'});
 		localStorage.setItem('authToken', responce.data.authToken);
-	}, function(error){		
+	}, function(error){
 	utils.notify({message: 'Ошибка, Вы ввели неправильные данные!!!', type: 'danger'});
 	})
 	};
@@ -55,6 +55,7 @@ app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', '
 				accountRepository.login($scope.new_user).then(function(responce){
 					localStorage.setItem('authToken', responce.data.authToken);
 				}, function(error){})};
+
 		$location.path('/') ? $window.location.reload() : $location.path('/'); //адресс куда переходить после логина
 		utils.notify({message: $scope.new_user.email + ', приветсвуем Вас на сервисе!', type: 'success'});
 		localStorage.setItem('authToken', responce.data.authToken);
@@ -62,7 +63,7 @@ app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', '
 		utils.notify({message: 'Вы ввели неправильные данные!', type: 'success'});
 		if (error.status == 403) {
 			$scope.responceText = "Такой пользователь уже зарегестрирован!";
-		} 
+		}
 		else if (error.status == 452) {
 			$scope.responceText = "Неверный Email...";
 			$scope.emailNotification = true;
@@ -86,7 +87,7 @@ app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', '
 		}
 		else if (error.status == 422) {
 			$scope.responceText = "Неверный ввод данных";
-		} 
+		}
 
 	})
 	};
