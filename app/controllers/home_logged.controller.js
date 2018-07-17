@@ -8,6 +8,7 @@
 		$scope.tasks = taskRepository.getTasks()
 		.then(function (response){
             $scope.tasks = response.data;
+           console.log(response.data); 
         }, function (error)
             {
                 console.log(error);    //ошибка выскакивала, когда нажимали Выйти,... (до этого стоял alert)

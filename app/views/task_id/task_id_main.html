@@ -1,7 +1,60 @@
-<div>
-<p>{{user.firstname}} {{user.lastname}}</p>
-<img ng-src="{{user.photo || 'app/views/task_id/user_default.jpg'}} ">
-<h1>{{task.name}}</h1>
-
-<p>{{task.description}}</p>
+<link rel="stylesheet" type="text/css" href="app/views/task_id/task_id.css">
+<div class="container-fluid">
+	<section class="header row">
+		<div class="button-return col-md-1">
+			<button type="button" class="btn btn-info back">Назад</button>
+		</div>
+		<div class="col-md-2">
+			<img ng-src="{{user.photo || 'app/views/task_id/user_default.jpg'}}" alt="photo">
+			<p>{{user.firstname}} {{user.lastname}} Имя пользователя</p>
+		</div>
+		<div class="col-md-9">
+			<h2>{{task.name}}Заголовок</h2>
+			<span>Дата публикации: </span>
+			<span>Осталось времени: </span>
+		</div>
+	</section>
+	<section class="bets row">
+		<div class="statistics col-md-9">
+			<h3>Стоимость: <span class="badge">100 $</span> / Максимальная ставка: <span class="badge">100 $</span></h3>
+			<p>Отслеживают: <span class="badge">25</span> чел.</p>
+			<p>Ставок: <span class="badge">5</span></p>
+			<p>Комментарии: <span class="badge">10</span></p>
+		</div>
+		<div class="bet col-md-3">
+			<button type="button" class="btn btn-warning">Следить</button>
+			<div class="incdec_bet">
+				<button type="button" class="btn btn-danger btn-xs">+</button>
+				<span class="badge">50 $</span>
+				<button type="button" class="btn btn-danger btn-xs">-</button>
+			</div>
+			<button type="button" class="btn btn-success">Ставить</button>
+		</div>
+	</section>
+	<section class="description row">
+		<h2>Описание</h2>
+		<div class="col-md-3">
+			<img ng-src="{{task.photo || 'app/views/task_id/user_default.jpg'}}" alt="task">
+		</div>
+		<div class="col-md-9">
+			<p>{{task.description}}Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga quae inventore repellat culpa consequuntur neque in nam ipsa, explicabo, recusandae cum quibusdam non commodi maxime praesentium odio tempora corporis fugiat error reprehenderit eligendi dolor at. Suscipit corrupti ipsa voluptatum modi, vero fugit quae voluptatibus animi cum rem quo consequuntur voluptas?</p>
+		</div>
+	</section>
+	<section class="comments row">
+		<h3>Комментарии</h3>
+		<div class="comments-list row" >
+			<div>
+				<img class="col-md-2" ng-src="{{user.photo || 'app/views/task_id/user_default.jpg'}}" alt="single_comment">	
+				<p class="col-md-8">пример комментария Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, ab? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam dolore ratione, quo corrupti quam alias deleniti magnam dolorem dignissimos earum excepturi fugiat blanditiis neque eveniet facere eius totam quibusdam ex! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat quibusdam necessitatibus sint a! Nemo autem soluta quaerat cum saepe dignissimos odio, deleniti illum</p>
+				<span class="col-md-2"> 17.06.2018  (19:25)</span>
+			</div>
+		</div>
+		<div class="add-comment row">
+			<form>
+				<img class="col-md-2" ng-src="{{user.photo || 'app/views/task_id/user_default.jpg'}}" alt="user">
+				<textarea class="col-md-8" name="comment" id="comment" cols="80" rows="10"></textarea>
+				<button type="submit" class="btn btn-default col-md-2">Ответить</button>
+			</form>
+		</div>
+	</section>
 </div>

@@ -1,0 +1,38 @@
+h1, h2, h3 {
+	text-align: center;
+}
+section {
+	border: 1px solid gray;
+	border-radius: 15px;
+	padding: 5px;
+	margin-bottom: 2px;
+}
+
+button.back {
+	width: 100px;
+	height: 100px;
+}
+section.bets {
+	display: flex;
+}
+div.bet {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+div.incdec_bet{
+	display: flex;
+	justify-content: center;
+}
+div.bet button {
+	margin: 8px;
+}
+
+div.comments-list p {
+	background-color: rgba(245,245,245, 0.9);
+}
+
+div.add-comment button {
+	width: 100px;
+	height: 65px;
+}
