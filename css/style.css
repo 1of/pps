@@ -10,7 +10,7 @@ nav.navbar {
 form.login {
     margin-top: 50px;
 }
-}
+
 footer {
     color: rebeccapurple;
     font-size: 3em;
@@ -18,7 +18,7 @@ footer {
 #exit-btn {
     margin: 8px;
 }
-#nav_menu {}
+
 main {
     margin-top: 10px;
 }
@@ -51,7 +51,7 @@ main {
 	display: inline-block;
 	width: 40px;
 	text-decoration: none;
-	margin: 5px;
+	margin: 4px;
 }
 .social a:hover {
 	opacity: 0.5;
@@ -73,7 +73,38 @@ body {
 	font-size: 2em;
 	font-weight: 700;
 }
+
 .navbar-brand:hover {
 	font-weight: 900;
 	font-family: Helvetica;
+}
+
+.tab-content {
+	margin-top: 10px;
+}
+
+@media screen and (min-width: 1001px) {
+	#home_aside {
+		width: 300px;
+		margin-top: 20px;
+	}
+
+	#main_content {
+		width: calc( 100% - 310px );
+		border: none;
+		margin-top: 20px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	#home_aside {
+		width: 100%;
+		margin-top: 20px;
+	}
+
+	#main_content {
+		width: 100%;
+		border: none;
+		margin-top: 20px;
+	}
 }

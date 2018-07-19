@@ -1,11 +1,8 @@
 <main>
     <form class="form-inline text-center" id="search_form" ng-submit="search()">
-    	<select class="form-control" name="city" id="city">
-    		<option disabled selected>Выберите город</option>
-    		<option value="Харьков">Харьков</option>
-    		<option value="Киев">Киев</option>
-    		<option value="Днепр">Днепр</option>
-    		<option value="Львов">Львов</option>
+    	<select class="form-control" name="city" id="city" ng-model="citySelect">
+			<option selected disabled value="">Выберите расположение...</option>
+    		<option ng-repeat="city in cities" value="city">{{city}}</option>
     	</select>
         <input class="form-control" type="text" placeholder="Введите запрос..." ng-model="searchString">
         <button class="btn btn-secondary" type="submit">Поиск</button>
@@ -71,13 +68,7 @@
     	<div class="panel panel-default">
 			<div class="panel-heading text-center">Обещания</div>
 			<div class="panel-body">
-				<div class="panel panel-default" ng-repeat="task in tasks">
-					<div class="panel-body text-center">						
-						<h1 class="text-center">{{task.name}}</h1>
-						<img style="display: inline-block;" ng-src="{{task.picture}}"" alt="no_image">
-						<p>{{task.description}}</p>
-					</div>
-				</div>
+				<task-info ng-repeat="task in tasks  | orderBy:sortField | filter: searchString track by $index" task="task"></task-info>
 			</div>
 		</div>
 	</section>

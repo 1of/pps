@@ -1,0 +1,25 @@
+.user-info {
+    height: 200px;
+    padding: 10px;
+}
+
+.user-photo {
+    width: 180px;
+    height: 180px;
+    float: left;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.main-info {
+    float: right;
+    text-align: center;
+    width: calc( 100% - 210px );
+    height: 100%;
+}
+
+.main-info p {
+    text-align: left;
+}

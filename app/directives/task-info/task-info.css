@@ -1,0 +1,42 @@
+.task-info {
+    height: 200px;
+    padding: 10px;
+}
+
+.task-photo {
+    width: 180px;
+    height: 180px;
+    float: left;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.task-all {
+    float: right;
+    text-align: center;
+    width: calc( 100% - 210px );
+    position: relative;
+    height: 100%;
+}
+
+.task-all-text {
+    line-height: 100px;
+}
+
+.task-all span {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.task-all h2 {
+    margin: 0;
+}
+
+.task-all-buttons {
+    float: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

@@ -1,0 +1,22 @@
+<user-info user="me"></user-info>
+
+<ul class="nav nav-tabs">
+    <li ng-class="{active: currentMenuItem === '/account/my_tasks'}"><a href="#/account/my_tasks">Мои обещания</a></li>
+    <li ng-class="{active: currentMenuItem === '/account/tracking_tasks'}"><a href="#/account/tracking_tasks">Отслеживаемые обещания</a></li>
+    <li ng-class="{active: currentMenuItem === '/account/my_bets'}"><a href="#/account/my_bets">Мои ставки</a></li>
+    <li ng-class="{active: currentMenuItem === '/account/account_info'}"><a href="#/account/account_info">Профиль</a></li>
+</ul>
+<div class="tab-content"></div>
+    <div ng-if="currentMenuItem === '/account/my_tasks'" class="tab-pane" id="my_tasks">
+        <task-info ng-repeat="task in userTasks" task="task"></task-info>
+    </div>
+    <div ng-class="{active: currentMenuItem === '/account/tracking_tasks'}" class="tab-pane" id="tracking_tasks">
+
+    </div>
+    <div ng-class="{active: currentMenuItem === '/account/my_bets'}" class="tab-pane" id="my_bets">
+
+    </div>
+    <div ng-class="{active: currentMenuItem === '/account' || '/account/account_info'}" class="tab-pane" id="account_info">
+        
+    </div>
+</div>

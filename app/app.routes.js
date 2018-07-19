@@ -6,16 +6,19 @@ app.config(function($routeProvider, $locationProvider) {
     }).when('/login', {
         templateUrl: 'app/views/login_page/login.template.html',
         controller: 'Login'
-    }).when('/my_tasks', {
-        templateUrl:  'app/views/my_tasks/my_tasks.html' ,
-        controller: 'MyTasks' 
-    }).when('/tracking_tasks', {
-        templateUrl: 'app/views/tracking_tasks/tracking_tasks.html',
-        controller: 'TrackingTasks'
-    }).when('/my_bets', {
-        templateUrl: 'app/views/my_bets/my_bets.html',
-        controller: 'MyBets'
     }).when('/account', {
+        templateUrl: 'app/views/account/account.html',
+        controller: 'Account'
+    }).when('/account/my_tasks', {
+        templateUrl: 'app/views/account/account.html',
+        controller: 'Account'
+    }).when('/account/tracking_tasks', {
+        templateUrl: 'app/views/account/account.html',
+        controller: 'Account'
+    }).when('/account/my_bets', {
+        templateUrl: 'app/views/account/account.html',
+        controller: 'Account'
+    }).when('/account/account_info', {
         templateUrl: 'app/views/account/account.html',
         controller: 'Account'
     })
