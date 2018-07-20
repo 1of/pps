@@ -4,7 +4,7 @@
     <div class="task-all">        
         <div class="task-all-text">
             <h2>{{task.name}}</h2>
-            <span class="task-date pull-left">Дата: {{task.bet_date || 'new Date'}}</span>
+            <span class="task-date pull-left">Дата: {{task.date_added | date : "longDate"}}</span>
             <span class="task-price pull-right">Ставка: {{task.bet || '100$'}} / {{task.bet || '70$'}}</span>
         </div>
         <div class="task-all-buttons">

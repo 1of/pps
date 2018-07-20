@@ -9,16 +9,16 @@ app.config(function($routeProvider, $locationProvider) {
     }).when('/account', {
         templateUrl: 'app/views/account/account.html',
         controller: 'Account'
-    }).when('/account/my_tasks', {
+    }).when('/account/:userId/tasks', {
         templateUrl: 'app/views/account/account.html',
         controller: 'Account'
-    }).when('/account/tracking_tasks', {
+    }).when('/account/:userId/tracking_tasks', {
         templateUrl: 'app/views/account/account.html',
         controller: 'Account'
-    }).when('/account/my_bets', {
+    }).when('/account/:userId/bets', {
         templateUrl: 'app/views/account/account.html',
         controller: 'Account'
-    }).when('/account/account_info', {
+    }).when('/account/:userId/account_info', {
         templateUrl: 'app/views/account/account.html',
         controller: 'Account'
     })

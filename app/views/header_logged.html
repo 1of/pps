@@ -12,26 +12,26 @@
                         Главная    
                     </a>
                 </li>
-                <li ng-class="{active: currentMenuItem === '/account/my_tasks'}">
-                    <a href="#/account/my_tasks">
+                <li ng-class="{active: currentMenuItem === '/account/{{myUserId}}/tasks'}">
+                    <a href="#/account/{{myUserId}}/tasks">
                         Мои обещания
-                        <span class="badge">{{userTasks.length || "0"}}</span>      
+                        <span class="badge">{{myTasks.length || "0"}}</span>      
                     </a>
                 </li>
-                <li ng-class="{active: currentMenuItem === '/account/tracking_tasks'}">
-                    <a href="#/account/tracking_tasks">
+                <li ng-class="{active: currentMenuItem === '/account/{{myUserId}}/tracking_tasks'}">
+                    <a href="#/account/{{myUserId}}/tracking_tasks">
                         Отслеживаемые
-                        <span class="badge">0</span>
+                        <span class="badge">{{myTrackingTasks.length || "0"}}</span>
                     </a>
                 </li>
-                <li ng-class="{active: currentMenuItem === '/account/my_bets'}">
-                    <a href="#/account/my_bets">
+                <li ng-class="{active: currentMenuItem === '/account/{{myUserId}}/bets'}">
+                    <a href="#/account/{{myUserId}}/bets">
                         Ставки
                         <span class="badge">0</span>
                     </a>
                 </li>
-                <li ng-class="{active: currentMenuItem === '/account/account_info'}">
-                    <a href="#/account/account_info">
+                <li ng-class="{active: currentMenuItem === '/account/{{myUserId}}/account_info'}">
+                    <a href="#/account/{{myUserId}}/account_info">
                         Личный кабинет
                     </a>
                 </li>

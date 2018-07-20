@@ -5,6 +5,9 @@
             //Наш Id
             $scope.myUserId = localStorage.getItem('userId');
 
+            //Active user is me by default
+            $scope.userId = $scope.myUserId;
+
             //Получаем список всех задач и список всех городов из него
             tasksRepository.getTasks()
                 .then(function(response){
@@ -32,9 +35,15 @@
             
             //Получаем список наших задач
             usersRepository.getUsersTasks($scope.myUserId)
-                .then(function(response) {
-                    $scope.userTasks = response.data;
-                }, function(error) {console.log(error)});	
+            .then(function(response) {
+                $scope.myTasks = response.data;
+            }, function(error) {console.log(error)});	
+
+            //Получаем список наших отслеживаемых задач
+            usersRepository.getUsersTrackingTasks($scope.myUserId)
+            .then(function(response) {
+                $scope.myTrackingTasks = response.data;
+            }, function(error) {console.log(error)});
 
         }]);
     })();

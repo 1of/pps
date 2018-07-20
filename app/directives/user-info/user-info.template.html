@@ -1,10 +1,11 @@
 <div class="user-info panel panel-default">
-    <div class="user-photo"style="background-image: url('{{user.photo || './app/directives/task-info/img/No_Image_Available.jpg'}}')">
+    <div class="user-photo" style="background-image: url('{{user.photo || './app/directives/user-info/img/No_Image_Available.jpg'}}')">
     </div>
     <div class="main-info">
         <h2>{{user.firstname}} {{user.lastname}}</h2>
-        <p>Создано обещаний: </p>
-        <p>Отслеживается обещаний: </p>
+        <p class="right">Баланс: {{user.balance}}$</p>
+        <p>Создано обещаний: {{tasks.length || 0}}</p>
+        <p>Отслеживается обещаний: {{trackingTasks.length || 0}}</p>
         <p>Сделано ставок: </p>
     </div>
-</div
+</div>

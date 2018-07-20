@@ -8,9 +8,11 @@
             restrict: 'EA',
             templateUrl: './app/directives/user-info/user-info.template.html',
             scope: {
-                user: '='
+                user: '=',
+                trackingTasks: '=',
+                tasks: '='
             },
-            controller: ['$scope', '$rootScope', function ($scope, $rootScope) {
+            controller: ['$scope', '$rootScope', '$routeParams', function ($scope, $rootScope, $routeParams) {
                 
             }]
         }

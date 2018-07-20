@@ -1,22 +1,22 @@
-<user-info user="me"></user-info>
+<user-info user="user" tracking-tasks="userTrackingTasks" tasks="userTasks"></user-info>
 
 <ul class="nav nav-tabs">
-    <li ng-class="{active: currentMenuItem === '/account/my_tasks'}"><a href="#/account/my_tasks">Мои обещания</a></li>
-    <li ng-class="{active: currentMenuItem === '/account/tracking_tasks'}"><a href="#/account/tracking_tasks">Отслеживаемые обещания</a></li>
-    <li ng-class="{active: currentMenuItem === '/account/my_bets'}"><a href="#/account/my_bets">Мои ставки</a></li>
-    <li ng-class="{active: currentMenuItem === '/account/account_info'}"><a href="#/account/account_info">Профиль</a></li>
+    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/tasks'}"><a href="#/account/{{userId}}/tasks"><span ng-show="userId === myUserId">Мои обещания</span><span ng-show="userId !== myUserId">Обещания</span></a></li>
+    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/tracking_tasks'}"><a href="#/account/{{userId}}/tracking_tasks">Отслеживаемые обещания</a></li>
+    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/bets'}"><a href="#/account/{{userId}}/bets">Мои ставки</a></li>
+    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/account_info'}"><a href="#/account/{{userId}}/account_info">Профиль</a></li>
 </ul>
 <div class="tab-content"></div>
-    <div ng-if="currentMenuItem === '/account/my_tasks'" class="tab-pane" id="my_tasks">
+    <div ng-show="currentMenuItem === '/account/{{userId}}/tasks'" class="tab-pane" id="my_tasks">
         <task-info ng-repeat="task in userTasks" task="task"></task-info>
     </div>
-    <div ng-class="{active: currentMenuItem === '/account/tracking_tasks'}" class="tab-pane" id="tracking_tasks">
+    <div ng-show="currentMenuItem === '/account/{{userId}}/tracking_tasks'" class="tab-pane" id="tracking_tasks">
+        <task-info ng-repeat="task in userTrackingTasks" task="task"></task-info>
+    </div>
+    <div ng-show="currentMenuItem === '/account/{{userId}}/bets'" class="tab-pane" id="my_bets">
 
     </div>
-    <div ng-class="{active: currentMenuItem === '/account/my_bets'}" class="tab-pane" id="my_bets">
-
-    </div>
-    <div ng-class="{active: currentMenuItem === '/account' || '/account/account_info'}" class="tab-pane" id="account_info">
+    <div ng-show="currentMenuItem === '/account/{{userId}}' || '/account/{{userId}}/account_info'" class="tab-pane" id="account_info">
         
     </div>
 </div>
