@@ -1,12 +1,15 @@
 <link rel="stylesheet" type="text/css" href="app/views/task_id/task_id.css">
+<div ng-if="loading" class="preloader-all">
+    Loading... {{loading}}
+</div>
 <div class="container-fluid">
 	<section class="header row">
 		<div class="button-return col-md-1">
 			<button type="button" class="btn btn-info back">Назад</button>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-2 preloader-single" data-ng-if="loading" >
 			<img ng-src="{{user.photo || 'app/views/task_id/user_default.jpg'}}" alt="photo">
-			<p>{{user.firstname}} {{user.lastname}} Имя пользователя</p>
+			<p>{{user.firstname}} {{user.lastname}} Имя пользователя </p>
 		</div>
 		<div class="col-md-9">
 			<h2>{{task.name}}Заголовок</h2>
@@ -52,7 +55,7 @@
 		<div class="add-comment row">
 			<form>
 				<img class="col-md-2" ng-src="{{user.photo || 'app/views/task_id/user_default.jpg'}}" alt="user">
-				<textarea class="col-md-8" name="comment" id="comment" cols="80" rows="10"></textarea>
+				<textarea class="col-md-8" name="comment" id="comment" cols="50" rows="10"></textarea>
 				<button type="submit" class="btn btn-default col-md-2">Ответить</button>
 			</form>
 		</div>

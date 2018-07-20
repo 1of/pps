@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', '$routeParams', '$location', 'utils',  function($scope, tasksRepository, usersRepository, $routeParams, $location, utils) {
+app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', '$routeParams', '$location', 'utils',  '$rootScope',  function($scope, tasksRepository, usersRepository, $routeParams, $location, utils, $rootScope) {
 	console.log('TaskId controller  OK!!!');
 
 	console.log("id=", $routeParams.taskId);

@@ -35,3 +35,8 @@ app.config(['$httpProvider', function($httpProvider) {
 		};
 	}]);
 }]);
+
+//spinner loader
+app.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.interceptors.push('LoadingInterceptor');
+}]);
