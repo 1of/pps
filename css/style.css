@@ -95,6 +95,17 @@ body {
 	font-weight: 400;
 }
 
+#header {
+	left: 11px;
+	right: 11px;
+	border-radius: 4px;
+	border: 1px solid #CCCCCC;
+}
+
+.fix-fix {
+	height: 65px;
+}
+
 @media screen and (min-width: 1001px) {
 	#home_aside {
 		width: 300px;

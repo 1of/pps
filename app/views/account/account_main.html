@@ -22,11 +22,11 @@
 
     <div ng-show="currentMenuItem === '/account/{{userId}}' || currentMenuItem === '/account/{{userId}}/account_info'" class="tab-pane" id="account_info">
         <div class="panel panel-default" id="account_info_content">
-                <span ng-show="!editableForm.$visible && userId === myUserId">
+                <span class="pull-right" ng-show="!editableForm.$visible && userId === myUserId">
                     <button class="btn btn-warning btn-xs" ng-click="editableForm.$show()"><i class="glyphicon glyphicon-pencil"></i></button>
                 </span>
                 <form editable-form name="editableForm" onaftersave="saveAuthor($data, author.id)">
-                    <span ng-show="editableForm.$visible">
+                    <span class="pull-right" ng-show="editableForm.$visible">
                         <button type="submit" class="btn btn-primary btn-xs" ng-disabled="editableForm.$waiting"><i class="glyphicon glyphicon-ok"></i></button>
                         <button type="button" class="btn btn-danger btn-xs" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()"><i class="glyphicon glyphicon-remove"></i></button>
                     </span>

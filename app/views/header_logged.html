@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-top" role="navigation" ng-controller="Header_logged">
+<nav id="header" class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="Header_logged">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#" ng-class="{active: currentMenuItem == '/'}">
@@ -8,7 +8,7 @@
         <div aria-expanded="true" aria-hidden="false" class="navbar-collapse collapse in " id="navbar">
             <ul class="nav navbar-nav" id="nav_menu">
                 <li ng-class="{active: currentMenuItem === '/'}">
-                    <a href="#/">
+                    <a href="#">
                         Главная    
                     </a>
                 </li>
@@ -44,3 +44,4 @@
         </div>
     </div>
 </nav>
+<div class="fix-fix"></div>
