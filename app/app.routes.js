@@ -6,7 +6,7 @@ app.config(function($routeProvider, $locationProvider) {
     }).when('/login', {
         templateUrl: 'app/views/login_page/login.template.html',
         controller: 'Login'
-    }).when('/account', {
+    }).when('/account/:userId', {
         templateUrl: 'app/views/account/account.html',
         controller: 'Account'
     }).when('/account/:userId/tasks', {

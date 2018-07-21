@@ -83,6 +83,18 @@ body {
 	margin-top: 10px;
 }
 
+#account_info_content {
+	padding: 10px;
+}
+
+#account_info p {
+	font-weight: bold;
+	font-style: italic;
+}
+#account_info span {
+	font-weight: 400;
+}
+
 @media screen and (min-width: 1001px) {
 	#home_aside {
 		width: 300px;

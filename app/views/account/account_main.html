@@ -3,20 +3,40 @@
 <ul class="nav nav-tabs">
     <li ng-class="{active: currentMenuItem === '/account/{{userId}}/tasks'}"><a href="#/account/{{userId}}/tasks"><span ng-show="userId === myUserId">Мои обещания</span><span ng-show="userId !== myUserId">Обещания</span></a></li>
     <li ng-class="{active: currentMenuItem === '/account/{{userId}}/tracking_tasks'}"><a href="#/account/{{userId}}/tracking_tasks">Отслеживаемые обещания</a></li>
-    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/bets'}"><a href="#/account/{{userId}}/bets">Мои ставки</a></li>
-    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/account_info'}"><a href="#/account/{{userId}}/account_info">Профиль</a></li>
+    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/bets'}"><a href="#/account/{{userId}}/bets"><span ng-show="userId === myUserId">Мои ставки</span><span ng-show="userId !== myUserId">Ставки</span></a></li>
+    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/account_info' || currentMenuItem === '/account/{{userId}}'}"><a href="#/account/{{userId}}/account_info">Профиль</a></li>
 </ul>
+
 <div class="tab-content"></div>
     <div ng-show="currentMenuItem === '/account/{{userId}}/tasks'" class="tab-pane" id="my_tasks">
         <task-info ng-repeat="task in userTasks" task="task"></task-info>
     </div>
+
     <div ng-show="currentMenuItem === '/account/{{userId}}/tracking_tasks'" class="tab-pane" id="tracking_tasks">
         <task-info ng-repeat="task in userTrackingTasks" task="task"></task-info>
     </div>
+
     <div ng-show="currentMenuItem === '/account/{{userId}}/bets'" class="tab-pane" id="my_bets">
 
     </div>
-    <div ng-show="currentMenuItem === '/account/{{userId}}' || '/account/{{userId}}/account_info'" class="tab-pane" id="account_info">
-        
+
+    <div ng-show="currentMenuItem === '/account/{{userId}}' || currentMenuItem === '/account/{{userId}}/account_info'" class="tab-pane" id="account_info">
+        <div class="panel panel-default" id="account_info_content">
+                <span ng-show="!editableForm.$visible && userId === myUserId">
+                    <button class="btn btn-warning btn-xs" ng-click="editableForm.$show()"><i class="glyphicon glyphicon-pencil"></i></button>
+                </span>
+                <form editable-form name="editableForm" onaftersave="saveAuthor($data, author.id)">
+                    <span ng-show="editableForm.$visible">
+                        <button type="submit" class="btn btn-primary btn-xs" ng-disabled="editableForm.$waiting"><i class="glyphicon glyphicon-ok"></i></button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()"><i class="glyphicon glyphicon-remove"></i></button>
+                    </span>
+                </form>
+            <p>Имя: <span editable-text="user.firstname" e-ng-model="user.firstname" e-form="editableForm" e-ng-model="user.firstname" e-name="firstname">{{user.firstname}}</span></p>
+            <p>Фамилия: <span editable-text="user.lastname" e-ng-model="user.lastname" e-form="editableForm" e-ng-model="user.lastname" e-name="lastname">{{user.lastname}}</span></p>
+            <p>Дата рождения: <span editable-date="user.birthdate" e-ng-model="user.birthdate" e-form="editableForm" e-ng-model="user.birthdate" e-name="birthdate">{{user.birthdate | date: 'fullDate'}}</span></p>
+            <p>Пол: <span editable-text="user.gender" e-ng-model="user.gender" e-form="editableForm" e-ng-model="user.gender" e-name="gender">{{user.gender === 0 ? 'мужской' : 'женский'}}</span></p>
+            <p>Професиия: <span editable-text="user.job" e-ng-model="user.job" e-form="editableForm" e-ng-model="user.job" e-name="job">{{user.job}}</span></p>
+            <p>О пользователе: <span editable-textarea="user.about" e-ng-model="user.about" e-form="editableForm" e-ng-model="user.about" e-name="about">{{user.about}}</span></p>
+        </div>
     </div>
 </div>
