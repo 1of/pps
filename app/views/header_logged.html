@@ -1,10 +1,31 @@
+<header id="id="menu"">
 <nav id="header" class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="Header_logged">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#" ng-class="{active: currentMenuItem == '/'}">
-                PPS
+                        <div class="logo-container">
+            <div class="l3d navbar-header">
+                <div class="rotate">
+                    <img class="logo-front" src="../../../icons/logo-front.png" alt="logo-pic"> 
+                    <img class="logo-back" src="../../../icons/logo-back.png" alt="logo-pic">
+                </div>
+            </div>
+            <h1>
+                <a class="logo-text navbar-brand" href="#" ng-class="{active: currentMenuItem == '/'}">
+                    BetWill
+                </a>
+            </h1>
+        </div>
             </a>
         </div>
+
+
+
+
+
+
+
+
         <div aria-expanded="true" aria-hidden="false" class="navbar-collapse collapse in " id="navbar">
             <ul class="nav navbar-nav" id="nav_menu">
                 <li ng-class="{active: currentMenuItem === '/'}">
@@ -44,4 +65,5 @@
         </div>
     </div>
 </nav>
+</header>
 <div class="fix-fix"></div>

@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    
+
         app.controller('Main', ['$scope', 'tasks.repository', 'users.repository', function($scope, tasksRepository, usersRepository) {
             //Наш Id
             $scope.myUserId = localStorage.getItem('userId');
@@ -46,4 +46,27 @@
             }, function(error) {console.log(error)});
 
         }]);
+
+/*                          нужно прикрутить её ко всем headeram т.к., #menu нет, когда залогиненый, короч ошибки выскакивают при скролле
+         //scroll
+ app.directive("scroll", function ($window) {
+    return function($scope, element, attrs) {
+        angular.element($window).bind("scroll", function() {
+             if (this.pageYOffset >= $window.visualViewport.height - angular.element(document.querySelector("#menu"))[0].clientHeight) {
+                 $scope.boolChangeClass = true;
+             } else {
+                 $scope.boolChangeClass = false;
+             }
+            $scope.$apply();
+        });
+    };
+});
+
+*/
+
+
     })();
+
+
+
+

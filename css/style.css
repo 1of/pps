@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+
+
+* {
+	margin: 0;
+    padding: 0;
+}
+
+img {
+	max-width: 100%;
+}
+
+
+html {
+	font-size: 10px;
+}
+
+body {
+	margin: 0;
+	font-size: 1.4rem;
+	font-family: 'Open Sans', sans-serif;
+	max-width: 1920px;
+	font-weight: 300;
+	height: 100%;
+	margin-top: -11px;
+}
+
 img {
     max-width: 100%;
 }
@@ -60,9 +87,6 @@ main {
 }
 .content {
 	padding: 0 1%;
-}
-body {
-	margin-top: -11px;
 }
 
 .navbar-brand {
