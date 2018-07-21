@@ -28,15 +28,6 @@ div.bet button {
 	margin: 8px;
 }
 
-div.comments-list p {
-	background-color: rgba(245,245,245, 0.9);
-}
-
-div.add-comment button {
-	width: 100px;
-	height: 65px;
-}
-
 .preloader-all {
 	position: fixed;
 	left: 0;

@@ -1,16 +1,20 @@
+<link rel="stylesheet" type="text/css" href="app/directives/comments/comments.css">
 <section class="comments row">
-	<h3>Комментарии{{userIds[0]}}</h3>
-	<div class="comments-list row" ng-repeat="item in comments" >
+	<h3>Комментарии</h3>
+	<div class="comments-list row" ng-repeat="item in usersPhoto" >
 		<div>
-			<img class="col-md-2" ng-src="{{user.photo || 'app/views/task_id/user_default.jpg'}}" alt="single_comment">	
+		<div class="col-md-2">
+			<img class="img-responsive" ng-src="{{item.photo || 'app/views/task_id/user_default.jpg'}}" alt="single_comment">
+			<span>{{item.firstname}} {{item.lastname}}</span>	
+			<span ng-if="item.firstname.length == 0 || item.lastname.length == 0 ">Анонимус</span>	
+		</div>	
 			<p class="col-md-8">{{item.content}}</p>
 			<span class="col-md-2"> {{item.date_added | date:'yyyy-MM-dd HH:mm'}}</span>
-
 		</div>
 	</div>
 	<div class="add-comment row">
 		<form>
-			<img class="col-md-2" ng-src="{{user.photo || 'app/views/task_id/user_default.jpg'}}" alt="user">
+			<img class="col-md-2 img-responsive" ng-src="{{user.photo || 'app/views/task_id/user_default.jpg'}}" alt="user">
 			<textarea class="col-md-8" name="comment" id="comment" cols="50" rows="10"></textarea>
 			<button type="submit" class="btn btn-default col-md-2">Ответить</button>
 		</form>

@@ -1,0 +1,19 @@
+div.comments-list {
+margin: 0 auto;
+padding-bottom: 10px;
+}
+div.comments-list p {
+	background-color: rgba(245,245,245, 0.9);
+}
+div.comments-list img {
+	max-height: 100px;
+	max-width: 100px;
+	border: 1px solid gray; 
+	border-radius: 50%;
+	margin-left: 13px;
+	box-shadow: 0 0 15px rgba(0,0,0,0.7);
+}
+div.add-comment button {
+	width: 100px;
+	height: 65px;
+}
