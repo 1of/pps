@@ -6,16 +6,19 @@ app.config(function($routeProvider, $locationProvider) {
     }).when('/login', {
         templateUrl: 'app/views/login_page/login.template.html',
         controller: 'Login'
-    }).when('/my_tasks', {
-        templateUrl: localStorage.authToken ? 'app/views/my_tasks/my_tasks.html' : 'app/views/main_page/main.template.html',
-        controller: localStorage.authToken ? 'MyTasks' : 'Home'
-    }).when('/tracking_tasks', {
-        templateUrl: 'app/views/tracking_tasks/tracking_tasks.html',
-        controller: 'TrackingTasks'
-    }).when('/my_bets', {
-        templateUrl: 'app/views/my_bets/my_bets.html',
-        controller: 'MyBets'
-    }).when('/account', {
+    }).when('/account/:userId', {
+        templateUrl: 'app/views/account/account.html',
+        controller: 'Account'
+    }).when('/account/:userId/tasks', {
+        templateUrl: 'app/views/account/account.html',
+        controller: 'Account'
+    }).when('/account/:userId/tracking_tasks', {
+        templateUrl: 'app/views/account/account.html',
+        controller: 'Account'
+    }).when('/account/:userId/bets', {
+        templateUrl: 'app/views/account/account.html',
+        controller: 'Account'
+    }).when('/account/:userId/account_info', {
         templateUrl: 'app/views/account/account.html',
         controller: 'Account'
     }).when('/tasks/:taskId', {

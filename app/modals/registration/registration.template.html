@@ -4,7 +4,23 @@
 <div class="bg-r-wrapper"></div>
 <div class="reg-wrapper">
     <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">Регистрация</h3>
+        <h3 class="modal-title" id="modal-title">Регистрация</h3>
+    </div>
+    <div class="modal-body">
+        <form name="regForm" ng-submit="register()">
+            <label for="reg_email">
+                Email
+            </label>
+            <input class="form-control" id="reg_email" ng-change="validateRegEmail()" ng-class="{'alert-success' : changeRegEmail === true, 'alert-danger' : changeRegEmail === false, 'animated shake' : emailNotification === true}" ng-model="new_user.email" placeholder="email@example.com" popover-placement="right" popover-trigger="'mouseenter'" type="email" uib-popover="Адрес электронной почты. Пример: test@gmail.com">
+            <label for="reg_password">
+                Пароль
+            </label>
+            <input class="form-control" id="reg_password" ng-change="validateRegPass()" ng-class="{'alert-success' : changeRegPas === true, 'alert-danger' : changeRegPas === false, 'animated shake' : passNotification === true}" ng-model="new_user.password" placeholder="не менее 6 символов" popover-placement="right" popover-trigger="'mouseenter'" type="password" uib-popover="{{popoverText}}">
+            </input>
+            </input>
+        </form>
+        <div class="responce-text">
+            {{responceText}}
         </div>
                 <div class="modal-body">
                     <form name="regForm" ng-submit="register()">

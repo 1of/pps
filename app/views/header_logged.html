@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-top" role="navigation" ng-controller="Header_logged">
+<nav id="header" class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="Header_logged">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#" ng-class="{active: currentMenuItem == '/'}">
@@ -8,30 +8,30 @@
         <div aria-expanded="true" aria-hidden="false" class="navbar-collapse collapse in " id="navbar">
             <ul class="nav navbar-nav" id="nav_menu">
                 <li ng-class="{active: currentMenuItem === '/'}">
-                    <a href="#/">
+                    <a href="#">
                         Главная    
                     </a>
                 </li>
-                <li ng-class="{active: currentMenuItem === '/my_tasks'}">
-                    <a href="#/my_tasks">
+                <li ng-class="{active: currentMenuItem === '/account/{{myUserId}}/tasks'}">
+                    <a href="#/account/{{myUserId}}/tasks">
                         Мои обещания
-                        <span class="badge">0</span>      
+                        <span class="badge">{{myTasks.length || "0"}}</span>      
                     </a>
                 </li>
-                <li ng-class="{active: currentMenuItem === '/tracking_tasks'}">
-                    <a href="#/tracking_tasks">
+                <li ng-class="{active: currentMenuItem === '/account/{{myUserId}}/tracking_tasks'}">
+                    <a href="#/account/{{myUserId}}/tracking_tasks">
                         Отслеживаемые
-                        <span class="badge">0</span>
+                        <span class="badge">{{myTrackingTasks.length || "0"}}</span>
                     </a>
                 </li>
-                <li ng-class="{active: currentMenuItem === '/my_bets'}">
-                    <a href="#/my_bets">
+                <li ng-class="{active: currentMenuItem === '/account/{{myUserId}}/bets'}">
+                    <a href="#/account/{{myUserId}}/bets">
                         Ставки
                         <span class="badge">0</span>
                     </a>
                 </li>
-                <li ng-class="{active: currentMenuItem === '/account'}">
-                    <a href="#/account">
+                <li ng-class="{active: currentMenuItem === '/account/{{myUserId}}/account_info' || currentMenuItem === '/account/{{myUserId}}'}">
+                    <a href="#/account/{{myUserId}}/account_info">
                         Личный кабинет
                     </a>
                 </li>
@@ -44,3 +44,4 @@
         </div>
     </div>
 </nav>
+<div class="fix-fix"></div>

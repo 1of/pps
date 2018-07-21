@@ -1,11 +1,8 @@
 <main>
     <form class="form-inline text-center" id="search_form" ng-submit="search()">
-    	<select class="form-control" name="city" id="city">
-    		<option disabled selected>Выберите город</option>
-    		<option value="Харьков">Харьков</option>
-    		<option value="Киев">Киев</option>
-    		<option value="Днепр">Днепр</option>
-    		<option value="Львов">Львов</option>
+    	<select class="form-control" name="city" id="city" ng-model="citySelect">
+			<option selected disabled value="">Выберите расположение...</option>
+    		<option ng-repeat="city in cities" value="city">{{city}}</option>
     	</select>
         <input class="form-control" type="text" placeholder="Введите запрос..." ng-model="searchString">
         <button class="btn btn-secondary" type="submit">Поиск</button>
@@ -43,9 +40,9 @@
   			<form class="form-inline text-center" ng-submit="">
 		    	<select class="form-control filter-select" name="difficulty" id="difficulty">
 		    		<option disabled selected>Выберите сложность</option>
-		    		<option value="easy">Легко</option>
-		    		<option value="medium">Средне</option>
-		    		<option value="hard">Сложно</option>
+		    		<option value="0">Легко</option>
+		    		<option value="1">Средне</option>
+		    		<option value="2">Сложно</option>
 		    	</select>
 		    	<select class="form-control filter-select" name="currency" id="currency">
 		    		<option disabled selected>Выберите стоимость</option>
@@ -62,7 +59,6 @@
 			<a href="http://instagram.com"><img src="../../../app/img/instagram.jpeg" alt="instagram"></img></a>
 			<a href="http://twitter.com"><img src="../../../app/img/twitter.jpeg" alt="twitter"></img></a>
 			<a href="http://facebook.com"><img src="../../../app/img/facebook.jpeg" alt="facebook"></img></a>
-			<br>
 			<a href="http://linkedin.com"><img src="../../../app/img/linkedin.jpeg" alt="linkedin"></img></a>
 			<a href="http://vk.com"><img src="../../../app/img/vk.png" alt="vk"></img></a>
   		</div>
@@ -72,14 +68,7 @@
     	<div class="panel panel-default">
 			<div class="panel-heading text-center">Обещания</div>
 			<div class="panel-body">
-				<div class="panel panel-default" ng-repeat="task in tasks">
-					<div class="panel-body text-center">						
-						<h1 class="text-center">{{task.name}}</h1>
-						<img style="display: inline-block;" ng-src="{{task.picture}}"" alt="no_image">
-						<p>{{task.description}}</p>
-            <a href="#/tasks/{{task.id}}" class="btn btn-info">Подробнее</a><!--позже сделать href="#/{{task.user_id}}/{{task.id}}",когда будет готов свагер-->
-					</div>
-				</div>
+				<task-info ng-repeat="task in tasks  | orderBy:sortField | filter: searchString track by $index" task="task"></task-info>
 			</div>
 		</div>
 	</section>
