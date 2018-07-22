@@ -102,13 +102,13 @@ h2 {
 
 /*__________________________________________CATEGORY___________________*/
 
+/*__________________________________________CATEGORY___________________*/
 .category-container {
 	width: 80%;
 	margin: 40px auto; 
 	display: flex;
 	justify-content: space-between;
 }
-
 .category-item {
 	padding-top: 11px;
 	padding-bottom: 19px;
@@ -119,32 +119,26 @@ h2 {
 	position: relative;
 	bottom: 0;
 	transition: bottom .3s ease,box-shadow .3s ease;
-
 } 
-
 .category-item:hover {
 	bottom: 5px;
 	box-shadow: 0 0.02px 15px 8px rgba(0,0,0,.06);
 }
-
 .category-item-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 } 
-
 .category-icon {
 	height: 100px;
 	width: 100px;
 }
-
 h3 {
 	font-size: 2.0rem;
 	font-weight: 700;
 	color: #DA4453;
 }
-
 .parallax__layer2 {
   background-image: url(../img/poster2.jpg);
   min-height: 400px;
@@ -154,9 +148,7 @@ h3 {
   background-repeat: no-repeat;
   background-attachment: fixed;
   opacity: 0.95;
-
 }
-
 
 
 

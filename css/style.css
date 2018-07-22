@@ -86,7 +86,7 @@ main {
 	margin-top: 20px;
 }
 .content {
-	padding: 0 1%;
+	padding: 0;
 }
 
 .navbar-brand {
@@ -124,9 +124,17 @@ main {
 }
 
 .fix-fix {
-	height: 65px;
+	height: 85px;
 }
-
+/*кнопка выхода*/
+#exit-btn {
+	color: white;
+	transition: all 0.5s;
+}
+#exit-btn:hover {
+	border: 1px solid gray;
+	color: black;
+}
 @media screen and (min-width: 1001px) {
 	#home_aside {
 		width: 300px;
@@ -169,7 +177,7 @@ main {
 .preloader-all {
 	position: fixed;
 	left: 0;
-	top: 50px;
+	top: 85px;
 	height: 100%;
 	width: 100%;
 	background: rgba(0,0,0,0.2);
