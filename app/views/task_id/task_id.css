@@ -1,6 +1,9 @@
 h1, h2, h3 {
 	text-align: center;
 }
+h2 {
+	margin-bottom: 40px;
+}
 section {
 	border: 1px solid gray;
 	border-radius: 15px;
@@ -9,8 +12,9 @@ section {
 }
 
 button.back {
-	width: 100px;
-	height: 100px;
+	box-shadow:5px 5px 10px #2B1015;
+	height: 205px;
+
 }
 section.bets {
 	display: flex;
@@ -26,4 +30,35 @@ div.incdec_bet{
 }
 div.bet button {
 	margin: 8px;
+}
+
+p.head{
+	z-index: 2000;
+	text-align: center;
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+div.userimg {
+	border: 1px solid gray;
+box-shadow:5px 5px 10px #2B1015;
+text-transform: uppercase;
+text-align: center;
+border-radius: 5px;
+text-shadow: 2px 2px 4px #2B1015;
+font-weight: bolder;
+}
+section.header {
+	display: flex;
+	align-content: space-around;
+	align-items: center;
+
+}
+.date-publish span {
+
+	text-decoration: none;
+}
+span.date {
+margin-left: 10px;
+	text-decoration: underline;
+	text-decoration-color: lightgray;
 }

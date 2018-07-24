@@ -10,32 +10,27 @@ function commentsController(){
 		scope: {
 			comments: '=commentslist',
 			userIds: '=userids'
-		}, 
-		controller: ['$scope', "$rootScope", 'users.repository', function($scope, $rootScope, usersRepository) {
-			console.log('userID',$scope.userIds, 'comments',$scope.comments);
-			$scope.usersPhoto = [];
-			$scope.usersPhoto = $scope.comments.map(function(item, i){
-				return {
-					task_id: item.task_id,
-					user_id: item.user_id,
-					content: item.content,
-					date_added: item.date_added,
-					photo: "",
-					firstname: "",
-					lastname: ""
-				}
-			});
-			$scope.usersPhoto.forEach(function(item, i) { 
 
-usersRepository.getUserById(item.user_id).then(function (response){
-			$scope.usersPhoto[i].photo = response.data.photo;
-			$scope.usersPhoto[i].firstname = response.data.firstname;
-			$scope.usersPhoto[i].lastname = response.data.lastname;
-console.log(item, i);
-           console.log($scope.usersPhoto);
-        }, function (error){ }
-        );
-			});
+		},
+		controller: ['$scope', '$rootScope', 'users.repository', 'comments.repository', '$routeParams', function($scope, $rootScope, usersRepository, commentsRepository,  $routeParams) {
+
+			var taskId = $routeParams.taskId;
+			var myId = localStorage.getItem('userId');
+
+			usersRepository.getUserById(+myId).then(function (response){
+			$scope.myinfo = response.data.photo;
+			$rootScope.myfoto = response.data.photo;
+		}, function (error){ });
+
+$scope.initSendComment = function(){
+   $scope.$emit("myEventToSendDataForComment", {comment: $scope.commentText, user_id: +myId, task_id: +taskId});
+};
+
+$scope.$on("myEventToRenderAllComments", function (event, args) {
+	$scope.comments.push(args.newcomments);
+	$scope.commentText = "";
+});
+
 
 
 

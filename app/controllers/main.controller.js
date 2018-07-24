@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-        app.controller('Main', ['$scope', 'tasks.repository', 'users.repository', function($scope, tasksRepository, usersRepository) {
+        app.controller('Main', ['$scope', '$rootScope', 'tasks.repository', 'users.repository', function($scope, $rootScope, tasksRepository, usersRepository) {
             //Наш Id
             $scope.myUserId = localStorage.getItem('userId');
 
@@ -45,6 +45,13 @@
                 $scope.myTrackingTasks = response.data;
             }, function(error) {console.log(error)});
 
+            //Возвращает обьект с данными о пользователе
+            $rootScope.getMyInfo = function(){ 
+                    return $scope.me
+                };
+
+
+
         }]);
 
 /*                          нужно прикрутить её ко всем headeram т.к., #menu нет, когда залогиненый, короч ошибки выскакивают при скролле
@@ -63,7 +70,6 @@
 });
 
 */
-
 
     })();
 

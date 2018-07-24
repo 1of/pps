@@ -1,19 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Kavivanar|Poiret+One');
+
+h3{
+	color: black;
+	font-family: 'Poiret One';
+	letter-spacing: 2px;
+	padding-bottom: 20px;
+}
 div.comments-list {
-margin: 0 auto;
-padding-bottom: 10px;
+	margin: 0 auto;
+	padding-bottom: 10px;
 }
 div.comments-list p {
 	background-color: rgba(245,245,245, 0.9);
+	font-family: 'Kavivanar', cursive;
+	font-style: italic;
+	padding-left: 15px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
 }
 div.comments-list img {
+	margin: 0 auto;
 	max-height: 100px;
 	max-width: 100px;
 	border: 1px solid gray; 
 	border-radius: 50%;
-	margin-left: 13px;
 	box-shadow: 0 0 15px rgba(0,0,0,0.7);
+	transition: all 0.3s ease-in;
+}
+div.comments-list img:hover{
+	border: 1px solid lightgray;
+	box-shadow: 0 0 25px rgba(0,0,0,0.7);
 }
 div.add-comment button {
 	width: 100px;
 	height: 65px;
 }
+span.name {
+	margin: 0 auto;
+	color: gray;
+}
+div.comments-all {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	box-shadow: inset 2px 2px 35px 10px rgba(0,0,0,0.25);
+	padding-top: 15px;
+	border-radius: 10%;
+}
+div.postdate {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	border-left: 1px solid gray;
+	padding: 3px;
+}
+div.postdate .day, .month {
+	display: block;
+	font-family: 'Poiret One';
+	font-size: 0.9em;
+	font-weight: 900;
+	color: gray;
+	margin-left: 10px;
+}
+div.dmflex{
+	display: flex;
+	flex-direction: column;
+}
+div.dmflex-inner{
+	display: flex;
+	flex-direction: row;
+}
+div.year {
+	transform: rotate(90deg);
+	font-family: 'Poiret One';
+	font-weight: 900;
+	text-shadow: 0 0 1px #140;
+	margin: 0;
+}
+div.time {
+	display: block;
+	font-size: 1.3em;
+	font-family: 'Kavivanar';
+	color: #131313;
+    background-color: #e7e5e4;
+    letter-spacing: .10em;
+    text-shadow: 0 0 5px #161676;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+/*добавить комментарий*/
+div.my-photo {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+}
+div.my-photo img {
+	max-width: 170px;
+	border-radius: 25%;
+	align-self: center;
+}
+div.add-comment {
+	display: flex;
+	border-radius: 5px;
+	margin: 100px 0 0 0;
+	box-shadow: inset 2px 2px 35px 10px rgba(15,11,240,.25);
+	
+}
+
+button.send-btn {
+	margin: 0 auto;
+	align-self: center;
+}
+textarea {
+	resize: none;	
+	background: radial-gradient(ellipse at center, rgba(242,249,254,0.4) 70%,rgba(214,240,253,0.5) 100%);
+	color: black;
+	font-family: 'Kavivanar';
+	font-size: 20px;
+	height: 200px;
+	text-align: center;
+}
+

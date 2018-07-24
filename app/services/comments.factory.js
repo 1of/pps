@@ -8,7 +8,7 @@
         };
 
         function _addComment(data) {
-            return $http.post(webApi.DOMAIN + '/api/v1/comments' + data);
+            return $http.post(webApi.DOMAIN + '/api/v1/comments', data);
         }
 
         function _getCommentsById(id) {
