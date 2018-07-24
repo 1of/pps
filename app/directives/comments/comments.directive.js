@@ -1,42 +1,75 @@
 (function(){
-'use strict';
+	'use strict';
 
-app.directive('comments', commentsController);
+	app.directive('comments', commentsController);
 
-function commentsController(){
-	return{
-		restrict: 'E',
-		templateUrl: './app/directives/comments/comments.template.html',
-		scope: {
-			comments: '=commentslist',
-			userIds: '=userids'
+	function commentsController(){
+		return{
+			restrict: 'E',
+			templateUrl: './app/directives/comments/comments.template.html',
+			scope: {
+				comments: '=commentslist',
+				userIds: '=userids',
+				mydata: '='
 
-		},
-		controller: ['$scope', '$rootScope', 'users.repository', 'comments.repository', '$routeParams', function($scope, $rootScope, usersRepository, commentsRepository,  $routeParams) {
+			},
+			controller: ['$scope', '$rootScope', 'users.repository', 'comments.repository', '$routeParams', function($scope, $rootScope, usersRepository, commentsRepository,  $routeParams) {
 
-			var taskId = $routeParams.taskId;
-			var myId = localStorage.getItem('userId');
+				var taskId = $routeParams.taskId;
+				var myId = localStorage.getItem('userId');
+				usersRepository.getUserById(+myId).then(function (response){
+					$scope.myinfo = response.data.photo;
+					$rootScope.myfoto = response.data.photo;
+				}, function (error){ });
 
-			usersRepository.getUserById(+myId).then(function (response){
-			$scope.myinfo = response.data.photo;
-			$rootScope.myfoto = response.data.photo;
-		}, function (error){ });
+				$scope.commentText = "";
 
-$scope.initSendComment = function(){
-   $scope.$emit("myEventToSendDataForComment", {comment: $scope.commentText, user_id: +myId, task_id: +taskId});
-};
+				$scope.sendComment = function() {
+					if ($scope.commentText.length < 2) return 
+						else {
+									$scope.user_obj = {
+									task_id: +taskId,
+									user_id: +myId,
+									content: $scope.commentText,
+									date_added: new Date().toISOString(),
+									photo: $scope.mydata.photo,
+									firstname: $scope.mydata.firstname,
+									lastname: $scope.mydata.lastname
+								};
 
-$scope.$on("myEventToRenderAllComments", function (event, args) {
-	$scope.comments.push(args.newcomments);
-	$scope.commentText = "";
-});
+								let data = {
+									"task_id": +taskId,	
+								    "user_id": +myId,
+								    "content": $scope.commentText
+								}
+
+								commentsRepository.addComment(data).then(function (response){
+									$scope.comments.push($scope.user_obj);
+									$scope.commentText = "";
+								}, function (error){ });
+
+						}
+				};
 
 
+				$scope.$watch('comments', function(newValue, oldValue) {
+					if (newValue !== oldValue) {
+//Добавить в массив с комментариями фото и имена участников
+						$scope.comments.forEach(function(item, i, arr) { 
+							usersRepository.getUserById(item.user_id).then(function (response){
+								$scope.comments[i].photo = response.data.photo;
+								$scope.comments[i].firstname = response.data.firstname;
+								$scope.comments[i].lastname = response.data.lastname;
+							}, function (error){ });
+						});
+
+					}
+				});
 
 
-		}]
+			}]
 
+		}
 	}
-}
 
 })();

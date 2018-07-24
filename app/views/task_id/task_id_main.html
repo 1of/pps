@@ -44,9 +44,23 @@
 			<p>{{task.description}}</p>
 		</div>
 	</section>
-<proofs></proofs>
 <!-- ng-if="comments.length" --> 
 <div>
+
+<proofs></proofs>
+  <uib-accordion close-others="oneAtATime">
+    <div uib-accordion-group class="panel-default" is-open="status.open">
+      <uib-accordion-heading>
+         <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+         <i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-left': !status.open}"></i>
+        <p class="head">Этапы прохождения обещания</p>
+      </uib-accordion-heading>
+
+<proofs></proofs>
+    </div>
+  </uib-accordion>
+
+      
 
 
   <uib-accordion close-others="oneAtATime">
@@ -58,10 +72,12 @@
       </uib-accordion-heading>
       Все, что думаете об этом обещании оставляйте здесь
 
-      <comments commentslist="comments" ng-if="comments.lenght !== 0"> <comments>
+      <comments commentslist="comments" mydata="mydata" ng-if="comments.lenght !== 0"> <comments>
 
     </div>
   </uib-accordion>
+
+
 </div>
 
 </div>

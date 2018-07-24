@@ -23,11 +23,11 @@
 			</span>
 		</div>
 	</div>
-	<div class="add-comment row" ng-if="!myfoto">
+	<div class="add-comment row">
 			<div class="col-md-2 my-photo">
 				<img class=" img-responsive" ng-src="{{myinfo || 'app/directives/comments/img/no_ava_user.png'}}" alt="user">
 			</div>	
-			<textarea class="col-md-8" name="comment" id="comment" cols="50" rows="10" placeholder="Оставьте свой комментарий..." ng-model="$parent.commentText"></textarea>
-			<button class="btn btn-default col-md-2 send-btn" ng-click="initSendComment()">Ответить</button>
+			<textarea class="col-md-8" name="comment" id="comment" cols="50" rows="10" placeholder="Оставьте свой комментарий..." ng-model="commentText"></textarea>
+			<button class="btn btn-default col-md-2 send-btn" ng-click="sendComment()">Ответить</button>
 	</div>
 </section>

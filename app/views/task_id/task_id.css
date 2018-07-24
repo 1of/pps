@@ -5,10 +5,12 @@ h2 {
 	margin-bottom: 40px;
 }
 section {
-	border: 1px solid gray;
-	border-radius: 15px;
 	padding: 5px;
 	margin-bottom: 2px;
+}
+section.header, .bets {
+	border: 1px solid gray;
+	border-radius: 15px;
 }
 
 button.back {

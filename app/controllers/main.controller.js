@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-        app.controller('Main', ['$scope', '$rootScope', 'tasks.repository', 'users.repository', function($scope, $rootScope, tasksRepository, usersRepository) {
+        app.controller('Main', ['$scope', '$rootScope', 'tasks.repository', 'users.repository','$location', function($scope, $rootScope, tasksRepository, usersRepository, $location) {
             //Наш Id
             $scope.myUserId = localStorage.getItem('userId');
 
@@ -49,6 +49,12 @@
             $rootScope.getMyInfo = function(){ 
                     return $scope.me
                 };
+
+            // Получить предыдущий путь
+            $scope.history = [];
+            $rootScope.$on('$routeChangeSuccess', function(){
+                $scope.history.push($location.$$path);
+            })
 
 
 

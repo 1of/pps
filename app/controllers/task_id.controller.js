@@ -2,7 +2,7 @@
 'use strict';
 app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope',  function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope) {
 	console.log('TaskId controller  OK!!!');
-	$scope.commentText = "";
+	// $scope.commentText = "";
 	$scope.myinfo = "";
 	$scope.myId = localStorage.getItem('userId');
 	var id = $routeParams.taskId; //получаем из роутинга ID обещания! (taskID берется из app.routes.js)
@@ -32,47 +32,13 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 				}
 			});       
 
-//Добавить в массив с комментариями фото и имена участников
-		$scope.comments.forEach(function(item, i, arr) { 
-			console.log(item, i, arr);
-			usersRepository.getUserById(item.user_id).then(function (response){
-			$scope.comments[i].photo = response.data.photo;
-			$scope.comments[i].firstname = response.data.firstname;
-			$scope.comments[i].lastname = response.data.lastname;
-        }, function (error){ });
-			});
 	}, function(error) {});
 
-//Отправить комментарий
-$scope.sendComment = function(iserId, taskId, message) {
-	if (message.length < 2) return
-	let data = {
-	"task_id": taskId,
-    "user_id": iserId,
-    "content": message
-	}
-	commentsRepository.addComment(data).then(function (response){      
-$scope.sendNewCommentToDirective();
-	}, function (error){ });
-}
 
-$scope.$on("myEventToSendDataForComment", function (event, args) {
-   $scope.user_obj = {
-				   	task_id: args.task_id,
-					user_id: args.user_id,
-					content: args.comment,
-					date_added: new Date().toISOString(),
-					photo: $scope.myinfo,
-					firstname: $scope.mydata.firstname,
-					lastname: $scope.mydata.lastname
-   }
-   $scope.sendComment(args.user_id, args.task_id, args.comment); //вызов функции отправки комментария
-});
-
-$scope.sendNewCommentToDirective = function(){
-   $scope.$broadcast("myEventToRenderAllComments", {newcomments: $scope.user_obj}); //отправить комментарий в директиву COMMENTS
+$scope.backPath = function() {
+	var prevUrl = $scope.history.length > 1 ? $scope.history.splice(-2)[0] : '/';
+	$location.path(prevUrl);
 };
-
 
 }]);
 })();
