@@ -8,7 +8,8 @@
             <span class="task-price pull-right">Ставка: {{task.bet || '100$'}} / {{task.bet || '70$'}}</span>
         </div>
         <div class="task-all-buttons">
-            <button class="btn btn-default">Следить</button>
+            <button ng-show="!isTracking" class="btn btn-default" ng-click="addTrackingTask()">Следить</button>
+            <button ng-show="isTracking" class="btn btn-default" ng-click="deleteTrackingTask()">Прекратить следить</button>
             <button class="btn btn-default">Подробнее</button>            
         </div>
     </div>

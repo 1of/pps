@@ -45,5 +45,10 @@
                 $scope.myTrackingTasks = response.data;
             }, function(error) {console.log(error)});
 
+            //Обновляем список отслеживаемых
+            $scope.$on('trackingTaskAdded', function (event, data) {
+                $scope.myTrackingTasks.push(data);
+            })
+
         }]);
     })();
