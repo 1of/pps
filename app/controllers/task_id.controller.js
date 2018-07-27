@@ -37,7 +37,12 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 
 	}, function(error) {});
 
+	tasksRepository.getBetsById($scope.myId).then(function(response) { //стягиваем наши ставки
+		$scope.bets = response.data;       
+		console.log('bets', $scope.bets);
+	}, function(error) {});
 
+//кнопка Назад
 $scope.backPath = function() {
 	var prevUrl = $scope.history.length > 1 ? $scope.history.splice(-2)[0] : '/';
 	$location.path(prevUrl);

@@ -1,20 +1,22 @@
 <!-- Modal add Proofs -->
-<div class="reg-container">
-<div class="bg-r-wrapper"></div>
-<div class="reg-wrapper">
+<div class="proof-wrapper">
     <div class="modal-header">
         <h3 class="modal-title" id="modal-title">Добавление нового подтверждения</h3>
     </div>
+    <form enctype="multipart/form-data" >
                 <div class="modal-body">
-                <label for="prooftext">Чего изволите</label>
-                <input type="text" name="prooftext" ng-model="proofText">
-                <label for="photourl">Фото</label>
-                <input type="text" name="photourl" ng-model="photoUrl">
+                <div class="row">
+                    <label for="description">Описание</label>
+                    <textarea name="description" ng-model="proofText" cols="70" rows="3"></textarea>
                 </div>
+                <div class="row">
+                    <label for="picture">Фото</label>
+                    <input type="file" name="picture" class="inputfile" id="inputfile" >
+                </div>
+                </div>
+    </form>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="ok()">Добавить</button>
             <button class="btn btn-warning" type="button" ng-click="cancel()">Закрыть</button>
-        </div>
-        
-        </div>
-    </div>
+        </div>       
+</div>

@@ -26,19 +26,20 @@ tasksRepository.getTasksById(id).then(function(response) {
 			var modalInstance = $uibModal.open({
 				templateUrl: 'app/modals/addProof/addProof.template.html',
 				controller: 'Addproof',
-				size: 'm'
+				size: 'lg'
 			});
+
 
 modalInstance.result.then(function(result) {
 			if (!result) return;
 
-// tasksRepository.addProofById(id, result).then(function(response) {
-		
-// utils.notify({message: response.data.error, type: 'danger'});
-// 	}, function(error) {
-// 			console.log("OTVET", error);
-// 	utils.notify({message: error.data.error, type: 'danger'});
-// 	});
+tasksRepository.addProofById(id, result).then(function(response) {
+		console.log("response", response);
+utils.notify({message: response.data.error, type: 'danger'});
+	}, function(error) {
+			console.log("Error", error);
+	utils.notify({message: error.data.error, type: 'danger'});
+	});
 
 				
 			

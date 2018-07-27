@@ -8,6 +8,9 @@
             //Active user is me by default
             $scope.userId = $scope.myUserId;
 
+            //Adress of our server
+            $rootScope.adress = 'http://node4.fe.a-level.com.ua/';
+
             //Получаем список всех задач и список всех городов из него
             tasksRepository.getTasks()
                 .then(function(response){

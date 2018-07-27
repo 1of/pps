@@ -5,7 +5,9 @@
             getTasks: _getTasks,
             getTasksById: _getTasksById,
             getProofsById: _getProofsById,
-            addProofById: _addProofById
+            addProofById: _addProofById,
+            getBetsById: _getBetsById,
+            addBetsById: _addBetsById
 
         };
 
@@ -22,7 +24,17 @@
         }
 
         function _addProofById(id, data) {
-            return $http.post(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/proofs', data);
+            return $http.post(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/proofs', data, {
+                // transformRequest: angular.identity,
+                headers: {'Content-Type': 'x-www-form-urlencoded'}
+            });
+        }
+        function _getBetsById(id) {
+            return $http.get(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/bets');
+        }
+
+        function _addBetsById(id, data) {
+            return $http.post(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/bets', data);
         }
 
     }]);
