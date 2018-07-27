@@ -14,7 +14,7 @@
 
 			},
 			controller: ['$scope', '$rootScope', 'users.repository', 'comments.repository', '$routeParams', function($scope, $rootScope, usersRepository, commentsRepository,  $routeParams) {
-
+				$scope.adress = 'http://node4.fe.a-level.com.ua/';
 				var taskId = $routeParams.taskId;
 				var myId = localStorage.getItem('userId');
 				usersRepository.getUserById(+myId).then(function (response){

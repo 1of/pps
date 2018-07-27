@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="app/views/task_id/task_id.css">
 
-<div ng-if="loading" class="preloader-all">
-</div>
+<!--<div ng-if="loading" class="preloader-all">
+</div> -->
 
 <div class="container-fluid">
 	<section class="header row">
@@ -9,7 +9,7 @@
 			<button type="button" class="btn btn-info back" ng-click="backPath()">Назад</button>
 		</div>
 		<div class="col-md-2 userimg" >
-			<img ng-src="{{user.photo || 'app/views/task_id/user_default.jpg'}}" alt="photo">
+			<img ng-src="{{adress + user.photo || 'app/views/task_id/user_default.jpg'}}" alt="photo">
 			<p> {{user.firstname}} {{user.lastname}} </p>
 		</div>
 		<div class="col-md-9 date-publish">
@@ -38,7 +38,7 @@
 	<section class="description row">
 		<h2>Описание</h2>
 		<div class="col-md-3">
-			<img ng-src="{{task.picture || 'app/views/task_id/user_default.jpg'}}" alt="task">
+			<img ng-src="{{adress + task.picture || 'app/views/task_id/user_default.jpg'}}" alt="task">
 		</div>
 		<div class="col-md-9">
 			<p>{{task.description}}</p>
@@ -56,7 +56,6 @@
         <p class="head">Этапы прохождения обещания</p>
       </uib-accordion-heading>
 
-<proofs></proofs>
     </div>
   </uib-accordion>
 

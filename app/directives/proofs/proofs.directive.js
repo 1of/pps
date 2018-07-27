@@ -10,6 +10,7 @@ function proofsController(){
 		scope: {}, 
 		controller: ['$scope', "$rootScope", 'tasks.repository', '$routeParams', '$uibModal', 'utils', function($scope, $rootScope, tasksRepository, $routeParams, $uibModal, utils) {
 		var id = $routeParams.taskId;
+		$scope.adress = 'http://node4.fe.a-level.com.ua/';
 
 tasksRepository.getTasksById(id).then(function(response) {
 		$scope.task = response.data; 
@@ -18,7 +19,7 @@ tasksRepository.getTasksById(id).then(function(response) {
 
 		tasksRepository.getProofsById(id).then(function(response) {
 		$scope.proofs = response.data; 
-		console.log($scope.proofs)  ;
+		console.log("попап", $scope.proofs)  ;
 		}, function(error) { });
 
 		$scope.addProof = function() {
@@ -30,7 +31,6 @@ tasksRepository.getTasksById(id).then(function(response) {
 
 modalInstance.result.then(function(result) {
 			if (!result) return;
-		console.log("попап", $rootScope);
 
 // tasksRepository.addProofById(id, result).then(function(response) {
 		

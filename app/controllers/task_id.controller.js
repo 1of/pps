@@ -3,12 +3,14 @@
 app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope',  function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope) {
 	console.log('TaskId controller  OK!!!');
 	// $scope.commentText = "";
+	$scope.adress = 'http://node4.fe.a-level.com.ua/';
 	$scope.myinfo = "";
 	$scope.myId = localStorage.getItem('userId');
 	var id = $routeParams.taskId; //получаем из роутинга ID обещания! (taskID берется из app.routes.js)
 	
 	tasksRepository.getTasksById(id).then(function(response) {
 		$scope.task = response.data;       //записываем информацию о нашем обещании
+		console.log($scope.task);
 	}, function(error) {
 	});
 
@@ -16,6 +18,7 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 		$scope.user = response.data;       //записываем информацию о нашем пользователе
 		$scope.myinfo = response.data.photo;
 		$scope.mydata = response.data;
+		console.log($scope.user);
 	}, function(error) {});
 
 
