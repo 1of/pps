@@ -27,6 +27,7 @@
 				<img class=" img-responsive" ng-src="{{adress + myinfo || 'app/directives/comments/img/no_ava_user.png'}}" alt="user">
 			</div>	
 			<textarea class="col-md-8" name="comment" id="comment" cols="50" rows="10" placeholder="Оставьте свой комментарий..." ng-model="commentText"></textarea>
-			<button class="btn btn-default col-md-2 send-btn" ng-click="sendComment()">Ответить</button>
+			<button class="btn btn-default col-md-2 send-btn" ng-click="sendComment()">
+			Ответить <i class="glyphicon glyphicon-send"></i></button>
 	</div>
 </section>

@@ -36,11 +36,29 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 			});       
 
 	}, function(error) {});
+//получения ставок Обещания
+	tasksRepository.getBetsById(id).then(function(response) {
+		$scope.bets = response.data; 
+		console.log("ставки", $scope.bets);
+		}, function(error) { });
 
-	tasksRepository.getBetsById($scope.myId).then(function(response) { //стягиваем наши ставки
-		$scope.bets = response.data;       
-		console.log('bets', $scope.bets);
-	}, function(error) {});
+//Добавление ставки ставок Обещания
+$scope.betamount = 0;
+$scope.myVar = 0;
+$scope.seeVal = function(myVar) {
+	$scope.betamount = myVar;
+console.log($scope.betamount, $scope.myVar);
+};
+$scope.incBet = function() {console.log($scope.myVar);$scope.myVar++; };
+$scope.decBet = function() {console.log($scope.myVar); $scope.myVar--; };
+$scope.addBet = function(myVar) {
+	$scope.myVar = myVar;
+console.log($scope.betamount, $scope.myVar, myVar);
+	// tasksRepository.addBetsById(id, value).then(function(response) {
+	// 	$scope.bets = response.data; 
+	// 	console.log("ставки", $scope.bets);
+	// 	}, function(error) { });
+};
 
 //кнопка Назад
 $scope.backPath = function() {

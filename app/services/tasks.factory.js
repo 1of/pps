@@ -25,9 +25,9 @@
 
         function _addProofById(id, data) {
             return $http.post(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/proofs', data, {
-                // transformRequest: angular.identity,
-                headers: {'Content-Type': 'x-www-form-urlencoded'}
-            });
+                                                transformRequest: angular.identity,
+                                                headers: {'Content-Type': undefined}
+        });
         }
         function _getBetsById(id) {
             return $http.get(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/bets');

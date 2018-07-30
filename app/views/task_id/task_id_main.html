@@ -20,19 +20,19 @@
 	</section>
 	<section class="bets row">
 		<div class="statistics col-md-9">
-			<h3>Стоимость: <span class="badge">100 $</span> / Максимальная ставка: <span class="badge">100 $</span></h3>
+			<h3>Стоимость: <span class="badge">{{ task.value }}</span> / Максимальная ставка: <span class="badge" >{{user.balance}}</span></h3>
 			<p>Отслеживают: <span class="badge">25</span> чел.</p>
-			<p>Ставок: <span class="badge">5</span></p>
+			<p>Ставок: <span class="badge">{{ bets.length || 0 }}</span></p>
 			<p>Комментарии: <span class="badge">{{comments.length}}</span></p>
 		</div>
 		<div class="bet col-md-3">
 			<button type="button" class="btn btn-warning">Следить</button>
 			<div class="incdec_bet">
-				<button type="button" class="btn btn-danger btn-xs">+</button>
-				<span class="badge">50 $</span>
-				<button type="button" class="btn btn-danger btn-xs">-</button>
+				<button type="button" class="btn btn-danger btn-xs" ng-click="incBet(myVar)">+</button>
+				<input  type="number" name="input" ng-model="myVar" ng-change="seeVal()"> {{betamount}}-{{myVar}}
+				<button type="button" class="btn btn-danger btn-xs" ng-click="decBet()">-</button>
 			</div>
-			<button type="button" class="btn btn-success">Ставить</button>
+			<button type="button" class="btn btn-success" ng-click="addBet(myVar)">Ставить</button>
 		</div>
 	</section>
 	<section class="description row">
@@ -47,7 +47,7 @@
 <!-- ng-if="comments.length" --> 
 <div>
 
-<proofs></proofs>
+
   <uib-accordion close-others="oneAtATime">
     <div uib-accordion-group class="panel-default" is-open="status.open">
       <uib-accordion-heading>
@@ -55,7 +55,7 @@
          <i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-left': !status.open}"></i>
         <p class="head">Этапы прохождения обещания</p>
       </uib-accordion-heading>
-
+        <proofs></proofs>
     </div>
   </uib-accordion>
 

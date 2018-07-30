@@ -1,12 +1,12 @@
 <section class="proofs">
-<button class="btn btn-info center-block" ng-if="!validTask" ng-click="addProof()">Добавить подтверждение</button>
 	<div>
 		<ol ng-repeat="proof in proofs">
 			<li class="list-group-item row">	
-		    <h4 class="col-md-32 list-group-item-heading">{{proof.date_added | date:'HH:mm |(dd/MM)'}}</h4>
-		    <div class="col-md-3"><img class="img-thumbnail img-responsive" ng-src="{{adress + proof.picture || 'app/views/task_id/user_default.jpg'}}"></div>		    
+		    <h4 class="col-md-32 list-group-item-heading">{{proof.date_added | date:'HH:mm | (dd/MM)'}}</h4>
+		    <div class="col-md-2"><img class="img-thumbnail img-responsive" ng-src="{{adress + proof.picture || 'app/views/task_id/user_default.jpg'}}"></div>		    
 		    <p class="list-group-item-text col-md-7">{{proof.description}}</p>
 			</li>
 		</ol>
 	</div>
+	<button class="btn btn-info center-block" ng-if="!validTask" ng-click="addProof()"> <i class="glyphicon glyphicon-file"></i> Добавить подтверждение</button>
 </section>

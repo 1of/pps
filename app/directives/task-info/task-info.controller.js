@@ -11,7 +11,7 @@
                 task: '=task'
             },
             controller: ['$scope', '$rootScope', function ($scope, $rootScope) {
-                
+                $scope.adress = 'http://node4.fe.a-level.com.ua/';
             }]
         }
     }
