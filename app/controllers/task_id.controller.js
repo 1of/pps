@@ -2,6 +2,7 @@
 'use strict';
 app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope',  function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope) {
 	console.log('TaskId controller  OK!!!');
+
 	// $scope.commentText = "";
 	$scope.adress = 'http://node4.fe.a-level.com.ua/';
 	$scope.myinfo = "";
@@ -43,22 +44,45 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 		}, function(error) { });
 
 //Добавление ставки ставок Обещания
-$scope.betamount = 0;
-$scope.myVar = 0;
-$scope.seeVal = function(myVar) {
-	$scope.betamount = myVar;
-console.log($scope.betamount, $scope.myVar);
-};
-$scope.incBet = function() {console.log($scope.myVar);$scope.myVar++; };
-$scope.decBet = function() {console.log($scope.myVar); $scope.myVar--; };
-$scope.addBet = function(myVar) {
-	$scope.myVar = myVar;
-console.log($scope.betamount, $scope.myVar, myVar);
-	// tasksRepository.addBetsById(id, value).then(function(response) {
-	// 	$scope.bets = response.data; 
-	// 	console.log("ставки", $scope.bets);
-	// 	}, function(error) { });
-};
+	$scope.betAmount = 0;
+	
+	$scope.inc = function() {
+		$scope.betAmount++;
+	};
+	
+	$scope.dec = function() {
+		$scope.betAmount--;
+	};
+	
+	$scope.addBet = function() {
+
+		console.log($scope.betAmount, +id );
+        var data = { value: +$scope.betAmount};
+			tasksRepository.addBetsById(+id, data).then(function(response) {
+		console.log("ответ по ставке+", $scope.res);
+		}, function(error) {
+			if (error.status == 403) {
+				$scope.error = { 
+					status: true,
+					text: "Вы уже делали ставку на это обещание сегодня"
+				};
+			}
+			console.log("ответ по ставке-", error); 
+		});
+	};
+//Подписаться на ставку
+$scope.subscribe = function() {
+	let data = { task_id: +id };
+		usersRepository.addTrackingTask($scope.myId, data).then(function(response) {
+		console.log("ответ по подписке+", response);
+		$scope.myTrackingTasks = response.data;
+		}, function(error) {
+
+			console.log("ответ по подписке-", error); 
+		});
+	};
+
+
 
 //кнопка Назад
 $scope.backPath = function() {

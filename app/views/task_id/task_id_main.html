@@ -3,13 +3,13 @@
 <!--<div ng-if="loading" class="preloader-all">
 </div> -->
 
-<div class="container-fluid">
+<div class="container-fluid" ng-controlle="TaskId">
 	<section class="header row">
 		<div class="button-return col-md-1">
-			<button type="button" class="btn btn-info back" ng-click="backPath()">Назад</button>
+			<button type="button" class="btn btn-info btn-xs back" ng-click="backPath()"> <i class="glyphicon glyphicon-arrow-left"></i> </button>
 		</div>
 		<div class="col-md-2 userimg" >
-			<img ng-src="{{adress + user.photo || 'app/views/task_id/user_default.jpg'}}" alt="photo">
+			<img ng-src="{{user.photo ? adress + user.photo : 'app/views/task_id/user_default.jpg'}}">
 			<p> {{user.firstname}} {{user.lastname}} </p>
 		</div>
 		<div class="col-md-9 date-publish">
@@ -26,13 +26,32 @@
 			<p>Комментарии: <span class="badge">{{comments.length}}</span></p>
 		</div>
 		<div class="bet col-md-3">
-			<button type="button" class="btn btn-warning">Следить</button>
-			<div class="incdec_bet">
-				<button type="button" class="btn btn-danger btn-xs" ng-click="incBet(myVar)">+</button>
-				<input  type="number" name="input" ng-model="myVar" ng-change="seeVal()"> {{betamount}}-{{myVar}}
-				<button type="button" class="btn btn-danger btn-xs" ng-click="decBet()">-</button>
-			</div>
-			<button type="button" class="btn btn-success" ng-click="addBet(myVar)">Ставить</button>
+		<p class="text-info">Ваш баланс: {{user.balance}}</p>
+		<button type="button" class="btn btn-warning center-block" ng-click="subscribe()"><i class="glyphicon glyphicon-star-empty"></i> Отслеживать</button>
+		<form ng-controller="TaskId">
+			
+				<div class="incdec_bet">
+					<button class="btn btn-danger btn-md" ng-click="inc()"><i class="glyphicon glyphicon-plus"></i></button>
+					<input   type="number" min="0" ng-model="betAmount">
+					<button  class="btn btn-danger btn-md" ng-click="dec()"><i class="glyphicon glyphicon-minus"></i></button>
+				</div>
+					
+					
+<button type="submit" class="btn btn-success pull-right" ng-click="addBet()">
+ <i class="glyphicon glyphicon-ok-circle"></i>
+Ставить</button> 
+<p ng-if="error.status" class="text-danger">{{error.text}}</p>
+			</form>
+			
+	<div><!--	
+		<form ng-controller="TaskId">
+			<button class="btn btn-danger btn-xs" ng-click="inc()">+</button>
+			<input type="number" ng-model="betAmount">
+			<button class="btn btn-danger btn-xs" ng-click="dec()">-</button>
+			<br>
+			<button type="submit" class="btn btn-success block" ng-click="addBet()">Add</button>
+		</form>-->
+	</div>
 		</div>
 	</section>
 	<section class="description row">
@@ -77,6 +96,3 @@
   </uib-accordion>
 
 
-</div>
-
-</div>

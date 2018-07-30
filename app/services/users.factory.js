@@ -5,7 +5,10 @@
             getUsersTasks: _getUsersTasks,
             getUsersTrackingTasks: _getUsersTrackingTasks,
             getUserById: _getUserById,
-            getAllUsers: _getAllUsers            
+            getAllUsers: _getAllUsers,
+            updateUser: _updateUser,
+            addTrackingTask: _addTrackingTask,
+            getUsersBets: _getUsersBets,
         };
 
         function _getUsersTasks(id) {
@@ -22,6 +25,18 @@
 
         function _getAllUsers() {
             return $http.get(webApi.DOMAIN + '/api/v1/users/');
+        }
+
+        function _updateUser(id, data) {
+            return $http.put(webApi.DOMAIN + '/api/v1/users/' + id, data);
+        }
+
+        function _addTrackingTask(userId, taskId) {
+            return $http.post(webApi.DOMAIN + '/api/v1/users/' + userId + '/tracking', taskId);
+        }
+
+        function _getUsersBets(userId) {
+            return $http.get(webApi.DOMAIN + '/api/v1/users/' + userId + '/bets');
         }
 
     }]);
