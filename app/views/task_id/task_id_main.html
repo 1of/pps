@@ -13,14 +13,19 @@
 			<p> {{user.firstname}} {{user.lastname}} </p>
 		</div>
 		<div class="col-md-9 date-publish">
-			<h2>&laquo;{{task.name}}&raquo;</h2>
+			<h2>{{task.name}}</h2>
 			<span>Дата публикации: <span class="date"> {{task.date_added | date:'HH:mm (dd/MM/yyyy)'}}</span></span><br>
-			<span>Осталось времени:<span class="date">{{task.time_limit | date:'HH:mm (dd/MM/yyyy)'}}</span></span>
+			<span>Осталось времени:
+			<span class="day">{{timeLeft.day}}</span>
+			<span class="hour">{{timeLeft.hour}}</span>
+			<span class="min">{{timeLeft.min}}</span>
+			<span class="sec">{{timeLeft.sec}}</span>
+			</span>
 		</div>
 	</section>
 	<section class="bets row">
 		<div class="statistics col-md-9">
-			<h3>Стоимость: <span class="badge">{{ task.value }}</span> / Максимальная ставка: <span class="badge" >{{user.balance}}</span></h3>
+			<h3>Стоимость: <span class="badge">{{ task.value }}</span> </br> Максимальная ставка: <span class="badge" >{{maxBet || 0}}</span></h3>
 			<p>Отслеживают: <span class="badge">25</span> чел.</p>
 			<p>Ставок: <span class="badge">{{ bets.length || 0 }}</span></p>
 			<p>Комментарии: <span class="badge">{{comments.length}}</span></p>
@@ -57,7 +62,7 @@
 	<section class="description row">
 		<h2>Описание</h2>
 		<div class="col-md-3">
-			<img ng-src="{{adress + task.picture || 'app/views/task_id/user_default.jpg'}}" alt="task">
+			<img ng-src="{{task.picture ? adress + task.picture : 'app/views/task_id/nophoto_task2.jpg'}}" alt="img" >
 		</div>
 		<div class="col-md-9">
 			<p>{{task.description}}</p>

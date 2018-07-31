@@ -1,8 +1,10 @@
 h1, h2, h3 {
 	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 h2 {
-	margin-bottom: 40px;
+	padding-bottom: 40px;
 }
 section {
 	padding: 5px;
@@ -13,7 +15,12 @@ section.header, .bets, .description {
 	border: 1px solid gray;
 	border-radius: 15px;
 }
-
+section.description p {
+	font: italic small-caps bold 16px/2 cursive;
+}
+section.description img {
+	max-width: 300px;
+}
 button.back {
 	box-shadow:5px 5px 10px #2B1015;
 	
@@ -21,14 +28,14 @@ button.back {
 }
 section.bets {
 	display: flex;
-		background: linear-gradient(270deg, rgba(255,255,255,.55) 20%, rgba(68,195,115,.5) 150%);
+	background: linear-gradient(270deg, rgba(255,255,255,.55) 20%, rgba(68,195,115,.5) 150%);
 	
 }
 section.header {
-background: linear-gradient(90deg, rgba(255,255,255,.55) 20%, rgba(68,195,115,.5) 150%);
+	background: linear-gradient(90deg, rgba(255,255,255,.55) 20%, rgba(68,195,115,.5) 150%);
 }
 section.description {
-background: linear-gradient(90deg, rgba(255,255,255,.55) 20%, rgba(68,195,115,.5) 150%);
+	background: linear-gradient(90deg, rgba(255,255,255,.55) 20%, rgba(68,195,115,.5) 150%);
 }
 div.bet {
 	display: flex;
@@ -50,16 +57,16 @@ p.head{
 	text-transform: uppercase;
 }
 div.userimg {
-text-transform: uppercase;
-text-align: center;
-text-shadow: 2px 2px 4px #2B1015;
-font-weight: bolder;
+	text-transform: uppercase;
+	text-align: center;
+	text-shadow: 2px 2px 4px #2B1015;
+	font-weight: bolder;
 }
 div.userimg img {
-border: 1px solid gray;
-box-shadow:5px 5px 10px #2B1015;
-border-radius: 50%;
-margin-bottom: 5px;
+	border: 1px solid gray;
+	box-shadow:5px 5px 10px #2B1015;
+	border-radius: 50%;
+	margin-bottom: 5px;
 }
 section.header {
 	display: flex;
@@ -68,11 +75,58 @@ section.header {
 
 }
 .date-publish span {
-
 	text-decoration: none;
 }
+.date-publish h2:after, h2:before{
+	content: '"';
+}
 span.date {
-margin-left: 10px;
-	text-decoration: underline;
+	margin-left: 10px;
 	text-decoration-color: lightgray;
+}
+
+span.day, .hour, .min, .sec, .date {
+	display: inline-block;
+	height: 50px;
+	background: linear-gradient(180deg, rgba(215,49,73,.9), #ebf8e1, rgba(215,49,73,.9));
+	padding: 5px;
+	font-size: 2em;
+	border-top: 3px ridge rgba(215,49,73,.9);
+	border-radius: 5px;
+	font-weight:bold;
+	text-shadow: 1px 1px 2px black, 0 0 2px red;
+	color:  rgba(150,152,150,1);
+	text-align: center;
+}
+span.date {  
+	background: linear-gradient(180deg,rgba(68,195,115,.5), #ebf8e1, rgba(68,195,115,.5));
+	border-top: 3px ridge rgba(68,195,115,.9);
+}
+span.day:after, .hour:after, .min:after, .sec:after {
+	content: '';
+	display: block;
+	font-size: 0.5em;
+	text-align: center;
+	color: lightgray;
+	text-shadow: 1px 1px 1px black, 0 0 1px red;
+}
+span.day:after{
+	content: 'дни';
+}
+span.hour:after{
+	content: 'часы';
+}
+span.min:after{
+	content: 'мин.';
+}
+span.sec:after{
+	content: 'сек.';
+}
+div.date-publish span{
+	vertical-align: middle;
+	margin-bottom: 5px;
+}
+p.text-info {
+	text-decoration: underline;
+	text-decoration-color: pink;
 }

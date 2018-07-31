@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope',  function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope) {
+app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope', '$interval',  function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope, $interval) {
 	console.log('TaskId controller  OK!!!');
 
 	// $scope.commentText = "";
@@ -11,7 +11,33 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 	
 	tasksRepository.getTasksById(id).then(function(response) {
 		$scope.task = response.data;       //записываем информацию о нашем обещании
-		console.log($scope.task);
+		// Таймер для отображения оставшегося времени обещания
+		var timer = $interval(function() { 
+
+  		let currentTime = Date.now();
+		let taskEndingTime = Date.parse($scope.task.time_limit);
+		let finalCounter = taskEndingTime - currentTime;
+		let day=Math.floor((finalCounter)/(24*60*60*1000));
+		let hour=Math.floor(((finalCounter)%(24*60*60*1000))/(60*60*1000));
+		let min=Math.floor(((finalCounter)%(24*60*60*1000))/(60*1000))%60;
+		let sec=Math.floor(((finalCounter)%(24*60*60*1000))/1000)%60%60;
+		$scope.timeLeft = {
+			day: day,
+			hour: hour,
+			min: min,
+			sec: sec
+		};
+		if (day < 0) $interval.cancel(timer); 
+	},1000);
+
+	// функция очистки таймера
+       $scope.stopTimer = function() {
+      if (angular.isDefined(timer)) {
+        $interval.cancel(timer);
+        timer = undefined;
+      }
+	    }; 
+
 	}, function(error) {
 	});
 
@@ -40,7 +66,15 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 //получения ставок Обещания
 	tasksRepository.getBetsById(id).then(function(response) {
 		$scope.bets = response.data; 
+
 		console.log("ставки", $scope.bets);
+		$scope.sumAllBets = $scope.bets.map(function(item){
+			return item.value;
+		}).reduce(function(sum, current) {
+			return sum + current
+		}, 0);
+   $scope.maxBet = $scope.task.value - $scope.sumAllBets;
+		console.log("сумма всех ставок", $scope.task.value, $scope.sumAllBets, $scope.maxBet);
 		}, function(error) { });
 
 //Добавление ставки ставок Обещания
@@ -77,12 +111,15 @@ $scope.subscribe = function() {
 		console.log("ответ по подписке+", response);
 		$scope.myTrackingTasks = response.data;
 		}, function(error) {
-
 			console.log("ответ по подписке-", error); 
 		});
 	};
 
 
+// очищаем таймер при уничтожении scope
+        $scope.$on('$destroy', function() {
+          $scope.stopTimer();
+        });
 
 //кнопка Назад
 $scope.backPath = function() {
