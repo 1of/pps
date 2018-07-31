@@ -1,57 +1,91 @@
 <main ng-controller="Main">
     <form class="form-inline text-center" id="search_form" ng-submit="search()">
-    	<select class="form-control" name="city" id="city" ng-model="citySelect">
-			<option selected disabled value="">Выберите расположение...</option>
-    		<option ng-repeat="city in cities" value="city">{{city}}</option>
-    	</select>
+   
+            <select ng-model="selectedCity" ng-options="city for city in cities" class="form-control filter-select">
+              <option value="" disabled>Выберите расположение...</option>
+            </select>
+        
         <input class="form-control" type="text" placeholder="Введите запрос..." ng-model="searchString">
         <button class="btn btn-secondary" type="submit">Поиск</button>
     </form>
     <aside class="panel panel-default pull-left" id="home_aside">
     	<div class="panel-heading text-center">Фильтр</div>
   		<div class="panel-body">
+      <form name="radio">
   			<div class="categories">
   				<p class="text-center">Выберите категорию(и)</p>
-  				<div class="category text-center" id="competition">
-  					<p>Спорт</p>
-  					<img src="../../../app/img/competitions.png" alt="competition">
+  				<div class="category text-center">
+
+            <label for="habit">
+              <p>Привычки</p>
+              <img src="../../../icons/habits.png" alt="habits" ng-class="{'selected-checkbox': checkboxSearchModel.habit == true}">      
+            </label>
+            <input type="checkbox" name="habit" id="habit" ng-model="checkboxSearchModel.habit" ng-true-value="1" ng-false-value="0"> 
+
   				</div>
-  				<div class="category text-center" id="habit">
-  					<p>Привычки</p>
-  					<img src="../../../app/img/habit.png" alt="habit">
+  				<div class="category text-center">
+
+            <label for="work">
+              <p>Работа</p>
+              <img src="../../../icons/career.png" alt="work" ng-class="{'selected-checkbox': checkboxSearchModel.work == true}">      
+            </label>
+            <input type="checkbox" name="work" id="work" ng-model="checkboxSearchModel.work" ng-true-value="1" ng-false-value="0"> 
+
   				</div>
-  				<div class="category text-center" id="work">
-  					<p>Работа</p>
-  					<img src="../../../app/img/work.png" alt="work">
+  				<div class="category text-center">
+
+            <label for="competition">
+              <p>Соревнования</p>
+              <img src="../../../icons/competitions.png" alt="competition" ng-class="{'selected-checkbox': checkboxSearchModel.competition == true}">      
+            </label>
+            <input type="checkbox" name="competition" id="competition" ng-model="checkboxSearchModel.competition" ng-true-value="1" ng-false-value="0"> 
+
   				</div>
-  				<div class="category text-center" id="study">
-  					<p>Учеба</p>
-  					<img src="../../../app/img/study.png" alt="study">
+  				<div class="category text-center">
+
+            <label for="study">
+              <p>Учеба</p>
+              <img src="../../../icons/study.png" alt="study" ng-class="{'selected-checkbox': checkboxSearchModel.study == true}">      
+            </label>
+            <input type="checkbox" name="study" id="study" ng-model="checkboxSearchModel.study" ng-true-value="1" ng-false-value="0"> 
+
   				</div>
-  				<div class="category text-center" id="purchase">
-  					<p>Покупки</p>
-  					<img src="../../../app/img/purchase.png" alt="purchase">
+  				<div class="category text-center">
+
+            <label for="purchase">
+              <p>Покупки</p>
+              <img src="../../../icons/shoping.png" alt="purchase" ng-class="{'selected-checkbox': checkboxSearchModel.purchase == true}">      
+            </label>
+            <input type="checkbox" name="purchase" id="purchase" ng-model="checkboxSearchModel.purchase" ng-true-value="1" ng-false-value="0"> 
+
   				</div>
-  				<div class="category text-center" id="else">
-  					<p>Другое</p>
-  					<img src="../../../app/img/else.png" alt="else">
+  				<div class="category text-center">
+
+            <label for="other">
+              <p>Другое</p>
+              <img src="../../../icons/other.png" alt="other" ng-class="{'selected-checkbox': checkboxSearchModel.other == true}">      
+            </label>
+            <input type="checkbox" name="other" id="other" ng-model="checkboxSearchModel.other" ng-true-value="1" ng-false-value="0"> 
+
   				</div>
   			</div>
+        </form>
   			<form class="form-inline text-center" ng-submit="">
-		    	<select class="form-control filter-select" name="difficulty" id="difficulty">
-		    		<option disabled selected>Выберите сложность</option>
-		    		<option value="0">Легко</option>
-		    		<option value="1">Средне</option>
-		    		<option value="2">Сложно</option>
-		    	</select>
-		    	<select class="form-control filter-select" name="currency" id="currency">
-		    		<option disabled selected>Выберите стоимость</option>
-		    		<option value="easy">0-50</option>
-		    		<option value="medium">50-200</option>
-		    		<option value="hard">200+</option>
-		    	</select>
-		    	<button class="btn btn-default filter-btn" ng-click="">Сбросить</button>
-		        <button class="btn btn-default filter-btn" type="submit">Отфильтровать</button>
+
+        <label>
+            <select ng-model="selectedItemDifficulty" ng-options="item.name for item in selectDifficulty" class="form-control filter-select">
+              <option value="" disabled>Выберите сложность</option>
+            </select>
+        </label>
+        <label>
+  		    	 <select ng-model="selectedItemValue" ng-options="item.name for item in selectValue" class="form-control filter-select">
+  		    		<option value="" disabled>Выберите стоимость</option>
+  		    	</select>
+        </label>
+
+
+		    	<button class="btn btn-default filter-btn" ng-click="clear()">Сбросить</button>
+		        <button class="btn btn-default filter-btn" type="submit" ng-click="searchByFilter()">Отфильтровать</button>
 		    </form>
   		</div>
   		<div class="panel-body text-center social">

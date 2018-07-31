@@ -74,7 +74,6 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 			return sum + current
 		}, 0);
    $scope.maxBet = $scope.task.value - $scope.sumAllBets;
-		console.log("сумма всех ставок", $scope.task.value, $scope.sumAllBets, $scope.maxBet);
 		}, function(error) { });
 
 //Добавление ставки ставок Обещания
@@ -89,8 +88,11 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 	};
 	
 	$scope.addBet = function() {
+		if ($scope.user.balance < 1) {
+			utils.notify({message: 'На Вашем балансе недостаточно денег', type: 'danger'});
+			return
+		} else {
 
-		console.log($scope.betAmount, +id );
         var data = { value: +$scope.betAmount};
 			tasksRepository.addBetsById(+id, data).then(function(response) {
 		console.log("ответ по ставке+", $scope.res);
@@ -103,6 +105,10 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 			}
 			console.log("ответ по ставке-", error); 
 		});
+
+		}
+
+
 	};
 //Подписаться на ставку
 $scope.subscribe = function() {

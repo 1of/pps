@@ -22,6 +22,7 @@
                         }
                     });
                     $scope.cities = cities;
+                    console.log($scope.cities);
                 }, function(error) {});    
                 
             //Получаем список всех пользователей
@@ -59,6 +60,48 @@
                 $scope.history.push($location.$$path);
             })
 
+            
+            //Категории
+            $scope.checkboxSearchModel = {
+               habit : 0,
+               work : 0,
+               competition: 0,
+               study : 0,
+               purchase : 0,
+               other : 0
+             };
+             //Сложность
+            $scope.selectDifficulty = [
+                {name : "Легко", value : 0},
+                {name : "Средне", value : 1},
+                {name : "Сложно", value : 2}
+            ];
+            $scope.selectedItemDifficulty = $scope.selectDifficulty[-1]; // изначально выбран 1й option, потом уже что выберем
+            //Стоимость
+            $scope.selectValue = [
+                {name : "0-50", value : 0},
+                {name : "50-200", value : 1},
+                {name : "200+", value : 2}
+            ];
+            $scope.selectedItemValue = $scope.selectValue[-1]; // изначально выбран 1й option, потом уже что выберем
+            $scope.selectedCity = $scope.cities;    //выбранный option в городах
+
+
+
+            //Очистка полей поиска
+            $scope.clear = function() {
+                console.log($scope.checkboxSearchModel);
+                for (var key in $scope.checkboxSearchModel) {   //очищаем обьект с категориями
+    $scope.checkboxSearchModel[key] = 0;
+            }
+            $scope.selectedItemDifficulty = $scope.selectDifficulty[-1]; // очищаем option сложности
+            $scope.selectedItemValue = $scope.selectValue[-1]; /// очищаем option стоимости
+            $scope.selectedCity = $scope.cities[-1];    //очищаем option по городах
+            };
+
+            $scope.searchByFilter = function() {
+               console.log("Category: ", $scope.checkboxSearchModel, "Difficult: ", $scope.selectedItemDifficulty, "Value", $scope.selectedItemValue, "City", $scope.selectedCity);
+            };
 
 
         }]);

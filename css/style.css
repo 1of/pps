@@ -161,8 +161,15 @@ main {
 	}
 }
 
+/*Main logged (home_main,html)styles*/
+form input[type=checkbox] {
+display: none;
+}
 
-
+.selected-checkbox {
+	border: 5px double gray;
+	border-radius: 50%;
+}
 
 
 

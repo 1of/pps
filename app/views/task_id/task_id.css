@@ -4,7 +4,7 @@ h1, h2, h3 {
 	text-transform: uppercase;
 }
 h2 {
-	padding-bottom: 40px;
+	margin-bottom: 40px;
 }
 section {
 	padding: 5px;
@@ -41,13 +41,21 @@ div.bet {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
 }
 div.incdec_bet{
 	display: flex;
 	justify-content: center;
 }
 div.bet button {
-	margin: 8px;
+	margin-top: 5px;
+	width: 100%;
+}
+div.incdec_bet input {
+font-size: 2em;
+text-align: center;
+border-radius: 15px;
 }
 
 p.head{
@@ -73,6 +81,9 @@ section.header {
 	align-content: space-around;
 	align-items: center;
 
+}
+.date-publish {
+	padding: 10px;
 }
 .date-publish span {
 	text-decoration: none;
@@ -129,4 +140,15 @@ div.date-publish span{
 p.text-info {
 	text-decoration: underline;
 	text-decoration-color: pink;
+}
+section.description {
+	position: relative;
+}
+button.subscribe {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 125px;
+	height: 35px;
+	border-bottom-right-radius: 15px;
 }
