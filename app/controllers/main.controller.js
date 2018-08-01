@@ -79,9 +79,9 @@
             $scope.selectedItemDifficulty = $scope.selectDifficulty[-1]; // изначально выбран 1й option, потом уже что выберем
             //Стоимость
             $scope.selectValue = [
-                {name : "0-50", value : 0},
-                {name : "50-200", value : 1},
-                {name : "200+", value : 2}
+                {name : "0-50", value : [0,50]},
+                {name : "50-200", value : [50,200]},
+                {name : "200+", value : [200,10000]}
             ];
             $scope.selectedItemValue = $scope.selectValue[-1]; // изначально выбран 1й option, потом уже что выберем
             $scope.selectedCity = $scope.cities;    //выбранный option в городах
@@ -92,7 +92,7 @@
             $scope.clear = function() {
                 console.log($scope.checkboxSearchModel);
                 for (var key in $scope.checkboxSearchModel) {   //очищаем обьект с категориями
-    $scope.checkboxSearchModel[key] = 0;
+            $scope.checkboxSearchModel[key] = 0;
             }
             $scope.selectedItemDifficulty = $scope.selectDifficulty[-1]; // очищаем option сложности
             $scope.selectedItemValue = $scope.selectValue[-1]; /// очищаем option стоимости
@@ -100,7 +100,31 @@
             };
 
             $scope.searchByFilter = function() {
+
+               var category = [];
+               for (var key in $scope.checkboxSearchModel)
+                 {
+                    $scope.checkboxSearchModel[key] > 0 ? category.push($scope.checkboxSearchModel[key]) : null;
+                 }
+               console.log(category);
+ //"category=["+category+"];location=Киев;difficulty=3;value=[800,1500]"
+               var searchObj = {
+                    search: ""
+               };
+console.log("строка1", searchObj);
                console.log("Category: ", $scope.checkboxSearchModel, "Difficult: ", $scope.selectedItemDifficulty, "Value", $scope.selectedItemValue, "City", $scope.selectedCity);
+             
+if ($scope.selectedItemDifficulty !== "undefined"){
+                console.log("$scope.selectedItemDifficulty2", $scope.selectedItemDifficulty.value);
+                searchObj.search = searchObj.search + "difficulty=" + $scope.selectedItemDifficulty.value;
+             }
+console.log("строка2", searchObj.search);
+            //Получаем новый список задач в зависимости от фильтров
+            tasksRepository.getTasksFiltered(searchObj.search)
+                .then(function(response){
+                    $scope.tasks = response.data;
+
+                }, function(error) {});  
             };
 
 

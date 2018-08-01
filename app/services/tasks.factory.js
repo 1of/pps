@@ -3,6 +3,7 @@
     app.factory('tasks.repository', ['webApi', '$http', function(webApi, $http) {
         return {
             getTasks: _getTasks,
+            getTasksFiltered: _getTasksFiltered,
             getTasksById: _getTasksById,
             getProofsById: _getProofsById,
             addProofById: _addProofById,
@@ -12,7 +13,11 @@
         };
 
         function _getTasks() {
-            return $http.get(webApi.DOMAIN + '/api/v1/tasks');
+            return $http.get(webApi.DOMAIN + '/api/v1/tasks/');
+        }
+
+        function _getTasksFiltered(data) {
+            return $http.get(webApi.DOMAIN + '/api/v1/tasks/?search=' + data);
         }
 
         function _getTasksById(id) {

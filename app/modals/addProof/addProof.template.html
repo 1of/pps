@@ -1,5 +1,7 @@
 <!-- Modal add Proofs -->
 <div class="proof-wrapper">
+<div class="bg-card"></div>
+<button class="btn btn-danger btn-xs pull-right" type="button" ng-click="cancel()"><i class="glyphicon glyphicon-remove"></i></button>
     <div class="modal-header">
         <h3 class="modal-title" id="modal-title">Добавление нового подтверждения</h3>
     </div>
@@ -7,16 +9,21 @@
                 <div class="modal-body">
                 <div class="row">
                     <label for="description">Описание</label>
-                    <textarea name="description" ng-model="proofText" cols="70" rows="3"></textarea>
+                    <textarea name="description" ng-model="proofText" ></textarea>
                 </div>
                 <div class="row">
-                    <label for="picture">Фото</label>
-                    <input type="file" name="picture" class="inputfile" id="inputfile" >
+                    <div id="file-upload">
+                        <label for="inputfile">
+                        <input type="file" name="file" id="inputfile" onchange="angular.element(this).scope().uploadImage()" ng-model="filename">
+                        <span>Выберите файл</span>
+                        </label>
+                    </div>
+                    <p class="text-info">{{filename}}</p>
                 </div>
                 </div>
     </form>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">Добавить</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Закрыть</button>
+            <button class="btn btn-info center-block"  ng-click="ok()">Добавить</button>
+            
         </div>       
 </div>

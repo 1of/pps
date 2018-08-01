@@ -18,7 +18,7 @@
 
             <label for="habit">
               <p>Привычки</p>
-              <img src="../../../icons/habits.png" alt="habits" ng-class="{'selected-checkbox': checkboxSearchModel.habit == true}">      
+              <img src="../../../icons/habits.png" alt="habits" ng-class="{'selected-checkbox': checkboxSearchModel.habit !== 0}">      
             </label>
             <input type="checkbox" name="habit" id="habit" ng-model="checkboxSearchModel.habit" ng-true-value="1" ng-false-value="0"> 
 
@@ -27,45 +27,45 @@
 
             <label for="work">
               <p>Работа</p>
-              <img src="../../../icons/career.png" alt="work" ng-class="{'selected-checkbox': checkboxSearchModel.work == true}">      
+              <img src="../../../icons/career.png" alt="work" ng-class="{'selected-checkbox': checkboxSearchModel.work !== 0}">      
             </label>
-            <input type="checkbox" name="work" id="work" ng-model="checkboxSearchModel.work" ng-true-value="1" ng-false-value="0"> 
+            <input type="checkbox" name="work" id="work" ng-model="checkboxSearchModel.work" ng-true-value="2" ng-false-value="0"> 
 
   				</div>
   				<div class="category text-center">
 
             <label for="competition">
               <p>Соревнования</p>
-              <img src="../../../icons/competitions.png" alt="competition" ng-class="{'selected-checkbox': checkboxSearchModel.competition == true}">      
+              <img src="../../../icons/competitions.png" alt="competition" ng-class="{'selected-checkbox': checkboxSearchModel.competition !== 0}">      
             </label>
-            <input type="checkbox" name="competition" id="competition" ng-model="checkboxSearchModel.competition" ng-true-value="1" ng-false-value="0"> 
+            <input type="checkbox" name="competition" id="competition" ng-model="checkboxSearchModel.competition" ng-true-value="3" ng-false-value="0"> 
 
   				</div>
   				<div class="category text-center">
 
             <label for="study">
               <p>Учеба</p>
-              <img src="../../../icons/study.png" alt="study" ng-class="{'selected-checkbox': checkboxSearchModel.study == true}">      
+              <img src="../../../icons/study.png" alt="study" ng-class="{'selected-checkbox': checkboxSearchModel.study !== 0}">      
             </label>
-            <input type="checkbox" name="study" id="study" ng-model="checkboxSearchModel.study" ng-true-value="1" ng-false-value="0"> 
+            <input type="checkbox" name="study" id="study" ng-model="checkboxSearchModel.study" ng-true-value="4" ng-false-value="0"> 
 
   				</div>
   				<div class="category text-center">
 
             <label for="purchase">
               <p>Покупки</p>
-              <img src="../../../icons/shoping.png" alt="purchase" ng-class="{'selected-checkbox': checkboxSearchModel.purchase == true}">      
+              <img src="../../../icons/shoping.png" alt="purchase" ng-class="{'selected-checkbox': checkboxSearchModel.purchase !== 0}">      
             </label>
-            <input type="checkbox" name="purchase" id="purchase" ng-model="checkboxSearchModel.purchase" ng-true-value="1" ng-false-value="0"> 
+            <input type="checkbox" name="purchase" id="purchase" ng-model="checkboxSearchModel.purchase" ng-true-value="5" ng-false-value="0"> 
 
   				</div>
   				<div class="category text-center">
 
             <label for="other">
               <p>Другое</p>
-              <img src="../../../icons/other.png" alt="other" ng-class="{'selected-checkbox': checkboxSearchModel.other == true}">      
+              <img src="../../../icons/other.png" alt="other" ng-class="{'selected-checkbox': checkboxSearchModel.other !== 0}">      
             </label>
-            <input type="checkbox" name="other" id="other" ng-model="checkboxSearchModel.other" ng-true-value="1" ng-false-value="0"> 
+            <input type="checkbox" name="other" id="other" ng-model="checkboxSearchModel.other" ng-true-value="6" ng-false-value="0"> 
 
   				</div>
   			</div>
