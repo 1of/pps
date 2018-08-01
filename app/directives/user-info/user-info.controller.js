@@ -11,7 +11,9 @@
                 user: '=',
                 isMe: '=',
                 trackingTasks: '=',
-                tasks: '='
+                tasks: '=',
+                fileAdress: '=fileAdress',
+                myBets: '='
             },
             controller:
                 ['$scope', '$rootScope', '$routeParams', '$uibModal', 'users.repository', 'utils',
@@ -27,15 +29,21 @@
                     modalInstance.result.then(function (result) {
                         if (!result) return;
 
-                        $scope.user.balance += +$rootScope.refillValue;
+                        var dataToSend = $scope.user;
+                        dataToSend.balance += +$rootScope.refillValue;
 
                         usersRepository.updateUser($scope.user.id, $scope.user).then(function(response) {
+                            console.log(response);
                             utils.notify({
                                 message: 'Баланс пополнен',
                                 type: 'success'
                             });
+
                         }, function (error) {
-                            console.log(error);
+                            utils.notify({
+                                message: 'Ошибка пополнения',
+                                type: 'danger'
+                            });
                         });
                     })
                 }

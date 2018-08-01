@@ -10,35 +10,49 @@
             scope: {
                 task: '=task',
                 myUserId: '=myUserId',
-                trackingTasks: '=trackingTasks'
+                trackingTasks: '=trackingTasks',
+                fileAdress: '=fileAdress'
             },
             controller: 
-                ['$scope', '$rootScope', 'users.repository', 'utils', 
-                    function ($scope, $rootScope, usersRepository, utils) {
+                ['$scope', '$rootScope', 'users.repository', 'utils', 'tasks.repository',
+                    function ($scope, $rootScope, usersRepository, utils, tasksRepository) {
 
-                $scope.isTracking = $scope.trackingTasks.filter(task => task.id === $scope.task.id).length > 0 ? true : false;
+                //Считаем доступную ставку
+                tasksRepository.getBetsById($scope.task.id)
+                    .then(function (response) {
+                        let bets = response.data;
+                        var betsSum = 0;
+                        if (bets.length > 0) {
+                            bets.forEach((bet) => betsSum += bet.value);
+                            $scope.maxBet = $scope.task.value - betsSum;
+                        }
+                    }, function (error) {
+                        console.log(error);
+                    });
 
-                $scope.addTrackingTask = function () {
+                if($scope.trackingTasks && $scope.trackingTasks.length) {
+                    $scope.isTracking = $scope.trackingTasks.filter(task => task.id === $scope.task.id).length === 1 ? true : false;
+                }
 
-                    if ($scope.isTracking)  {
-                        utils.notify({
-                            message: 'Вы уже отслеживаете это обещание',
-                            type: 'danger'
-                        });
-                    }
-                        else {
-                        usersRepository.addTrackingTask($scope.myUserId, {task_id: $scope.task.id})
-                            .then(function (response) {
-                                utils.notify({
-                                    message: 'Обещание отслеживается',
-                                    type: 'success'
-                                });
-                                $scope.$emit('trackingTaskAdded', $scope.task);
-                            }, function (error) {
-                                console.log(error)
-                            });
-                    }
-
+                $scope.togleTrackingTask = function () {
+                    usersRepository.addTrackingTask($scope.myUserId, {task_id: $scope.task.id})
+                        .then(function (response) {
+                            $scope.$emit('trackingTaskTogle', $scope.task);
+                            $scope.isTracking = !$scope.isTracking;
+                                if (!$scope.isTracking) {
+                                    utils.notify({
+                                        message: 'Вы прекратили отслеживать обещание',
+                                        type: 'danger'
+                                    });
+                                } else {
+                                    utils.notify({
+                                        message: 'Обещание отслеживается',
+                                        type: 'success'
+                                    });
+                                }
+                    }, function (error) {
+                        console.log(error)
+                    });
                 };
             }]
         }

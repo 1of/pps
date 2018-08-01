@@ -7,7 +7,8 @@
             getUserById: _getUserById,
             getAllUsers: _getAllUsers,
             updateUser: _updateUser,
-            addTrackingTask: _addTrackingTask
+            addTrackingTask: _addTrackingTask,
+            getUsersBets: _getUsersBets,
         };
 
         function _getUsersTasks(id) {
@@ -32,6 +33,10 @@
 
         function _addTrackingTask(userId, taskId) {
             return $http.post(webApi.DOMAIN + '/api/v1/users/' + userId + '/tracking', taskId);
+        }
+
+        function _getUsersBets(userId) {
+            return $http.get(webApi.DOMAIN + '/api/v1/users/' + userId + '/bets');
         }
 
     }]);

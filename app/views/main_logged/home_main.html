@@ -68,7 +68,7 @@
     	<div class="panel panel-default">
 			<div class="panel-heading text-center">Обещания</div>
 			<div class="panel-body">
-				<task-info ng-repeat="task in tasks  | orderBy:sortField | filter: searchString track by $index" task="task"></task-info>
+				<task-info ng-repeat="task in tasks  | orderBy:sortField | filter: searchString track by $index" task="task" file-adress="fileAdress" my-user-id="myUserId" tracking-tasks="myTrackingTasks"></task-info>
 			</div>
 		</div>
 	</section>

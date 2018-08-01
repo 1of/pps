@@ -1,0 +1,14 @@
+<div class="bet-info panel panel-default" style="background: {{bgColor}}">
+    <a href="#/tasks/{{task.id}}">
+        <div class="task_piture pull-left" style="background-image: url('{{task.picture ? fileAdress + task.picture : 'app/directives/user-info/img/No_Image_Available.jpg'}}')"></div>
+    </a>
+    <a href="#/account/{{author.id}}">
+        <div class="author_photo pull-right" style="background-image: url('{{author.photo ? fileAdress + author.photo : 'app/directives/user-info/img/No_Image_Available.jpg'}}')">
+            <p class="down" style="background: {{bgColor}}; border-radius: 25%">Автор: <br>{{author.firstname || "Anonymous"}} {{author.lastname || "Anonymous"}}</p>
+        </div>
+    </a>
+    <a href="#/tasks/{{task.id}}"><h2>{{task.name}}</h2></a>
+    <p class="mt">Ваша ставка: <span>{{bet.value}} $</span></p>
+    <p>Статус: <span>{{betState}}</span></p>
+
+</div>

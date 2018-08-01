@@ -1,6 +1,6 @@
-<user-info user="user" is-me="isMe" tracking-tasks="userTrackingTasks" tasks="userTasks"></user-info>
+<user-info user="user" is-me="isMe" tracking-tasks="userTrackingTasks" tasks="userTasks" file-adress="fileAdress" my-bets="userBets"></user-info>
 
-<a ng-show="isMe" href="#" class="btn btn-primary btn-lg center-block" style="margin-bottom: 20px"><i class="glyphicon glyphicon-plus"></i> Добавить обещание</a>
+<button ng-show="isMe" class="btn btn-primary btn-lg center-block" style="margin-bottom: 20px" ng-click="showAddTask()"><i class="glyphicon glyphicon-plus"></i>Добавить обещание</button>
 
 <ul class="nav nav-tabs">
     <li ng-class="{active: currentMenuItem === '/account/{{userId}}/tasks'}"><a href="#/account/{{userId}}/tasks"><span ng-show="isMe">Мои обещания</span><span ng-show="!isMe">Обещания</span></a></li>
@@ -11,15 +11,15 @@
 
 <div class="tab-content"></div>
     <div ng-show="currentMenuItem === '/account/{{userId}}/tasks'" class="tab-pane" id="my_tasks">
-        <task-info ng-repeat="task in userTasks" task="task" my-user-id="myUserId" tracking-tasks="myTrackingTasks"></task-info>
+        <task-info ng-repeat="task in userTasks" task="task" my-user-id="myUserId" tracking-tasks="myTrackingTasks" file-adress="fileAdress"></task-info>
     </div>
 
     <div ng-show="currentMenuItem === '/account/{{userId}}/tracking_tasks'" class="tab-pane" id="tracking_tasks">
-        <task-info ng-repeat="task in userTrackingTasks" task="task" my-user-id="myUserId" tracking-tasks="myTrackingTasks"></task-info>
+        <task-info ng-repeat="task in userTrackingTasks" task="task" my-user-id="myUserId" tracking-tasks="myTrackingTasks" file-adress="fileAdress"></task-info>
     </div>
 
     <div ng-show="currentMenuItem === '/account/{{userId}}/bets'" class="tab-pane" id="my_bets">
-
+        <bet-info ng-repeat="bet in userBets" bet="bet" file-adress="fileAdress"></bet-info>
     </div>
 
     <div ng-show="currentMenuItem === '/account/{{userId}}' || currentMenuItem === '/account/{{userId}}/account_info'" class="tab-pane" id="account_info">
@@ -28,7 +28,7 @@
                     <button class="btn btn-warning btn-xs" ng-click="editableForm.$show()"><i class="glyphicon glyphicon-pencil"></i> Редактировать</button>
                 </span>
 
-                <form editable-form name="editableForm" onaftersave="saveUserInfo($data, myUserId)">
+                <form editable-form name="editableForm" onaftersave="saveUserInfo($data, myUserId)" id="my_form">
                     <span class="pull-right" ng-show="editableForm.$visible">
                         <button type="submit" class="btn btn-primary btn-xs" ng-disabled="editableForm.$waiting"><i class="glyphicon glyphicon-ok"></i></button>
                         <button type="button" class="btn btn-danger btn-xs" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()"><i class="glyphicon glyphicon-remove"></i></button>
@@ -38,9 +38,9 @@
             <p>Имя: <span editable-text="user.firstname" e-ng-model="user.firstname" e-form="editableForm" e-ng-model="user.firstname" e-name="firstname">{{user.firstname}}</span></p>
             <p>Фамилия: <span editable-text="user.lastname" e-ng-model="user.lastname" e-form="editableForm" e-ng-model="user.lastname" e-name="lastname">{{user.lastname}}</span></p>
             <p>Дата рождения: <span editable-date="user.birthdate" e-ng-model="user.birthdate" e-form="editableForm" e-ng-model="user.birthdate" e-name="birthdate">{{user.birthdate | date: 'fullDate'}}</span></p>
-            <p>Пол: <span editable-text="user.gender" e-ng-model="user.gender" e-form="editableForm" e-ng-model="user.gender" e-name="gender">{{user.gender === 0 ? 'мужской' : 'женский'}}</span></p>
+            <p>Пол: <span editable-select="user.gender" e-ng-options="s.value as s.text for s in statuses" e-ng-model="user.gender" e-form="editableForm" e-ng-model="user.gender" e-name="gender">{{user.gender === 0 ? 'мужской' : 'женский'}}</span></p>
             <p>Професиия: <span editable-text="user.job" e-ng-model="user.job" e-form="editableForm" e-ng-model="user.job" e-name="job">{{user.job}}</span></p>
             <p>О пользователе: <span editable-textarea="user.about" e-ng-model="user.about" e-form="editableForm" e-ng-model="user.about" e-name="about">{{user.about}}</span></p>
-            <p>Фото: <span editable-text="user.photo" e-ng-model="user.photo" e-form="editableForm" e-ng-model="user.photo" e-name="photo"><img ng-src="{{user.photo || './app/directives/user-info/img/No_Image_Available.jpg'}}" alt="user_photo" style="height: 100px"></span></p>
+            <p>Фото: <span editable-file="user.photo" e-ng-model="user.photo" e-form="editableForm" e-ng-model="user.photo" e-name="photo"><img ng-src="{{fileAdress + user.photo || './app/directives/user-info/img/No_Image_Available.jpg'}}" alt="user_photo" style="height: 100px"><canvas id="userImageCanvas"></canvas></p>
         </div>
     </div>
