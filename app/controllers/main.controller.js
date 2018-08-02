@@ -60,7 +60,7 @@
                 $scope.history.push($location.$$path);
             })
 
-            
+            /*--------------------ПОИСК-------------------*/
             //Категории
             $scope.checkboxSearchModel = {
                habit : 0,
@@ -72,9 +72,9 @@
              };
              //Сложность
             $scope.selectDifficulty = [
-                {name : "Легко", value : 0},
-                {name : "Средне", value : 1},
-                {name : "Сложно", value : 2}
+                {name : "Легко", value : 1},
+                {name : "Средне", value : 2},
+                {name : "Сложно", value : 3}
             ];
             $scope.selectedItemDifficulty = $scope.selectDifficulty[-1]; // изначально выбран 1й option, потом уже что выберем
             //Стоимость
@@ -86,41 +86,44 @@
             $scope.selectedItemValue = $scope.selectValue[-1]; // изначально выбран 1й option, потом уже что выберем
             $scope.selectedCity = $scope.cities;    //выбранный option в городах
 
-
+            $scope.searchArr = [  //массив-заглушка, в него будет записываться все option и category выбранные пользователем
+                                "category=[]", //0 - категории
+                                "difficulty=1", //1 - сложность
+                                "location=Киев", //2 - локация, город
+                                "value=[]" //3 - стоимость ставки                       
+                           ];
 
             //Очистка полей поиска
             $scope.clear = function() {
-                console.log($scope.checkboxSearchModel);
+
                 for (var key in $scope.checkboxSearchModel) {   //очищаем обьект с категориями
-            $scope.checkboxSearchModel[key] = 0;
-            }
+                    $scope.checkboxSearchModel[key] = 0;
+                }
             $scope.selectedItemDifficulty = $scope.selectDifficulty[-1]; // очищаем option сложности
             $scope.selectedItemValue = $scope.selectValue[-1]; /// очищаем option стоимости
             $scope.selectedCity = $scope.cities[-1];    //очищаем option по городах
-            };
+
+                };
 
             $scope.searchByFilter = function() {
 
-               var category = [];
-               for (var key in $scope.checkboxSearchModel)
+               let category = [];
+               for (let key in $scope.checkboxSearchModel)     // перебираем обьект checkboxSearchModel и пушим в category[] только те элементы, которые выбраны пользователем
                  {
                     $scope.checkboxSearchModel[key] > 0 ? category.push($scope.checkboxSearchModel[key]) : null;
-                 }
-               console.log(category);
- //"category=["+category+"];location=Киев;difficulty=3;value=[800,1500]"
-               var searchObj = {
-                    search: ""
-               };
-console.log("строка1", searchObj);
-               console.log("Category: ", $scope.checkboxSearchModel, "Difficult: ", $scope.selectedItemDifficulty, "Value", $scope.selectedItemValue, "City", $scope.selectedCity);
-             
-if ($scope.selectedItemDifficulty !== "undefined"){
-                console.log("$scope.selectedItemDifficulty2", $scope.selectedItemDifficulty.value);
-                searchObj.search = searchObj.search + "difficulty=" + $scope.selectedItemDifficulty.value;
-             }
-console.log("строка2", searchObj.search);
+                 };
+              //проверка на undefined (если ничего не выбрано)
+             (category.length > 0) ?   $scope.searchArr[0] = "category=[" + category + "];" : $scope.searchArr[0] = "";  //проверка выбрана ли категория
+             ($scope.selectedItemDifficulty !== undefined) ?   $scope.searchArr[1] = "difficulty=" + $scope.selectedItemDifficulty.value + ";" : $scope.searchArr[1] = ""; //проверка выбрана ли сложность
+             ($scope.selectedCity !== undefined) ?   $scope.searchArr[2] = "location=" + $scope.selectedCity + ";" : $scope.searchArr[2] = ""; //проверка выбран ли город
+             ($scope.selectedItemValue !== undefined) ?   $scope.searchArr[3] = "value=[" + $scope.selectedItemValue.value + "];" : $scope.searchArr[3] = ""; //проверка выбран ли интервал стоимости
+
+            let strFromArray = $scope.searchArr.join(''); //преобразуем массив в строку
+            let searchStr = "";
+            strFromArray[strFromArray.length-1] !== undefined ? searchStr = strFromArray.slice(0, -1) : searchStr = "";  //убираем символ ";"  в конце строки запроса, иначе выдает ошибку
+
             //Получаем новый список задач в зависимости от фильтров
-            tasksRepository.getTasksFiltered(searchObj.search)
+            tasksRepository.getTasksFiltered(searchStr)
                 .then(function(response){
                     $scope.tasks = response.data;
 
@@ -129,23 +132,6 @@ console.log("строка2", searchObj.search);
 
 
         }]);
-
-/*                          нужно прикрутить её ко всем headeram т.к., #menu нет, когда залогиненый, короч ошибки выскакивают при скролле
-         //scroll
- app.directive("scroll", function ($window) {
-    return function($scope, element, attrs) {
-        angular.element($window).bind("scroll", function() {
-             if (this.pageYOffset >= $window.visualViewport.height - angular.element(document.querySelector("#menu"))[0].clientHeight) {
-                 $scope.boolChangeClass = true;
-             } else {
-                 $scope.boolChangeClass = false;
-             }
-            $scope.$apply();
-        });
-    };
-});
-
-*/
 
     })();
 

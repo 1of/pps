@@ -20,7 +20,7 @@
 
 				tasksRepository.getProofsById(id).then(function(response) {
 					$scope.proofs = response.data; 
-					console.log("пруфы", $scope.proofs)  ;
+					console.log("пруфы", $scope.proofs) 	 ;
 				}, function(error) { });
 
 				$scope.addProof = function() {

@@ -26,7 +26,7 @@
 	<section class="bets row">
 		<div class="statistics col-md-9">
 			<h3>Стоимость: <span class="badge">{{ task.value }}</span> </br> Максимальная ставка: <span class="badge" >{{maxBet || 0}}</span></h3>
-			<p>Отслеживают: <span class="badge">25</span> чел.</p>
+			<p>Отслеживают: <span class="badge">{{ trackingUsers.length }}</span> чел.</p>
 			<p>Ставок: <span class="badge">{{ bets.length || 0 }}</span></p>
 			<p>Комментарии: <span class="badge">{{comments.length}}</span></p>
 		</div>
@@ -81,7 +81,6 @@
          <i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-left': !status.open}"></i>
         <p class="head">Комментарии</p>
       </uib-accordion-heading>
-      Все, что думаете об этом обещании оставляйте здесь
 
       <comments commentslist="comments" mydata="mydata" ng-if="comments.lenght !== 0"> <comments>
 

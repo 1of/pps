@@ -2,8 +2,8 @@
 'use strict';
 app.controller('Login', ['$scope', 'account.repository', '$location', 'utils', '$window', '$uibModal',  function($scope, accountRepository, $location, utils, $window, $uibModal) {
 	$scope.user = {
-		email: "test@gmail.com", //test@gmail.com
-		password: "111111"
+		email: "", //test@gmail.com
+		password: "" //pasword
 	};
 	$scope.popoverText = "Пароль должен быть не менее 6 символов...";
 	$scope.regexp = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;

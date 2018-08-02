@@ -3,12 +3,11 @@
 app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope', '$interval',  function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope, $interval) {
 	console.log('TaskId controller  OK!!!');
 
-	// $scope.commentText = "";
 	$scope.adress = 'http://node4.fe.a-level.com.ua/';
 	$scope.myinfo = "";
 	$scope.myId = localStorage.getItem('userId');
 	var id = $routeParams.taskId; //получаем из роутинга ID обещания! (taskID берется из app.routes.js)
-	
+//Получение обещания
 	tasksRepository.getTasksById(id).then(function(response) {
 		$scope.task = response.data;       //записываем информацию о нашем обещании
 		// Таймер для отображения оставшегося времени обещания
@@ -40,7 +39,8 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 
 	}, function(error) {
 	});
-
+//Получение пользователя
+console.log("$scope.myId", $scope.myId);
 	usersRepository.getUserById($scope.myId).then(function(response) {
 		$scope.user = response.data;       //записываем информацию о нашем пользователе
 		$scope.myinfo = response.data.photo;
@@ -49,24 +49,27 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 	}, function(error) {});
 
 
+
+//Получение комментариев
 	commentsRepository.getCommentsById(id).then(function(response) { //стягиваем все наши комментарии
+		console.log('"Comments responce"',response.data);
 		$scope.comments = response.data.map(function(item, i){
 				return {
 					task_id: item.task_id,
-					user_id: item.user_id,
+					user_id: item.user.id,
 					content: item.content,
 					date_added: item.date_added,
-					photo: "",
-					firstname: "",
-					lastname: ""
+					photo: item.user.photo,
+					firstname: item.user.firstname,
+					lastname: item.user.firstname
 				}
 			});       
+		console.log("Comments skoup", $scope.comments);
 
 	}, function(error) {});
-//получения ставок Обещания
+//Получение ставок Обещания
 	tasksRepository.getBetsById(id).then(function(response) {
 		$scope.bets = response.data; 
-
 		console.log("ставки", $scope.bets);
 		$scope.sumAllBets = $scope.bets.map(function(item){
 			return item.value;
@@ -74,6 +77,11 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 			return sum + current
 		}, 0);
    $scope.maxBet = $scope.task.value - $scope.sumAllBets;
+		}, function(error) { });
+//Получение списка отслеживающих
+	tasksRepository.getUsersWhoTracking(id).then(function(response) {
+		$scope.trackingUsers = response.data; 
+		console.log("trackingUsers", $scope.trackingUsers);
 		}, function(error) { });
 
 //Добавление ставки ставок Обещания

@@ -16,15 +16,16 @@
 			controller: ['$scope', '$rootScope', 'users.repository', 'comments.repository', '$routeParams', function($scope, $rootScope, usersRepository, commentsRepository,  $routeParams) {
 				$scope.adress = 'http://node4.fe.a-level.com.ua/';
 				var taskId = $routeParams.taskId;
+
 				var myId = localStorage.getItem('userId');
 				usersRepository.getUserById(+myId).then(function (response){
-					$scope.myinfo = response.data.photo;
-					$rootScope.myfoto = response.data.photo;
+					$scope.myfoto = response.data.photo;
 				}, function (error){ });
 
 				$scope.commentText = "";
 
 				$scope.sendComment = function() {
+
 					if ($scope.commentText.length < 2) return 
 						else {
 									$scope.user_obj = {
@@ -42,7 +43,7 @@
 								    "user_id": +myId,
 								    "content": $scope.commentText
 								}
-
+console.log("comments", $scope.comments, "$scope.myfoto", $scope.myfoto, "$scope.user_obj", $scope.user_obj, "dataSEnding", data)
 								commentsRepository.addComment(data).then(function (response){
 									$scope.comments.push($scope.user_obj);
 									$scope.commentText = "";
@@ -54,18 +55,19 @@
 
 				$scope.$watch('comments', function(newValue, oldValue) {
 					if (newValue !== oldValue) {
+						console.log('comments AFTER NEW COMMENT', $scope.comments) 
 //Добавить в массив с комментариями фото и имена участников
-						$scope.comments.forEach(function(item, i, arr) { 
-							usersRepository.getUserById(item.user_id).then(function (response){
-								$scope.comments[i].photo = response.data.photo;
-								$scope.comments[i].firstname = response.data.firstname;
-								$scope.comments[i].lastname = response.data.lastname;
-							}, function (error){ });
-						});
+						// $scope.comments.forEach(function(item, i, arr) { 
+						// 	usersRepository.getUserById(item.user_id).then(function (response){
+						// 		$scope.comments[i].photo = response.data.photo;
+						// 		$scope.comments[i].firstname = response.data.firstname;
+						// 		$scope.comments[i].lastname = response.data.lastname;
+
+						// 	}, function (error){ console.log(error) });
+						// });
 
 					}
 				});
-
 
 			}]
 

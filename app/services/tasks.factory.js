@@ -8,7 +8,8 @@
             getProofsById: _getProofsById,
             addProofById: _addProofById,
             getBetsById: _getBetsById,
-            addBetsById: _addBetsById
+            addBetsById: _addBetsById,
+            getUsersWhoTracking: _getUsersWhoTracking
 
         };
 
@@ -41,6 +42,10 @@
 
         function _addBetsById(id, data) {
             return $http.post(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/bets', data);
+        }
+
+        function _getUsersWhoTracking(id) {
+            return $http.get(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/tracking_users');
         }
 
     }]);
