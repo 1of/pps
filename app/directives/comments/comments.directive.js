@@ -23,7 +23,6 @@
 				}, function (error){ });
 
 				$scope.commentText = "";
-
 				$scope.sendComment = function() {
 
 					if ($scope.commentText.length < 2) return 
@@ -43,7 +42,7 @@
 								    "user_id": +myId,
 								    "content": $scope.commentText
 								}
-console.log("comments", $scope.comments, "$scope.myfoto", $scope.myfoto, "$scope.user_obj", $scope.user_obj, "dataSEnding", data)
+
 								commentsRepository.addComment(data).then(function (response){
 									$scope.comments.push($scope.user_obj);
 									$scope.commentText = "";
@@ -55,7 +54,7 @@ console.log("comments", $scope.comments, "$scope.myfoto", $scope.myfoto, "$scope
 
 				$scope.$watch('comments', function(newValue, oldValue) {
 					if (newValue !== oldValue) {
-						console.log('comments AFTER NEW COMMENT', $scope.comments) 
+
 //Добавить в массив с комментариями фото и имена участников
 						// $scope.comments.forEach(function(item, i, arr) { 
 						// 	usersRepository.getUserById(item.user_id).then(function (response){

@@ -1,18 +1,11 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Kavivanar|Poiret+One');
 
-h3{
-	color: black;
-	font-family: 'Poiret One';
-	letter-spacing: 2px;
-	padding-bottom: 20px;
-}
 div.comments-list {
 	margin: 0 auto;
 	padding-bottom: 15px;
 }
 div.comments-list p {
 	background-color: rgba(245,245,245, 0.9);
-	font-family: 'Kavivanar', cursive;
 	font-style: italic;
 	padding-left: 15px;
 	border: 1px solid lightgray;
@@ -20,11 +13,11 @@ div.comments-list p {
 }
 div.comments-list img {
 	margin: 0 auto;
-	max-height: 100px;
-	max-width: 100px;
+	max-height: 80px;
+	max-width: 80px;
 	border: 1px solid gray; 
 	border-radius: 50%;
-	box-shadow: 0 0 15px rgba(0,0,0,0.7);
+	box-shadow: 0 0 10px rgba(0,0,0,0.7);
 	transition: all 0.3s ease-in;
 	margin-top: 5px;
 }
@@ -34,29 +27,22 @@ div.comments-list img:hover{
 }
 div.add-comment button {
 	width: 100px;
-	height: 65px;
+	height: 50px;
 }
 span.name {
 	margin: 0 auto;
-	color: gray;
+	color: #333;
 }
 div.comments-all {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	box-shadow: inset 2px 2px 35px 10px rgba(0,0,0,0.25);
+	box-shadow: inset 1px 1px 20px 5px rgba(0,0,0,0.25);
 	/*padding-top: 15px;*/
-	border-radius: 10%;
+	border-radius: 5%;
+	min-height: 100px;
 }
 
-section.comments div.comments-list:nth-child(even) {
-
-border-left: 3px ridge rgba(215,49,73,.4);
-}
-
-section.comments div.comments-list:nth-child(odd) {
-border-left: 3px ridge rgba(68,195,115,.5);
-}
 div.postdate {
 	display: flex;
 	flex-direction: row;
@@ -69,7 +55,6 @@ div.postdate .day, .month {
 	font-family: 'Poiret One';
 	font-size: 0.9em;
 	font-weight: 900;
-	color: gray;
 	margin-left: 10px;
 }
 div.dmflex{
@@ -84,18 +69,17 @@ div.year {
 	transform: rotate(90deg);
 	font-family: 'Poiret One';
 	font-weight: 900;
-	text-shadow: 0 0 1px #140;
 	margin: 0;
+	align-self: flex-start;
 }
 div.time {
 	display: block;
-	font-size: 1.3em;
-	font-family: 'Kavivanar';
+	font-size: 1.2em;
 	color: #131313;
     background-color: #e7e5e4;
     letter-spacing: .10em;
-    text-shadow: 0 0 5px #161676;
-    border-radius: 15px;
+    text-shadow: 0 0 1px #222;
+    border-radius: 3px;
     padding: 5px;
 }
 
@@ -115,25 +99,24 @@ div.add-comment {
 	display: flex;
 	border-radius: 5px;
 	margin: 100px 0 0 0;   
-	box-shadow: inset 2px 2px 35px 10px rgba(68,195,115,.55);
-	
+	box-shadow: inset 2px 2px 25px 10px rgba(0,0,0,.3);
 }
 
 button.send-btn {
 	margin: 0 auto;
 	align-self: center;
+	transition: all 0.3s ease-in;
+}
+button.send-btn:hover {
 	background: rgba(215,49,73,.9);
 	color: #fff;
 }
-button.send-btn:hover {
-	background: rgba(68,195,115,.9);
-	color: #f00;
-}
 textarea {
 	resize: none;	
-	background: linear-gradient(180deg, rgba(255,255,255,.55) 85%, rgba(68,195,115,.5) 125%);
+	background: linear-gradient(180deg, rgba(255,255,255,.1) 85%,rgba(0,0,0,.55) 300%);
+
+	border: none;
 	color: black;
-	font-family: 'Kavivanar';
 	font-size: 20px;
 	height: 200px;
 	text-align: center;

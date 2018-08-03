@@ -113,11 +113,12 @@
                     $scope.checkboxSearchModel[key] > 0 ? category.push($scope.checkboxSearchModel[key]) : null;
                  };
               //проверка на undefined (если ничего не выбрано)
+            var testCities = /,/i.test($scope.selectedCity);
              (category.length > 0) ?   $scope.searchArr[0] = "category=[" + category + "];" : $scope.searchArr[0] = "";  //проверка выбрана ли категория
              ($scope.selectedItemDifficulty !== undefined) ?   $scope.searchArr[1] = "difficulty=" + $scope.selectedItemDifficulty.value + ";" : $scope.searchArr[1] = ""; //проверка выбрана ли сложность
-             ($scope.selectedCity !== undefined) ?   $scope.searchArr[2] = "location=" + $scope.selectedCity + ";" : $scope.searchArr[2] = ""; //проверка выбран ли город
+             ($scope.selectedCity !== undefined  && testCities !== true) ?  $scope.searchArr[2] = "location=" + $scope.selectedCity + ";" : $scope.searchArr[2] = ""; //проверка выбран ли город
              ($scope.selectedItemValue !== undefined) ?   $scope.searchArr[3] = "value=[" + $scope.selectedItemValue.value + "];" : $scope.searchArr[3] = ""; //проверка выбран ли интервал стоимости
-
+console.log("selectedCity", $scope.selectedCity)
             let strFromArray = $scope.searchArr.join(''); //преобразуем массив в строку
             let searchStr = "";
             strFromArray[strFromArray.length-1] !== undefined ? searchStr = strFromArray.slice(0, -1) : searchStr = "";  //убираем символ ";"  в конце строки запроса, иначе выдает ошибку

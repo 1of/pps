@@ -15,7 +15,7 @@
 							<div class="day">{{item.date_added | date:'dd'}}.</div> 
 					        <div class="month">{{item.date_added | date:'MM'}}</div>
 				        </div>
-				        <div class="time">{{item.date_added | date:'HH:mm'}}</div>
+				        <div class="time">{{item.date_added | date:'HH:mm':'UTC'}}</div>
 			        </div>
 			        <div class="year">{{item.date_added | date:'yyyy'}}</div>
 				</div>
@@ -24,7 +24,7 @@
 	</div>
 	<div class="add-comment row">
 			<div class="col-md-2 my-photo">
-				<img class=" img-responsive" ng-src="{{adress + myinfo || 'app/directives/comments/img/no_ava_user.png'}}" alt="user">
+				<img class=" img-responsive" ng-src="{{adress + myfoto || 'app/directives/comments/img/no_ava_user.png'}}" alt="user">
 			</div>	
 			<textarea class="col-md-8" name="comment" id="comment" cols="50" rows="10" placeholder="Оставьте свой комментарий..." ng-model="commentText"></textarea>
 			<button class="btn btn-default col-md-2 send-btn" ng-click="sendComment()">

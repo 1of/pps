@@ -41,7 +41,7 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 	});
 //Получение пользователя
 console.log("$scope.myId", $scope.myId);
-	usersRepository.getUserById($scope.myId).then(function(response) {
+	usersRepository.getUserById(id).then(function(response) {
 		$scope.user = response.data;       //записываем информацию о нашем пользователе
 		$scope.myinfo = response.data.photo;
 		$scope.mydata = response.data;
@@ -108,7 +108,7 @@ console.log("$scope.myId", $scope.myId);
 			if (error.status == 403) {
 				$scope.error = { 
 					status: true,
-					text: "Вы уже делали ставку на это обещание сегодня"
+					text: "Вы уже делали ставку на это обещание"
 				};
 			}
 			console.log("ответ по ставке-", error); 

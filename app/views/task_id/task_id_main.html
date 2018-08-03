@@ -6,7 +6,7 @@
 <div class="container-fluid" ng-controlle="TaskId">
 	<section class="header row">
 		<div class="button-return col-md-1">
-			<button type="button" class="btn btn-info btn-xs back" ng-click="backPath()"> <i class="glyphicon glyphicon-arrow-left"></i> </button>
+			<button type="button" class="btn btn-default btn-xs back" ng-click="backPath()"> <i class="glyphicon glyphicon-arrow-left"></i> </button>
 		</div>
 		<div class="col-md-2 userimg" >
 			<img ng-src="{{user.photo ? adress + user.photo : 'app/views/task_id/user_default.jpg'}}">
@@ -48,9 +48,9 @@
 	</section>
 	<section class="description row">
 		<h2>Описание</h2>
-							<button type="button" class="btn btn-warning center-block subscribe" ng-click="subscribe()"><i class="glyphicon glyphicon-star-empty"></i> Отслеживать</button>
+							<button type="button" class="btn btn-default center-block subscribe" ng-click="subscribe()"><i class="glyphicon glyphicon-star-empty"></i> Отслеживать</button>
 		<div class="col-md-3">
-			<img ng-src="{{task.picture ? adress + task.picture : 'app/views/task_id/nophoto_task2.jpg'}}" alt="img" >
+			<img ng-src="{{task.picture ? adress + task.picture : 'app/views/task_id/noimage.png'}}" alt="img" >
 		</div>
 		<div class="col-md-9">
 			<p>{{task.description}}</p>
