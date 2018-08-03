@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope', '$interval',  function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope, $interval) {
+app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope', '$interval', '$uibModal', function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope, $interval, $uibModal) {
 	console.log('TaskId controller  OK!!!');
 
 	$scope.adress = 'http://node4.fe.a-level.com.ua/';
@@ -140,6 +140,28 @@ $scope.backPath = function() {
 	var prevUrl = $scope.history.length > 1 ? $scope.history.splice(-2)[0] : '/';
 	$location.path(prevUrl);
 };
+
+//Открыть модальное окно со Списком ставок
+				$scope.showBetsList = function() {
+					var modalInstance = $uibModal.open({
+						templateUrl: 'app/modals/betsList/betslist.template.html',
+						controller: 'Betslist',
+						size: 'm',
+						resolve: {
+						   betsArr: function() {
+						       return $scope.bets
+						   }, 
+						   taskArr: function() {
+						       return $scope.task
+						   },
+						   sumAllBets: function() {
+						       return $scope.sumAllBets
+						   }
+						   
+						}
+					});
+
+				};
 
 }]);
 })();

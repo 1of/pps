@@ -1,0 +1,49 @@
+<!-- Modal -->
+<link rel="stylesheet" href="app/modals/betsList/betslist.css">
+
+<div class="wrapper">
+<div class="bg-r-wrapper"></div>
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Список ставок</h3>
+
+    </div>
+                <div class="modal-body">
+
+                        <p ng-if="allbets.length == 0">Еще никто не делал ставок на данное обещание...</p>
+                    <table class="table table-hover" ng-if="allbets.length > 0">
+                    <thead>
+                        <tr>
+                          <th ng-click="sortBy('index')"><i class="glyphicon" ng-class="{'glyphicon-chevron-up' : sortField === 'index', 'glyphicon-chevron-down' : sortField === '-index'}"></i>№</th>
+                          <th ng-click="sortBy('firstname')"><i class="glyphicon" ng-class="{'glyphicon-chevron-up' : sortField === 'firstname', 'glyphicon-chevron-down' : sortField === '-firstname'}"></i>Имя</th>
+                          <th ng-click="sortBy('lastname')"><i class="glyphicon" ng-class="{'glyphicon-chevron-up' : sortField === 'lastname', 'glyphicon-chevron-down' : sortField === '-lastname'}"></i>Фамилия</th>
+                          <th ng-click="sortBy('value')"><i class="glyphicon" ng-class="{'glyphicon-chevron-up' : sortField === 'value', 'glyphicon-chevron-down' : sortField === '-value'}"></i>Ставка</th>
+                          <th ng-click="sortBy('date_added')"><i class="glyphicon" ng-class="{'glyphicon-chevron-up' : sortField === 'date_added', 'glyphicon-chevron-down' : sortField === '-date_added'}"></i>Дата ставки</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr ng-repeat="bet in allbets | orderBy: sortField track by $index">
+                          <td>{{bet.index}}</td>
+                          <td><a href="#/account/{{bet.user_id}}/account_info" ng-click="cancel()">{{bet.firstname}}</a></td>
+                          <td><a href="#/account/{{bet.user_id}}/account_info" ng-click="cancel()">{{bet.lastname}}</a></td>
+                          <td>{{bet.value}}</td>
+                          <td>{{bet.date_added
+                     | date: 'fullDate'}}</td>
+                        </tr>
+                        <tr>
+                          <td>Итого</td>
+                          <td></td>
+                          <td></td>
+                          <td>Цена обещания: {{betTask.value}} </br> Сумма всех ставок: {{sumBets}}</td>
+                          <td>Дата окончания обещания: </br>{{betTask.time_limit
+                     | date: 'fullDate'}}</td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+               
+                </div>
+        <div class="modal-footer">        
+            <button class="btn btn-default" type="button" ng-click="cancel()">Закрыть</button>
+        </div>
+    </div>

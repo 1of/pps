@@ -1,0 +1,16 @@
+.wrapper {
+	z-index: 450;
+	position: relative;
+
+}
+
+.bg-r-wrapper {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: url(bets_bg.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	filter: invert(100%) opacity(15%) contrast(200%);
+	z-index: -5;
+}

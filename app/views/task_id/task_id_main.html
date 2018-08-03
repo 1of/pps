@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="app/views/task_id/task_id.css">
 
-<!--<div ng-if="loading" class="preloader-all">
-</div> -->
+<div ng-if="loading" class="preloader-all">
+</div> 
 
 <div class="container-fluid" ng-controlle="TaskId">
 	<section class="header row">
@@ -25,9 +25,9 @@
 	</section>
 	<section class="bets row">
 		<div class="statistics col-md-9">
-			<h3>Стоимость: <span class="badge">{{ task.value }}</span> </br> Максимальная ставка: <span class="badge" >{{maxBet || 0}}</span></h3>
+			<h3>Стоимость: <span class="badge">{{ task.value }}</span> </br> Максимальная ставка: <span class="badge" >{{maxBet || 0}}</span>   </h3>
 			<p>Отслеживают: <span class="badge">{{ trackingUsers.length }}</span> чел.</p>
-			<p>Ставок: <span class="badge">{{ bets.length || 0 }}</span></p>
+			<p> <a  ng-click="showBetsList()">Ставок</a>: <span class="badge">{{ bets.length || 0 }}</span></p>
 			<p>Комментарии: <span class="badge">{{comments.length}}</span></p>
 		</div>
 		<div class="bet col-md-3">
