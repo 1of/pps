@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Сервис публичных обещаний</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="plugins/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="plugins/slick/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    
 </head>
 
 <body ng-controller="Main" scroll id="page" ng-class="{light:boolChangeClass}">
@@ -19,7 +24,8 @@
     <ng-include src="'app/views/main_page/footer.template.html'"> </ng-include>
 
   
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="plugins/slick/slick.min.js"></script>
   <script src="node_modules/angular/angular.js"></script>
   <script src="app/app.module.js"></script>
   <script src="app/app.routes.js"></script>
