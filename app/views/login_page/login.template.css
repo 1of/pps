@@ -2,15 +2,17 @@
 label {
 	animation-duration: 3s;
 	animation-delay: 1s;
-	color: red;
 	margin: 0 auto;
+	background: #000;
 	font-family: "Roboto Slab";
 	font-weight: 900;
 	font-size: 1.5em;
-	background: linear-gradient(90deg, #000 0%, #9952e0 75%, #000 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	line-height: 50px;
+
+	text-align: center;
+	
 }
 input[type="submit"] {
 	display: flex;
@@ -26,13 +28,18 @@ div.modal-body {
 	flex-direction: row;
 }
 form[name="regForm"] {
-	width: 50%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 50px;
 }
 form[name="regForm"] input {
-	width: 90%;
+	width: 50%;
+	margin: 0 auto;
 }
 div.responce-text {
-	width: 50%;
+	color: #000;
+	text-decoration: underline;
 }
 .text {
 	color: black;
@@ -113,11 +120,10 @@ div.bg-r-wrapper {
 	filter: blur(15px);
 }
 button{
-
 	-o-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-webkit-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 button.btn:hover{
 	transform: scale(1.05);
@@ -130,7 +136,4 @@ div.reg-container input {
 div.reg-container input:focus {
 	opacity: 1;
 	font-size: 1.1em;
-}
-div.reg-container label{
-
 }

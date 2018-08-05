@@ -28,7 +28,7 @@
                           <td><a href="#/account/{{bet.user_id}}/account_info" ng-click="cancel()">{{bet.lastname}}</a></td>
                           <td>{{bet.value}}</td>
                           <td>{{bet.date_added
-                     | date: 'fullDate'}}</td>
+                     | date: 'HH:mm (dd.MM.yyyy)'}}</td>
                         </tr>
                         <tr>
                           <td>Итого</td>
@@ -36,7 +36,7 @@
                           <td></td>
                           <td>Цена обещания: {{betTask.value}} </br> Сумма всех ставок: {{sumBets}}</td>
                           <td>Дата окончания обещания: </br>{{betTask.time_limit
-                     | date: 'fullDate'}}</td>
+                     | date: 'HH:mm (dd.MM.yyyy)'}}</td>
                         </tr>
                         </tbody>
 

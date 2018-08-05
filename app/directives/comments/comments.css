@@ -122,3 +122,12 @@ textarea {
 	text-align: center;
 	/*rgba(215,49,73,.55)*/
 }
+/*Triangles*/
+.comments-list  {
+	position: relative;
+	z-index: 100;
+}
+#commm{
+	height: 500px;
+	width: 800px;
+}

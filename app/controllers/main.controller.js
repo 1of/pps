@@ -12,17 +12,17 @@
             $rootScope.adress = 'http://node4.fe.a-level.com.ua/';
 
             //Получаем список всех задач и список всех городов из него
+            $scope.selectedCity = null;
             tasksRepository.getTasks()
                 .then(function(response){
                     $scope.tasks = response.data;
                     var cities = [];
                     $scope.tasks.forEach(task => {
-                        if ( !cities.includes(task.location) ) {
+                        if ( !cities.includes(task.location) && (task.location !== "") ) {
                             cities.push(task.location);
                         }
                     });
-                    $scope.cities = cities;
-                    console.log($scope.cities);
+                    $rootScope.cities_root = cities;
                 }, function(error) {});    
                 
             //Получаем список всех пользователей
@@ -84,7 +84,7 @@
                 {name : "200+", value : [200,10000]}
             ];
             $scope.selectedItemValue = $scope.selectValue[-1]; // изначально выбран 1й option, потом уже что выберем
-            $scope.selectedCity = $scope.cities;    //выбранный option в городах
+            $scope.selectedCity = $rootScope.cities;    //выбранный option в городах
 
             $scope.searchArr = [  //массив-заглушка, в него будет записываться все option и category выбранные пользователем
                                 "category=[]", //0 - категории
@@ -101,12 +101,12 @@
                 }
             $scope.selectedItemDifficulty = $scope.selectDifficulty[-1]; // очищаем option сложности
             $scope.selectedItemValue = $scope.selectValue[-1]; /// очищаем option стоимости
-            $scope.selectedCity = $scope.cities[-1];    //очищаем option по городах
-
+            document.getElementById('cityreset').selectedIndex = 0; //очищаем option по городах
+            $scope.selectedCity = undefined;
                 };
 
             $scope.searchByFilter = function() {
-
+                
                let category = [];
                for (let key in $scope.checkboxSearchModel)     // перебираем обьект checkboxSearchModel и пушим в category[] только те элементы, которые выбраны пользователем
                  {
@@ -118,7 +118,6 @@
              ($scope.selectedItemDifficulty !== undefined) ?   $scope.searchArr[1] = "difficulty=" + $scope.selectedItemDifficulty.value + ";" : $scope.searchArr[1] = ""; //проверка выбрана ли сложность
              ($scope.selectedCity !== undefined  && testCities !== true) ?  $scope.searchArr[2] = "location=" + $scope.selectedCity + ";" : $scope.searchArr[2] = ""; //проверка выбран ли город
              ($scope.selectedItemValue !== undefined) ?   $scope.searchArr[3] = "value=[" + $scope.selectedItemValue.value + "];" : $scope.searchArr[3] = ""; //проверка выбран ли интервал стоимости
-console.log("selectedCity", $scope.selectedCity)
             let strFromArray = $scope.searchArr.join(''); //преобразуем массив в строку
             let searchStr = "";
             strFromArray[strFromArray.length-1] !== undefined ? searchStr = strFromArray.slice(0, -1) : searchStr = "";  //убираем символ ";"  в конце строки запроса, иначе выдает ошибку

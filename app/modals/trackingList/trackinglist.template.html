@@ -1,0 +1,41 @@
+<!-- Modal -->
+<link rel="stylesheet" href="app/modals/trackingList/trackinglist.css">
+
+<div class="wrapper">
+<div class="bg-r-wrapper"></div>
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Список отслеживающих</h3>
+
+    </div>
+                <div class="modal-body">
+
+                        <p ng-if="allTrackingUsers.length == 0">Еще никто не подписался на данное обещание...</p>
+                    <table class="table table-hover" ng-if="allTrackingUsers.length > 0">
+                    <thead>
+                        <tr>
+                          <th ng-click="sortBy('index')"><i class="glyphicon" ng-class="{'glyphicon-chevron-up' : sortField === 'index', 'glyphicon-chevron-down' : sortField === '-index'}"></i>№</th>
+                          <th></th>
+                          <th ng-click="sortBy('firstname')"><i class="glyphicon" ng-class="{'glyphicon-chevron-up' : sortField === 'firstname', 'glyphicon-chevron-down' : sortField === '-firstname'}"></i>Имя</th>
+                          <th ng-click="sortBy('lastname')"><i class="glyphicon" ng-class="{'glyphicon-chevron-up' : sortField === 'lastname', 'glyphicon-chevron-down' : sortField === '-lastname'}"></i>Фамилия</th>
+                          <th ng-click="sortBy('date_added')"><i class="glyphicon" ng-class="{'glyphicon-chevron-up' : sortField === 'date_added', 'glyphicon-chevron-down' : sortField === '-date_added'}"></i>Дата начала отслеживания</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr ng-repeat="user in allTrackingUsers | orderBy: sortField track by $index" ng-class="{'gray-bg' : user.gender == 0, 'blue-bg' : user.gender == 1, 'pink-bg' : user.gender == 2}">
+                          <td>{{user.index}}</td>
+                          <td><img class="userlistico" ng-src="{{user.photo ? adress + user.photo : 'app/modals/trackingList/userico.png'}}"></td>
+                          <td><a href="#/account/{{user.user_id}}/account_info" ng-click="cancel()">{{user.firstname}}</a></td>
+                          <td><a href="#/account/{{user.user_id}}/account_info" ng-click="cancel()">{{user.lastname}}</a></td>
+                          <td>{{user.date_added
+                     | date: 'HH:mm (dd.MM.yyyy)'}}</td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+               
+                </div>
+        <div class="modal-footer">        
+            <button class="btn btn-default" type="button" ng-click="cancel()">Закрыть</button>
+        </div>
+    </div>

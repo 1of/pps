@@ -1,9 +1,7 @@
 <main ng-controller="Main">
     <form class="form-inline text-center" id="search_form" ng-submit="search()">
    
-            <select ng-model="selectedCity" ng-options="city for city in cities" class="form-control filter-select">
-              <option value="" disabled>Выберите расположение...</option>
-            </select>
+
         
         <input class="form-control" type="text" placeholder="Введите запрос..." ng-model="searchString">
         <button class="btn btn-secondary" type="submit">Поиск</button>
@@ -82,11 +80,16 @@
   		    		<option value="" disabled>Выберите стоимость</option>
   		    	</select>
         </label>
-
-
-		    	<button class="btn btn-default filter-btn" ng-click="clear()">Сбросить</button>
+        <label>
+            <select ng-model="selectedCity" ng-options="city for city in cities_root" class="form-control filter-select" id="cityreset">
+              <option value="" disabled>Выберите расположение</option>
+            </select>
+       </label>
+       <div class="row">
+  		    	<button class="btn btn-default filter-btn" ng-click="clear()">Сбросить</button>
 		        <button class="btn btn-default filter-btn" type="submit" ng-click="searchByFilter()">Отфильтровать</button>
-		    </form>
+		   </div>
+        </form>
   		</div>
   		<div class="panel-body text-center social">
   			<p>Мы в соцсетях</p>

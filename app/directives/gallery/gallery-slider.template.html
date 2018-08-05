@@ -1,0 +1,29 @@
+<link rel="stylesheet" type="text/css" href="app/directives/gallery/gallery-slider.css">
+
+<section class="row"  ng-controller="TaskId">
+
+    <!-- slider container -->
+    <div class="container-fluid slider" ng-if="proofsPhotos[0].picture[0].length < 80 ">
+        <!-- enumerate all photos -->
+
+        	 <img  ng-repeat="photo in proofsPhotos track by $index" class="slide" ng-swipe-right="showPrev()" ng-swipe-left="showNext()" ng-show="isActive($index)" ng-src="{{adress + photo.picture[0]}}" />
+
+        <!-- prev / next controls -->
+        <a class="arrow prev"  ng-click="showPrev()"><i class="glyphicon glyphicon-triangle-left arrow prev"></i></a>
+        <a class="arrow next" ng-click="showNext()"><i class="glyphicon glyphicon-triangle-right arrow next"></i></a>
+        <!-- extra navigation controls -->
+        <div class="descript" ng-repeat="photo in proofsPhotos">
+        	<p class="datetext" ng-show="isActive($index)"> Дата: <b>{{photo.date_added | date : 'HH:mm'}}</b> {{photo.date_added | date : '(dd.MM.yyyy)'}} </p>
+        	<p class="prooftext" ng-show="isActive($index)">{{photo.description}}</p>
+        </div>
+        <ul class="nav">
+            <li ng-repeat="photo in proofsPhotos" ng-class="{'active':isActive($index)}">
+                <img src="{{adress + photo.picture[0]}}" alt="{{photo.description}}" title="{{photo.description}}" ng-click="showPhoto($index);" />
+            </li>
+        </ul>
+    </div>
+
+
+
+
+</section>

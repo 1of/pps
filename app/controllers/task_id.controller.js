@@ -1,8 +1,7 @@
 (function () {
 'use strict';
-app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope', '$interval', '$uibModal', function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope, $interval, $uibModal) {
+app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope', '$interval', '$uibModal', '$sce', function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope, $interval, $uibModal, $sce) {
 	console.log('TaskId controller  OK!!!');
-
 	$scope.adress = 'http://node4.fe.a-level.com.ua/';
 	$scope.myinfo = "";
 	$scope.myId = localStorage.getItem('userId');
@@ -10,12 +9,25 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 //Получение обещания
 	tasksRepository.getTasksById(id).then(function(response) {
 		$scope.task = response.data;       //записываем информацию о нашем обещании
+			usersRepository.getUserById($scope.task.user_id).then(function(response) {
+		$scope.userByTask = response.data;       //записываем информацию о пользователе данного обещания
+	}, function(error) {});
+
+($scope.task.category_id == 1) ? ($scope.htmlPopoverCategory = $sce.trustAsHtml('<b>Обещание относится к категории</b><div class="label label-danger"> <b style="font-size: 14px; color: #fff">Привычки</b></div>') ): "";
+($scope.task.category_id == 2) ? ($scope.htmlPopoverCategory = $sce.trustAsHtml('<b>Обещание относится к категории</b><div class="label label-danger"> <b style="font-size: 14px; color: #fff">Работа</b></div>') ): "";
+($scope.task.category_id == 3) ? ($scope.htmlPopoverCategory = $sce.trustAsHtml('<b>Обещание относится к категории</b><div class="label label-danger"> <b style="font-size: 14px; color: #fff">Соревнования</b></div>') ): "";
+($scope.task.category_id == 4) ? ($scope.htmlPopoverCategory = $sce.trustAsHtml('<b>Обещание относится к категории</b><div class="label label-danger"> <b style="font-size: 14px; color: #fff">Учеба</b></div>') ): "";
+($scope.task.category_id == 5) ? ($scope.htmlPopoverCategory = $sce.trustAsHtml('<b>Обещание относится к категории</b><div class="label label-danger"> <b style="font-size: 14px; color: #fff">Покупки</b></div>') ): "";
+($scope.task.category_id == 6) ? ($scope.htmlPopoverCategory = $sce.trustAsHtml('<b>Обещание относится к категории</b><div class="label label-danger"> <b style="font-size: 14px; color: #fff">Другое</b></div>') ): "";
+$scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещание в отслеживаемые</b>');
+
 		// Таймер для отображения оставшегося времени обещания
 		var timer = $interval(function() { 
 
   		let currentTime = Date.now();
 		let taskEndingTime = Date.parse($scope.task.time_limit);
 		let finalCounter = taskEndingTime - currentTime;
+		$scope.validateTime = finalCounter;
 		let day=Math.floor((finalCounter)/(24*60*60*1000));
 		let hour=Math.floor(((finalCounter)%(24*60*60*1000))/(60*60*1000));
 		let min=Math.floor(((finalCounter)%(24*60*60*1000))/(60*1000))%60;
@@ -40,19 +52,16 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 	}, function(error) {
 	});
 //Получение пользователя
-console.log("$scope.myId", $scope.myId);
-	usersRepository.getUserById(id).then(function(response) {
+	usersRepository.getUserById(+$scope.myId).then(function(response) {
 		$scope.user = response.data;       //записываем информацию о нашем пользователе
 		$scope.myinfo = response.data.photo;
 		$scope.mydata = response.data;
-		console.log($scope.user);
 	}, function(error) {});
 
 
 
 //Получение комментариев
 	commentsRepository.getCommentsById(id).then(function(response) { //стягиваем все наши комментарии
-		console.log('"Comments responce"',response.data);
 		$scope.comments = response.data.map(function(item, i){
 				return {
 					task_id: item.task_id,
@@ -64,7 +73,6 @@ console.log("$scope.myId", $scope.myId);
 					lastname: item.user.firstname
 				}
 			});       
-		console.log("Comments skoup", $scope.comments);
 
 	}, function(error) {});
 //Получение ставок Обещания
@@ -76,12 +84,12 @@ console.log("$scope.myId", $scope.myId);
 		}).reduce(function(sum, current) {
 			return sum + current
 		}, 0);
+
    $scope.maxBet = $scope.task.value - $scope.sumAllBets;
 		}, function(error) { });
 //Получение списка отслеживающих
 	tasksRepository.getUsersWhoTracking(id).then(function(response) {
 		$scope.trackingUsers = response.data; 
-		console.log("trackingUsers", $scope.trackingUsers);
 		}, function(error) { });
 
 //Добавление ставки ставок Обещания
@@ -97,13 +105,12 @@ console.log("$scope.myId", $scope.myId);
 	
 	$scope.addBet = function() {
 		if ($scope.user.balance < 1) {
-			utils.notify({message: 'На Вашем балансе недостаточно денег', type: 'danger'});
+			utils.notify({message: 'Недостаточно средств на балансе', type: 'danger'});
 			return
 		} else {
 
         var data = { value: +$scope.betAmount};
 			tasksRepository.addBetsById(+id, data).then(function(response) {
-		console.log("ответ по ставке+", $scope.res);
 		}, function(error) {
 			if (error.status == 403) {
 				$scope.error = { 
@@ -111,7 +118,7 @@ console.log("$scope.myId", $scope.myId);
 					text: "Вы уже делали ставку на это обещание"
 				};
 			}
-			console.log("ответ по ставке-", error); 
+			
 		});
 
 		}
@@ -122,10 +129,8 @@ console.log("$scope.myId", $scope.myId);
 $scope.subscribe = function() {
 	let data = { task_id: +id };
 		usersRepository.addTrackingTask($scope.myId, data).then(function(response) {
-		console.log("ответ по подписке+", response);
 		$scope.myTrackingTasks = response.data;
 		}, function(error) {
-			console.log("ответ по подписке-", error); 
 		});
 	};
 
@@ -142,6 +147,21 @@ $scope.backPath = function() {
 };
 
 //Открыть модальное окно со Списком ставок
+				$scope.showTrackingUsersList = function() {
+					var modalInstance = $uibModal.open({
+						templateUrl: 'app/modals//trackingList/trackinglist.template.html',
+						controller: 'Trackinglist',
+						size: 'm',
+						resolve: {
+						   trackingUsersArr: function() {
+						       return $scope.trackingUsers
+						   }
+						}
+					});
+
+				};
+
+//Открыть модальное окно со Списком Отслеживающих
 				$scope.showBetsList = function() {
 					var modalInstance = $uibModal.open({
 						templateUrl: 'app/modals/betsList/betslist.template.html',
@@ -162,6 +182,9 @@ $scope.backPath = function() {
 					});
 
 				};
+				$scope.imgArray = ['icons/habits.png', 'icons/career.png', 'icons/competitions.png', 'icons/study.png', 'icons/shoping.png', 'icons/other.png'];
+
+				
 
 }]);
 })();

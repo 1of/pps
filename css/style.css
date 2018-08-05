@@ -63,6 +63,7 @@ main {
 }
 .filter-select {
 	margin: 10px 0;
+	width: 230px !important;
 }
 .filter-btn {
 	margin: 10px auto;
@@ -165,6 +166,10 @@ main {
 form input[type=checkbox] {
 display: none;
 }
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+}
 
 .selected-checkbox {
 	border: 5px double gray;
@@ -220,14 +225,14 @@ background-size: cover;
 	overflow: hidden;
 	width: 150px;
 	height: 40px;
-	background: #4169E1;
+	background: #fff;
 	border-radius: 10px;
-	color: #fff;
+	color: #222;
 	text-align: center;
 }
 
 .proof-wrapper #file-upload:hover {
-	background: #1E90FF;
+	background: #ccc;
 }
 
 /* Растягиваем label на всю область блока .file-upload */

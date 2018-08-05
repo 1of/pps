@@ -2,5 +2,7 @@ window.app = angular.module('app', [
 	'ngRoute',
 	'ui.bootstrap',
 	'cgNotify',
-	'xeditable'
+	'xeditable',
+	'ngAnimate',
+	'ngTouch'
 	]);

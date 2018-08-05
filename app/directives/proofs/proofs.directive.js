@@ -11,16 +11,16 @@
 			controller: ['$scope', "$rootScope", 'tasks.repository', '$routeParams', '$uibModal', 'utils', function($scope, $rootScope, tasksRepository, $routeParams, $uibModal, utils) {
 				var id = $routeParams.taskId;
 				$scope.adress = 'http://node4.fe.a-level.com.ua/';
-
+				$scope.myId = localStorage.getItem('userId');
 				tasksRepository.getTasksById(id).then(function(response) {
 					$scope.task = response.data; 
-					$scope.validTask = $scope.task.user_id == id ? true : false;
+					$scope.validTask = $scope.task.user_id === +$scope.myId ? true : false;
 					console.log("таски", $scope.task);
 				}, function(error) { });
 
 				tasksRepository.getProofsById(id).then(function(response) {
 					$scope.proofs = response.data; 
-					console.log("пруфы", $scope.proofs) 	 ;
+					console.log("пруфы", $scope.proofs);
 				}, function(error) { });
 
 				$scope.addProof = function() {
@@ -37,9 +37,8 @@
 							tasksRepository.getProofsById(id).then(function(response_new) {
 								$scope.proofs = response_new.data; 
 							}, function(error) { });
-							utils.notify({message: "Подтвержение успешно добавлено!", type: 'danger'});
+							utils.notify({message: "Подтвержение успешно добавлено!", type: 'success'});
 						}, function(error) {
-							console.log("Error", error);
 						});					
 					}, function() {});
 

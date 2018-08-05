@@ -1,12 +1,14 @@
 <section class="proofs">
+<gallery proofs="proofs" ng-if="proofs.lenght !== 0"></gallery>
+<p ng-if="proofs.length === 0"> К сожалению, подтверждения отсутсвуют. Зайдите позже или попросите человека добавить доказательства</p>
 	<div>
 		<ol ng-repeat="proof in proofs track by $index">
 			<li class="list-group-item row"> 
-		    <h4 class="col-md-32 list-group-item-heading">{{$index + 1}}) {{proof.date_added | date:'HH:mm | (dd/MM)'}}</h4>
+		    <h4 class="col-md-32 list-group-item-heading">{{$index + 1}}) <b>{{proof.date_added | date : 'HH:mm'}}</b> {{proof.date_added | date : '(dd.MM.yyyy)'}}</h4>
 		    <div class="col-md-2"><img class="img-thumbnail img-responsive" ng-src="{{proof.picture[0].length > 80 ? 'app/directives/proofs/img/noimage.png' : adress + proof.picture}}"></div>	    
 		    <p class="list-group-item-text col-md-7">{{proof.description}}</p>
 			</li>
 		</ol>
 	</div>
-	<button class="btn btn-default center-block" ng-if="!validTask" ng-click="addProof()"> <i class="glyphicon glyphicon-file"></i> Добавить подтверждение</button>
+	<button class="btn btn-default center-block" ng-if="validTask" ng-click="addProof()"> <i class="glyphicon glyphicon-file"></i> Добавить подтверждение</button>
 </section>
