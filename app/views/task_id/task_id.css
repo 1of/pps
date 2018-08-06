@@ -220,3 +220,31 @@ color: black;
   	transform: rotateY(360deg);   
   }
 }
+
+/* Mobile */
+@media only screen and (min-device-width: 320px) and (max-device-width: 667px){
+button.back {
+	width: 70px;
+}
+.date-publish {
+	margin-left: 20px;
+}
+.bets{
+	display: flex;
+	flex-direction: column;
+}
+button.subscribe {
+	color: white;
+	overflow: hidden;
+	width: 40px;
+}
+.glyphicon-star-empty {
+	color: #000;
+}
+.promice-block {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 15px;
+}
+
+  }

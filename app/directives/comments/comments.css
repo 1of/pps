@@ -111,10 +111,9 @@ button.send-btn:hover {
 	background: rgba(215,49,73,.9);
 	color: #fff;
 }
-textarea {
+textarea#comment {
 	resize: none;	
 	background: linear-gradient(180deg, rgba(255,255,255,.1) 85%,rgba(0,0,0,.55) 300%);
-
 	border: none;
 	color: black;
 	font-size: 20px;
@@ -122,7 +121,7 @@ textarea {
 	text-align: center;
 	/*rgba(215,49,73,.55)*/
 }
-/*Triangles*/
+
 .comments-list  {
 	position: relative;
 	z-index: 100;
@@ -130,4 +129,68 @@ textarea {
 #commm{
 	height: 500px;
 	width: 800px;
+}
+
+/* Mobile */
+@media only screen and (min-device-width: 320px) and (max-device-width: 667px){ 
+.comments-all span {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.comments-list div span.col-md-2 {
+	position: absolute;
+	right: 0;
+	top: 30px;
+}
+
+div.postdate {
+	flex-direction: row;
+	border-left: none;
+	padding: 0px;
+}
+
+div.dmflex-inner{
+	display: flex;
+	flex-direction: row;
+}
+div.year {
+	align-self: center;
+}
+div.time {
+
+	font-size: 1em;
+    letter-spacing: 0;
+    padding: 2px;
+    text-align: center;
+}
+
+span.name {
+	margin-left: 10px;
+	margin-top: 40px;
+}
+.add-comment {
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+div.my-photo img {
+	max-width: 90px;
+	border-radius: 50%;
+	align-self: center;
+	margin-top: 15px;
+}
+
+textarea#comment {
+	font-size: 14px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 15px;
+	margin-right: 15px;
+
+}
+button.send-btn{
+	margin-bottom: 20px;
+}
+
 }

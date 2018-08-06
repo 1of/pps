@@ -49,41 +49,40 @@ This stylesheet and the associated (x)html may be modified in any way to fit you
     text-align: center;
     width: 100%;
     z-index: 5;
-  
-
 }
+
 .nav li {
     cursor: pointer;
     display: inline-block;
-    height: 57px;
+    height: 50px;
     margin: 0 4px;
     position: relative;
     width: 50px;
-    border-radius: 50%;
-    border: 3px solid gray;
+    overflow: hidden;
+    border: 3px ridge white ;
 
 }
 .nav li.active {
-    border: 5px solid #FF2222;
+    border: 4px ridge lightgray;
 
 }
 .nav li img {
     width: 100%;
     height: 50px;
-    border-radius: 50%;
+    
 }
 
 .slider {
     border-radius: 15px;
-    min-height: 600px;
+    min-height: 500px;
     margin: 10px auto;
     position: relative;
     perspective: 100px;
     transform-style: preserve-3d;
     transition: 1s linear all;
     overflow: hidden;
-     display: flex;
-     justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 .slide {
 	position: absolute;
@@ -170,8 +169,8 @@ This stylesheet and the associated (x)html may be modified in any way to fit you
         width: 60%;
     }
     .slider {
-        height: 188px;
-        width: 400px;
+        min-height: 450px;
+        width: 350px;
     }
     .slider .slide {
         width: 100%;
@@ -191,4 +190,10 @@ This stylesheet and the associated (x)html may be modified in any way to fit you
     height: 100%;
     border-radius: 50%;
 }
+    .arrow.prev {
+        left: 0;
+    }
+    .arrow.next {
+        right: -5px;
+    }
 }
