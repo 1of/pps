@@ -3,6 +3,11 @@
 
         app.controller('Main', ['$scope', '$rootScope', 'tasks.repository', 'users.repository','$location',
          function($scope, $rootScope, tasksRepository, usersRepository, $location) {
+            
+            //Адрес для загрузки файлов
+            $scope.fileAdress = 'http://node4.fe.a-level.com.ua/';
+
+            
             //Наш Id
             $scope.myUserId = localStorage.getItem('userId');
 

@@ -10,20 +10,20 @@ header {
 	height: 50px;
 
 }
-menu-container li a{
-	margin-top: 5px;
+.menu-container li a{
+	margin-top: 10px;
 }
 .light header {
 	background-color: #fff;
 }
 
 .top-menu {
-	width: 80%;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	height: inherit;
-	padding: 5px 0px;
+	padding: 5px 5%;
 }
 
 .logo-container {
@@ -35,7 +35,7 @@ menu-container li a{
 .l3d {
 	height: 40px;
 	width: 40px;
-	padding: 5px 5px 2px 5px;
+	padding: 6px 5px 2px 5px;
 	border-right: 2px solid red; 
 	perspective: 1000px;
 }
@@ -149,4 +149,8 @@ nav ul li a {
 .light header nav>ul>li>a  {
 	color: #9b9b9b;
 	transition: color .2s ease-in-out;
+}
+
+div.fix-fix {
+	height: 65px;
 }
