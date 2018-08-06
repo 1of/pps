@@ -1,3 +1,4 @@
+
 (function() {
     'use strict';
     app.factory('tasks.repository', ['webApi', '$http', function(webApi, $http) {
@@ -9,12 +10,13 @@
             addProofById: _addProofById,
             getBetsById: _getBetsById,
             addBetsById: _addBetsById,
+            getCategories: _getCategories,
+            addTask: _addTask,
             getUsersWhoTracking: _getUsersWhoTracking
-
         };
 
         function _getTasks() {
-            return $http.get(webApi.DOMAIN + '/api/v1/tasks/');
+            return $http.get(webApi.DOMAIN + '/api/v1/tasks');
         }
 
         function _getTasksFiltered(data) {
@@ -44,6 +46,16 @@
             return $http.post(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/bets', data);
         }
 
+        function _getCategories() {
+            return $http.get(webApi.DOMAIN + '/api/v1/categories')
+        }
+
+        function _addTask(data) {
+            return $http.post(webApi.DOMAIN + '/api/v1/tasks/', data, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            });
+        }
         function _getUsersWhoTracking(id) {
             return $http.get(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/tracking_users');
         }

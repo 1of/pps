@@ -1,0 +1,19 @@
+Index: app/modals/confirm/confirm.template.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/modals/confirm/confirm.template.html	(date 1530298966000)
++++ app/modals/confirm/confirm.template.html	(date 1530298966000)
+@@ -0,0 +1,10 @@
++<div class="modal-header">
++	<h3 class="modal-title">{{'Confirm'}}</h3>
++</div>
++<div class="modal-body">
++	{{'Are you sure?'}}
++</div>
++<div class="modal-footer">
++	<button class="btn btn-danger" ng-click="cancel()">{{'Cancel' }}</button>
++	<button class="btn btn-success" ng-click="ok()">{{'Ok' }}</button>
++</div>
+\ No newline at end of file

@@ -1,7 +1,6 @@
 (function () {
 'use strict';
 app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'comments.repository', '$routeParams', '$location', 'utils',  '$rootScope', '$interval', '$uibModal', '$sce', function($scope, tasksRepository, usersRepository, commentsRepository, $routeParams, $location, utils, $rootScope, $interval, $uibModal, $sce) {
-	console.log('TaskId controller  OK!!!');
 	$scope.adress = 'http://node4.fe.a-level.com.ua/';
 	$scope.myinfo = "";
 	$scope.myId = localStorage.getItem('userId');
@@ -22,7 +21,7 @@ app.controller('TaskId', ['$scope', 'tasks.repository', 'users.repository', 'com
 $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещание в отслеживаемые</b>');
 
 		// Таймер для отображения оставшегося времени обещания
-		var timer = $interval(function() { 
+		var timer = $interval(function() {
 
   		let currentTime = Date.now();
 		let taskEndingTime = Date.parse($scope.task.time_limit);
@@ -38,7 +37,7 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 			min: min,
 			sec: sec
 		};
-		if (day < 0) $interval.cancel(timer); 
+		if (day < 0) $interval.cancel(timer);
 	},1000);
 
 	// функция очистки таймера
@@ -47,7 +46,7 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
         $interval.cancel(timer);
         timer = undefined;
       }
-	    }; 
+	    };
 
 	}, function(error) {
 	});
@@ -72,13 +71,12 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 					firstname: item.user.firstname,
 					lastname: item.user.firstname
 				}
-			});       
+			});
 
 	}, function(error) {});
 //Получение ставок Обещания
 	tasksRepository.getBetsById(id).then(function(response) {
-		$scope.bets = response.data; 
-		console.log("ставки", $scope.bets);
+		$scope.bets = response.data;
 		$scope.sumAllBets = $scope.bets.map(function(item){
 			return item.value;
 		}).reduce(function(sum, current) {
@@ -89,20 +87,20 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 		}, function(error) { });
 //Получение списка отслеживающих
 	tasksRepository.getUsersWhoTracking(id).then(function(response) {
-		$scope.trackingUsers = response.data; 
+		$scope.trackingUsers = response.data;
 		}, function(error) { });
 
 //Добавление ставки ставок Обещания
 	$scope.betAmount = 0;
-	
+
 	$scope.inc = function() {
 		$scope.betAmount++;
 	};
-	
+
 	$scope.dec = function() {
 		$scope.betAmount--;
 	};
-	
+
 	$scope.addBet = function() {
 		if ($scope.user.balance < 1) {
 			utils.notify({message: 'Недостаточно средств на балансе', type: 'danger'});
@@ -113,12 +111,12 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 			tasksRepository.addBetsById(+id, data).then(function(response) {
 		}, function(error) {
 			if (error.status == 403) {
-				$scope.error = { 
+				$scope.error = {
 					status: true,
 					text: "Вы уже делали ставку на это обещание"
 				};
 			}
-			
+
 		});
 
 		}
@@ -170,21 +168,47 @@ $scope.backPath = function() {
 						resolve: {
 						   betsArr: function() {
 						       return $scope.bets
-						   }, 
+						   },
 						   taskArr: function() {
 						       return $scope.task
 						   },
 						   sumAllBets: function() {
 						       return $scope.sumAllBets
 						   }
-						   
+
 						}
 					});
 
 				};
 				$scope.imgArray = ['icons/habits.png', 'icons/career.png', 'icons/competitions.png', 'icons/study.png', 'icons/shoping.png', 'icons/other.png'];
 
-				
+ //Отслеживать
+				if($scope.trackingTasks && $scope.trackingTasks.length) {
+						$scope.isTracking = $scope.trackingTasks.filter(task => task.id === $scope.task.id).length === 1 ? true : false;
+				}
+
+				$scope.togleTrackingTask = function () {
+						usersRepository.addTrackingTask($scope.myUserId, {task_id: $scope.task.id})
+								.then(function (response) {
+										$scope.$emit('trackingTaskTogle', $scope.task);
+										$scope.isTracking = !$scope.isTracking;
+												if (!$scope.isTracking) {
+														utils.notify({
+																message: 'Вы прекратили отслеживать обещание',
+																type: 'danger'
+														});
+												} else {
+														utils.notify({
+																message: 'Обещание отслеживается',
+																type: 'success'
+														});
+												}
+						}, function (error) {
+								console.log(error)
+						});
+				};
+
+
 
 }]);
 })();

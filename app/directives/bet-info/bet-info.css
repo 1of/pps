@@ -1,0 +1,36 @@
+.bet-info {
+    height: 200px;
+    padding: 10px;
+    text-align: center;
+}
+.bet-info a {
+    color: black;
+}
+ .bet-info a:hover {
+     text-decoration: none;
+ }
+
+bet-info div {
+    height: 100px;
+}
+.author_photo, .task_piture {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.author_photo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.author_photo p {
+    margin: 0;
+    color: black;
+    font-size: 18px;
+}
+.mt {
+    margin-top: 20px;
+}

@@ -11,8 +11,13 @@
             //Adress of our server
             $rootScope.adress = 'http://node4.fe.a-level.com.ua/';
 
+            //Адрес для загрузки файлов
+            $scope.fileAdress = 'http://node4.fe.a-level.com.ua/';
+
             //Получаем список всех задач и список всех городов из него
+
             $scope.selectedCity = null;
+            function getAllTasks() {
             tasksRepository.getTasks()
                 .then(function(response){
                     $scope.tasks = response.data;
@@ -23,34 +28,59 @@
                         }
                     });
                     $rootScope.cities_root = cities;
-                }, function(error) {});    
-                
+                }, function(error) {});
+                  }
+                  getAllTasks();
+
+
+
+
+
             //Получаем список всех пользователей
             usersRepository.getAllUsers()
                 .then(function(response){
                     $scope.usersList = response.data;
                 }, function(error) {console.log(error)});
-                
+
             //Получаем нашего пользователя
             usersRepository.getUserById($scope.myUserId)
                 .then(function(response) {
                     $scope.me = response.data;
-                }, function(error) {console.log(error)});                      
-            
+                }, function(error) {console.log(error)});
+
             //Получаем список наших задач
             usersRepository.getUsersTasks($scope.myUserId)
             .then(function(response) {
                 $scope.myTasks = response.data;
-            }, function(error) {console.log(error)});	
-
-            //Получаем список наших отслеживаемых задач
-            usersRepository.getUsersTrackingTasks($scope.myUserId)
-            .then(function(response) {
-                $scope.myTrackingTasks = response.data;
             }, function(error) {console.log(error)});
 
+            //Получаем список наших отслеживаемых задач
+            function getMyTrackingList() {
+                usersRepository.getUsersTrackingTasks($scope.myUserId)
+                .then(function(response) {
+                    $scope.myTrackingTasks = response.data;
+                }, function(error) {console.log(error)});
+            }
+
+            getMyTrackingList();
+            //Получаем список наших ставок
+            usersRepository.getUsersBets($scope.myUserId)
+                .then(function(response) {
+                    $scope.myBets = response.data;
+                }, function(error) {console.log(error)});
+
+            //Обновляем список отслеживаемых
+            $scope.$on('trackingTaskTogle', function (event, data) {
+                getMyTrackingList();
+            });
+
+            //Обновляем список обещаний после добавления нового
+            $scope.$on('taskAdded', function (event, data) {
+                getAllTasks();
+            })
+
             //Возвращает обьект с данными о пользователе
-            $rootScope.getMyInfo = function(){ 
+            $rootScope.getMyInfo = function(){
                     return $scope.me
                 };
 
@@ -90,7 +120,7 @@
                                 "category=[]", //0 - категории
                                 "difficulty=1", //1 - сложность
                                 "location=Киев", //2 - локация, город
-                                "value=[]" //3 - стоимость ставки                       
+                                "value=[]" //3 - стоимость ставки
                            ];
 
             //Очистка полей поиска
@@ -106,7 +136,7 @@
                 };
 
             $scope.searchByFilter = function() {
-                
+
                let category = [];
                for (let key in $scope.checkboxSearchModel)     // перебираем обьект checkboxSearchModel и пушим в category[] только те элементы, которые выбраны пользователем
                  {
@@ -127,14 +157,10 @@
                 .then(function(response){
                     $scope.tasks = response.data;
 
-                }, function(error) {});  
+                }, function(error) {});
             };
 
 
         }]);
 
     })();
-
-
-
-

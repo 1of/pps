@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="app/views/task_id/task_id.css">
 
 <div ng-if="loading" class="preloader-all">
-</div> 
+</div>
 
 <div class="container-fluid" ng-controller="TaskId">
 
@@ -11,10 +11,10 @@
 			<button type="button" class="btn btn-default btn-xs back" ng-click="backPath()"> <i class="glyphicon glyphicon-arrow-left"></i> </button>
 		</div>
 		<div class="row">
-			<div class="col-md-1">			
+			<div class="col-md-1">
 			</div>
-			<div class="col-md-2 userimg" >
-				<img ng-src="{{userByTask.photo ? adress + userByTask.photo : 'app/views/task_id/user_default.jpg'}}">
+			<div class="col-md-2">
+					<div class="user-task-photo" style="background-image: url('{{userByTask.photo ? adress + userByTask.photo : 'app/views/task_id/user_default.jpg'}}')">
 				<p> {{userByTask.firstname}} {{userByTask.lastname}} </p>
 			</div>
 			<div class="col-md-9 date-publish" >
@@ -40,15 +40,15 @@
 		</div>
 		<div class="bet col-md-3">
 		<p class="text-info">Ваш баланс: {{user.balance}}</p>
-		<form ng-controller="TaskId">			
+		<form ng-controller="TaskId">
 				<div class="incdec_bet">
 					<button class="btn btn-danger btn-md" ng-click="inc()"><i class="glyphicon glyphicon-plus"></i></button>
 					<input   type="number" min="1" max="{{maxBet}}" ng-model="betAmount">
 					<button  class="btn btn-danger btn-md" ng-click="dec()"><i class="glyphicon glyphicon-minus"></i></button>
-				</div>			
+				</div>
 					<button type="submit" class="btn btn-success bet" ng-click="addBet()">
 					 <i class="glyphicon glyphicon-ok-circle"></i>
-					Ставить</button> 
+					Ставить</button>
 					<p ng-if="error.status" class="text-danger">{{error.text}}</p>
 		</form>
 		</div>
@@ -56,7 +56,8 @@
 
 	<section class="description row">
 		<h2>Описание</h2>
-							<button type="button" class="btn btn-default center-block subscribe" ng-click="subscribe()" uib-popover-html="htmlPopoverSubscribe" popover-trigger="'mouseenter'" popover-placement="bottom-left"><i class="glyphicon glyphicon-star-empty" ></i> Отслеживать</button>
+							<button type="button" class="btn btn-default center-block subscribe" ng-click="togleTrackingTask()" uib-popover-html="htmlPopoverSubscribe" popover-trigger="'mouseenter'" popover-placement="bottom-left">
+								<i ng-class="isTracking ? 'glyphicon glyphicon-star' : 'glyphicon glyphicon-star-empty'" ></i> Отслеживать</button>
 								<div class="col-md-1"></div>
 		<div class="col-md-2 promice-block">
 			<img class="promice-foto" ng-src="{{task.picture ? adress + task.picture : 'app/views/task_id/noimage.png'}}" alt="img" data-toggle="modal" data-target=".bs-example-modal-lg">
@@ -68,7 +69,7 @@
 			<img ng-src="{{ task.category_id > 0 ? imgArray[task.category_id-1] : null}}" uib-popover-html="htmlPopoverCategory" popover-trigger="'mouseenter'" popover-placement="left" >
 		</div>
 	</section>
-<!-- ng-if="comments.length" --> 
+<!-- ng-if="comments.length" -->
 </div>
 
 
@@ -84,7 +85,7 @@
     </div>
   </uib-accordion>
 
-      
+
 
 
   <uib-accordion close-others="oneAtATime">
@@ -108,4 +109,3 @@
     </div>
   </div>
 </div>
-
