@@ -21,12 +21,16 @@ function addTaskController($scope, $uibModalInstance, $rootScope, taskRepository
         formData.append('bet_date', new Date());
         formData.append('time_limit', $scope.endDate);
         formData.append('location', $scope.location);
+        formData.append('difficulty', +$scope.difficulty);
         formData.append('category_id', +$scope.category);
         formData.append('value', $scope.value);
+        formData.append('difficulty', $scope.difficulty);
 
         $uibModalInstance.close(formData);
+        console.log(formData);
 
-	}
+        }
+        
 }
 
 addTaskController.$inject = [
