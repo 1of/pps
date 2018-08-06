@@ -1,0 +1,193 @@
+footer {
+	background-image: url(../img/footer-background.jpg);
+	background-position: center 0%;
+    background-size: cover; 
+    background-repeat: no-repeat;
+}
+
+.footer-container {
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+	border-bottom: 1px dashed white;
+}
+
+.footer-logo {
+	display: flex;
+	align-items: center;
+	margin-bottom: 7px
+}
+
+.footer-logo p {
+	color: rgb( 254, 255, 254 );
+	padding: 10px 20px 10px 20px;
+	font-size: 1.6rem;
+}
+
+.footer-container .left-block a {
+	display: flex;
+	text-decoration: none;
+	color: rgb( 254, 255, 254 );
+	font-size: 1.6rem;
+	padding: 10px 20px 10px 20px;
+
+}
+
+.footer-logo .logo-pic {
+	height: 40px;
+	width: 40px;
+	
+	/*border-right: 2px solid red;*/
+	
+}
+
+.logo-text-footer {
+	color: rgb( 215, 49, 73 );
+	font-size: 3rem;
+	line-height: 3rem;
+	font-weight: bold;
+	display: inline-block;
+	padding: 10px 20px 10px 20px;
+	border-right: 2px solid rgb( 215, 49, 73 );
+}
+
+.adress {
+	display: flex;
+	align-items: center;
+}
+
+.phone {
+	display: flex;
+	align-items: center;
+}
+
+.map-marker {
+	width: 30px;
+	height: 30px;
+	background-image: url(../icons/map-marker.png);
+	background-position: center 0%;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+.phone-icon {
+	width: 30px;
+	height: 30px;
+	background-image: url(../icons/phone.png);
+	background-position: center 0%;
+    background-size: 30px; 
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+
+.center-block p {
+	text-transform: uppercase;
+	color: rgb( 254, 255, 254 );
+	padding: 10px 20px 10px 20px;
+}
+
+.socials {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+.social-icons {
+	display: flex;
+	justify-content: center;
+}
+
+
+.social-icons .vk-icon {
+	width: 40px;
+	height: 40px;
+	background-image: url(../icons/vk.png);
+	background-position: center 0%;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+.social-icons .fb-icon {
+	width: 40px;
+	height: 40px;
+	background-image: url(../icons/fb.png);
+	background-position: center 0%;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+.social-icons .insta-icon {
+	width: 40px;
+	height: 40px;
+	background-image: url(../icons/instagram.png);
+	background-position: center 0%;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+.contacts-icons {
+	display: flex;
+	justify-content: center;
+}
+
+
+.contacts-icons .telegram-icon {
+	width: 30px;
+	height: 30px;
+	background-image: url(../icons/telegram.png);
+	background-position: center 0%;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+.contacts-icons .watsapp-icon {
+	width: 30px;
+	height: 30px;
+	background-image: url(../icons/watsapp.png);
+	background-position: center 0%;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+.right-block p {
+	text-transform: uppercase;
+	color: rgb( 254, 255, 254 );
+	padding: 10px 20px 10px 20px;
+}
+
+.payment-icons {
+	display: flex;
+	justify-content: center;
+	color: white;
+}
+
+.payment-icons i {
+	margin-right: 10px;
+}
+
+.copyright .title {
+	padding: 10px;
+	color: rgb( 254, 255, 254 );
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

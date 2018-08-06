@@ -1,90 +1,257 @@
-<ng-include src="'app/views/main_page/header.template.html'"></ng-include>
+
+<div ng-controller="Index">
+
+ <ng-include src="'app/views/main_page/header.template.html'"></ng-include>
 
 <div>
-	<div class="parallax__layer">
-		<div class="pcontainer"> 
-			<div class="ptext">
-				А ты готов установить цену своего слова?
-			</div>
-			<a href="#/login" class="btn-login">Готов!</a>
-		</div>
-	</div>
-	<section id="how">
-		<h2>Как это работает</h2>
-		<div class="line-after-h2"></div>
-		<div class="how-container">
-			<div class="how-item">
-				<img class="how-icon" src="../../../icons/signup.png" alt="sign-up">
-				<p>Вы даете публичное обещание</p>
-			</div>
-			<div class="how-item">
-				<img class="how-icon" src="../../../icons/progress.png" alt="progress">
-				<p>Мы вас мотивируем и поддерживаем</p>
-			</div>
-			<div class="how-item">
-				<img class="how-icon" src="../../../icons/champion.png" alt="champion">
-				<p>Вы выполняете обещание</p>
-			</div>
-			<div class="how-item">
-				<img class="how-icon" src="../../../icons/gift.png" alt="gift">
-				<p>Получаете призы и подарки</p>
-			</div>
-		</div>
-	</section>
-	<section class="category">
-		<h2>Категории</h2>
-		<div class="category-container">
-			<div class="category-item">
-				<div class="category-item-container">
-					<img src="../../../icons/competitions.png" alt="competitions" class="category-icon">
-					<h3>Соревнования</h3>
-				</div>
-			</div>
-			<div class="category-item">
-				<div class="category-item-container">
-					<img src="../../../icons/habits.png" alt="habits" class="category-icon">
-					<h3>Привычки</h3>
-				</div>
-			</div>
-			<div class="category-item">
-				<div class="category-item-container">
-					<img src="../../../icons/career.png" alt="career" class="category-icon">
-					<h3>Карьера</h3>
-				</div>
-			</div>
-			<div class="category-item">
-				<div class="category-item-container">
-					<img src="../../../icons/study.png" alt="study" class="category-icon">
-					<h3>Учеба</h3>
-				</div>
-			</div>
-			<div class="category-item">
-				<div class="category-item-container">
-					<img src="../../../icons/shoping.png" alt="shoping" class="category-icon">
-					<h3>Покупки</h3>
-				</div>
-			</div>
-			<div class="category-item">
-				<div class="category-item-container">
-					<img src="../../../icons/other.png" alt="other" class="category-icon">
-					<h3>Другое</h3>
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class="parallax__layer2"></div>
-	<div>
-		<br><br><br><br><br><br><br><br><br><br><br>
-	  <br><br><br><br><br><br><br><br><br><br><br>
-	  <section id="why">why do you need this</section>
-	</div>
-	<div>
-		<br><br><br><br><br><br><br><br><br><br><br>
-	  <br><br><br><br><br><br><br><br><br><br><br>
-	  <section id="reviews">reviews</section>
-	</div>
-	  <br><br><br><br><br><br><br><br><br><br><br>
-	  <br><br><br><br><br><br><br><br><br><br><br>
+  <div class="parallax__layer">
+  	<div class="pcontainer">
+  		<div id="3D" class="ptext">
+  			А ты готов установить цену своего слова?
+  		</div>
+  		<a href="#/login" class="btn-login">Готов</a>
+  	</div>
+  </div>
+  <div class="how-category-container">
+    <section id="how">
+    	<h2>Как это работает</h2>
+    	<div class="line-after-h2"></div>
+    	<div class="how-container">
+    		<div class="how-item">
+    			<div class="how-icon sign-up"></div>
+    			<p>Вы даете публичное обещание</p>
+    		</div>
+    		<div class="how-item">
+    			<div class="how-icon progress"></div>
+    			<p>Мы вас мотивируем и поддерживаем</p>
+    		</div>
+    		<div class="how-item">
+    			<div class="how-icon champion"></div>
+    			<p>Вы выполняете обещание</p>
+    		</div>
+    		<div class="how-item">
+    			<div class="how-icon gift"></div>
+    			<p>Получаете призы и подарки</p>
+    		</div>
+    	</div>
+    </section>
+    <section id="category">
+    	<h2>Категории</h2>
+    	<div class="category-container">
+    		<div class="category-item">
+    			<div class="category-item-container">
+    				<div class="category-icon сompetitions"></div>
+    				<h3>Соревнования</h3>
+    			</div>
+    		</div>
+    		<div class="category-item">
+    			<div class="category-item-container">
+    				<div class="category-icon habits"></div>
+    				<h3>Привычки</h3>
+    			</div>
+    		</div>
+    		<div class="category-item">
+    			<div class="category-item-container">
+    				<div class="category-icon career"></div>
+    				<h3>Карьера</h3>
+    			</div>
+    		</div>
+    		<div class="category-item">
+    			<div class="category-item-container">
+    				<div class="category-icon study"></div>
+    				<h3>Учеба</h3>
+    			</div>
+    		</div>
+    		<div class="category-item">
+    			<div class="category-item-container">
+    				<div class="category-icon shoping"></div>
+    				<h3>Покупки</h3>
+    			</div>
+    		</div>
+    		<div class="category-item">
+    			<div class="category-item-container">
+    				<div class="category-icon other"></div>
+    				<h3>Другое</h3>
+    			</div>
+    		</div>
+    	</div>
+      <br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br>
+    </section>
+  </div>
+  <section id="who">
+    <h2>Для кого</h2>
+    <div class="line-after-h2"></div>
+    <h3>BetWill будет очень полезен тем, кто хочет:</h3>
+    <div class="who-container">
+      <div class="who-item">
+        <div class="image-start"></div>
+        <p>Сдвинуться с мертвой точки</p>
+      </div>
+      <div class="who-item">
+        <div class="image-win"></div>
+        <p>Использовать свой потенциал по максимуму</p>
+      </div>
+      <div class="who-item">
+        <div class="image-success"></div>
+        <p>Стать лучшей версией себя</p>
+      </div>
+    </div>
+  </section>
+  <div class="parallax__layer2">
+    <div class="pcontainer">
+      <div id="3D1" class="ptext">
+        Хватит откладывать до понедельника!
+      </div>
+      <div class="paftertext">
+        Начни достигать своих целей уже сегодня
+      </div>
+      <a href="#/login" class="btn-login">Начать сегодня</a>
+    </div>
+  </div>
+  <div>
+	<section id="reviews">
+    <h2>Отзывы</h2>
+    <div class="line-after-h2"></div>
+    <div class="face-slider">
+        <div class="face-slide fs-1">
+
+        </div>
+        <div class="face-slide fs-2">
+
+        </div>
+        <div class="face-slide fs-3">
+
+        </div>
+        <div class="face-slide fs-4">
+
+        </div>
+        <div class="face-slide fs-5">
+
+        </div>
+        <div class="face-slide fs-6">
+
+        </div>
+        <div class="face-slide fs-7">
+
+        </div>
+        <div class="face-slide fs-8">
+
+        </div>
+      </div>
+      <div class="text-slider">
+        <div class="text-slide">
+          <div class="name">Билл Гейтс</div>
+          <div class="work">CEO of Microsoft</div>
+          <p class="feed-text">
+            Супер сайт! Всегда ставлю перед собой амбициозные цели и давно искал подобный сервис. Азарт, мотивация и поддержка - то, что всегда приходит к вам с BetWill. Регистрируйтесь, обещайте, достигайте целей и получайте удовольствие!
+          </p>
+        </div>
+        <div class="text-slide">
+          <div class="name">Виктория Бэкхэм</div>
+          <div class="work">Designer</div>
+          <p class="feed-text">
+            Каждый, кто зарегистрируется на этом сайте, обязательно получит свою ПОЛЬЗУ. Однозначно рекомендую и для достижения серьезных целей, и для получения эмоций. Вы достойны этого!!!
+          </p>
+        </div>
+        <div class="text-slide">
+          <div class="name">Эд Сноуден</div>
+          <div class="work">Unemployed</div>
+          <p class="feed-text">
+            Сервис BetWill просто нельзя недооценивать! Поскольку каждый может найти в нем для себя что-то нужное, интересное, полезное. Обычные ставки могут стоить вам бешеных денег, а место, где ваши выигрыши зависят только от вас, не оставит вас равнодушными!
+          </p>
+        </div>
+        <div class="text-slide">
+          <div class="name">Джулия Робертс</div>
+          <div class="work">Full-Stack</div>
+          <p class="feed-text">
+            Достигаторы меня поймут... очень уж поймут... Я одна из тех людей, кто не может жить без челенджей и решений всевозможных задач, а тем более когда ты соревнуешься с другими и делаешь ставки... BetWill мне очень помогает оставаться в тонусе...
+          </p>
+        </div>
+        <div class="text-slide">
+          <div class="name">Анджелина Джоли</div>
+          <div class="work">Front-End</div>
+          <p class="feed-text">
+            Этот сервис сразу обратил на себя внимание. Необычный, с надежными ставками, интересными челенджами и возможностью помогать друг другу.
+          </p>
+        </div>
+        <div class="text-slide">
+          <div class="name">Лёня Маск</div>
+          <div class="work">Back-End</div>
+          <p class="feed-text">
+            Сейчас век компьютерных технологий и только они как нельзя лучше могут помочь в решении повседеневных задач - никогда не упущу возможности сделать громкое заявление или ставку:)
+          </p>
+        </div>
+        <div class="text-slide">
+          <div class="name">Брэд Питт</div>
+          <div class="work">Jack-of-all-trades</div>
+          <p class="feed-text">
+            Благодаря BetWill я нашел отличный вариант для борьбы с вредными привычками! Я заригистрировал несколько своих друзей и вот 2-ое из нас бросило курить, я бегаю по утрам 3 раза в неделю, а моя жена стала меньше времени проводить в социальных сетях.
+          </p>
+        </div>
+        <div class="text-slide">
+          <div class="name">Эдди Мерфи</div>
+          <div class="work">Stand-Up</div>
+          <p class="feed-text">
+            Все цели раньше писал на листочках, которые терялись, бывало случалось путаница, пока не увидел этот замечательный сайт, теперь жизнь наладилась и мои успехи стали закономерностью:)
+          </p>
+        </div>
+      </div>
+  </section>
+  </div>
+  <section id="faq">
+    <h2>Частые вопросы</h2>
+    <div class="line-after-h2"></div>
+    <div class="faq-buttons-container">
+        <div ng-click="changeCategory(0)" class="faq-item faq-item0">
+          <div class="faq-item-container">
+            <div class="faq-icon rules"></div>
+            <h3>Правила</h3>
+          </div>
+        </div>
+        <div ng-click="changeCategory(1)" class="faq-item faq-item1">
+          <div class="faq-item-container">
+            <div class="faq-icon bets"></div>
+            <h3>Ставки</h3>
+          </div>
+        </div>
+        <div ng-click="changeCategory(2)" class="faq-item faq-item2">
+          <div class="faq-item-container">
+            <div class="faq-icon issues"></div>
+            <h3>Споры</h3>
+          </div>
+        </div>
+      </div>
+      <div class="faq-list-container">
+        <div class="faq-list">
+          <div ng-repeat="item in currentCategory track by $index"
+          ng-click="openFAQ(this.$index)" class="faq-raw" ng-class="{ opened: currentCategory[$index].opened}">
+            <h1 class="faq-question">{{item.question}} <div class="chevron"></div></h1>
+            <p class="faq-answer" ng-if="currentCategory[$index].opened">{{item.answer}}</p>
+          </div>
+        </div>
+      </div>
+  </section>
+	<div class="parallax__layer3">
+    <div class="pcontainer">
+      <div id="3D2" class="ptext">
+        Самое важное - это первый шаг!
+      </div>
+      <div class="paftertext">
+        Попробуй, это не сложно
+      </div>
+      <a href="#/login" class="btn-login">Попробовать</a>
+    </div>
   </div>
 
+
+</div>
+
+
+
+
+
+
+
 <ng-include src="'app/views/main_page/footer.template.html'"></ng-include>
+</div>

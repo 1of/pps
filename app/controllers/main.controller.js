@@ -1,7 +1,8 @@
 (function () {
     'use strict';
 
-        app.controller('Main', ['$scope', '$rootScope', 'tasks.repository', 'users.repository','$location', function($scope, $rootScope, tasksRepository, usersRepository, $location) {
+        app.controller('Main', ['$scope', '$rootScope', 'tasks.repository', 'users.repository','$location',
+         function($scope, $rootScope, tasksRepository, usersRepository, $location) {
             //Наш Id
             $scope.myUserId = localStorage.getItem('userId');
 
@@ -11,13 +12,8 @@
             //Adress of our server
             $rootScope.adress = 'http://node4.fe.a-level.com.ua/';
 
-            //Адрес для загрузки файлов
-            $scope.fileAdress = 'http://node4.fe.a-level.com.ua/';
-
             //Получаем список всех задач и список всех городов из него
-
             $scope.selectedCity = null;
-            function getAllTasks() {
             tasksRepository.getTasks()
                 .then(function(response){
                     $scope.tasks = response.data;
@@ -29,12 +25,6 @@
                     });
                     $rootScope.cities_root = cities;
                 }, function(error) {});
-                  }
-                  getAllTasks();
-
-
-
-
 
             //Получаем список всех пользователей
             usersRepository.getAllUsers()
@@ -55,29 +45,10 @@
             }, function(error) {console.log(error)});
 
             //Получаем список наших отслеживаемых задач
-            function getMyTrackingList() {
-                usersRepository.getUsersTrackingTasks($scope.myUserId)
-                .then(function(response) {
-                    $scope.myTrackingTasks = response.data;
-                }, function(error) {console.log(error)});
-            }
-
-            getMyTrackingList();
-            //Получаем список наших ставок
-            usersRepository.getUsersBets($scope.myUserId)
-                .then(function(response) {
-                    $scope.myBets = response.data;
-                }, function(error) {console.log(error)});
-
-            //Обновляем список отслеживаемых
-            $scope.$on('trackingTaskTogle', function (event, data) {
-                getMyTrackingList();
-            });
-
-            //Обновляем список обещаний после добавления нового
-            $scope.$on('taskAdded', function (event, data) {
-                getAllTasks();
-            })
+            usersRepository.getUsersTrackingTasks($scope.myUserId)
+            .then(function(response) {
+                $scope.myTrackingTasks = response.data;
+            }, function(error) {console.log(error)});
 
             //Возвращает обьект с данными о пользователе
             $rootScope.getMyInfo = function(){
@@ -161,6 +132,9 @@
             };
 
 
+
+
         }]);
+
 
     })();
