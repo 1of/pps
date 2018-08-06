@@ -15,6 +15,7 @@ footer {
 .footer-logo {
 	display: flex;
 	align-items: center;
+	margin-bottom: 7px
 }
 
 .footer-logo p {
@@ -75,7 +76,7 @@ footer {
 	height: 30px;
 	background-image: url(../icons/phone.png);
 	background-position: center 0%;
-    background-size: cover; 
+    background-size: 30px; 
     background-repeat: no-repeat;
     margin-right: 10px;
 }

@@ -95,7 +95,7 @@ h2 {
 }
 
 .how-container {
-	margin: 80px auto 40px auto;
+	margin: 80px auto 0 auto;
 	width: 80%;
 	display: flex;
 	justify-content: space-around;
@@ -109,7 +109,7 @@ h2 {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	font-size: 1.6rem;
+	font-size: 1.8rem;
 	font-weight: 500;
 	margin-bottom: 15px;
 	/*flex-wrap: wrap;*/
@@ -120,8 +120,9 @@ h2 {
 	width: 55px;
 	min-width: 55px;
 	background-position: center 0%;
-    background-size: cover; 
+    background-size: 55px; 
     background-repeat: no-repeat;
+    margin-left: 15px;
 }
 
 .how-item .sign-up {
@@ -156,8 +157,6 @@ h2 {
 	margin: 40px auto; 
 	display: flex;
 	justify-content: space-around;
-	flex-wrap: wrap;
-	/*flex-grow: 1;*/
 }
 
 .category-item {
@@ -172,7 +171,6 @@ h2 {
 	background-color: rgb( 254, 255, 254 );
 	margin: 10px 1%;
 	padding: 20px 20px;
-	/*flex-grow: 1;*/
 
 } 
 
@@ -182,12 +180,10 @@ h2 {
 }
 
 .category-item-container {
-	/*padding: 0 20px;*/
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	/*flex-grow: 1;*/
 } 
 
 .category-icon {
@@ -265,35 +261,35 @@ h2 {
 }
 
 .who-item .image-start {
-	width: 200px;
-	height: 240px;
+	width: 250px;
+	height: 290px;
 	background-image: url(../icons/start.png);
 	background-position: center 0%;
-    background-size: cover; 
+    background-size: 250px 290px; 
     background-repeat: no-repeat;
 }
 
 .who-item .image-win {
-	width: 200px;
-	height: 240px;
+	width: 250px;
+	height: 290px;
 	background-image: url(../icons/win.png);
 	background-position: center 0%;
-    background-size: cover; 
+    background-size: 250px 290px; 
     background-repeat: no-repeat;
 }
 
 .who-item .image-success {
-	width: 200px;
-	height: 240px;
+	width: 250px;
+	height: 290px;
 	background-image: url(../icons/success.png);
 	background-position: center 0%;
-    background-size: cover; 
+    background-size: 250px 290px;
     background-repeat: no-repeat;
 }
 
 .who-item p {
 	text-align: center;
-	font-size: 1.6rem;
+	font-size: 1.8rem;
 	font-weight: 500;
 	padding-top: 20px;
 }
@@ -314,7 +310,7 @@ h2 {
 
 .face-slider {
 	width: 850px;
-	margin: 80px auto 20px auto;
+	margin: 50px auto 20px auto;
 	height: 180px;
 }
 
