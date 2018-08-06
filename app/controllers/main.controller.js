@@ -14,7 +14,7 @@
 
             //Получаем список всех задач и список всех городов из него
             $scope.selectedCity = null;
-            tasksRepository.getTasks()
+            tasksRepository.getTasks( )
                 .then(function(response){
                     $scope.tasks = response.data;
                     var cities = [];
@@ -104,6 +104,25 @@
             $scope.selectedItemValue = $scope.selectValue[-1]; /// очищаем option стоимости
             document.getElementById('cityreset').selectedIndex = 0; //очищаем option по городах
             $scope.selectedCity = undefined;
+
+            let searchStr = "";
+            tasksRepository.getTasksFiltered(searchStr)
+                .then(function(response){
+                    $scope.tasks = response.data;
+                }, function(error) {});
+
+            tasksRepository.getTasks( )
+                .then(function(response){
+                    $scope.tasks = response.data;
+                    var cities = [];
+                    $scope.tasks.forEach(task => {
+                        if ( !cities.includes(task.location) && (task.location !== "") ) {
+                            cities.push(task.location);
+                        }
+                    });
+                    $rootScope.cities_root = cities;
+                }, function(error) {});
+
                 };
 
             $scope.searchByFilter = function() {

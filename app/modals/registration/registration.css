@@ -1,0 +1,44 @@
+.modal-dialog div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 355;
+}
+div.reg-container {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+div.bg-r-wrapper {
+    z-index: -2;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: url("login_bg.jpg"), skyblue;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    filter: blur(15px);
+}
+button{
+    -o-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+button.btn:hover{
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, .8);
+    color: rgba(51,122,183,1);
+}
+div.reg-container input {
+    opacity: 0.8;
+}
+div.reg-container input:focus {
+    opacity: 1;
+    font-size: 1.1em;
+}

@@ -13,11 +13,10 @@
 		<div class="row">
 			<div class="col-md-1">
 			</div>
-			<div class="col-md-2">
-					<div class="user-task-photo" style="background-image: url('{{userByTask.photo ? adress + userByTask.photo : 'app/views/task_id/user_default.jpg'}}')">
-				<p> {{userByTask.firstname}} {{userByTask.lastname}} </p>
+			<div class="col-md-2 user-block-foto">
+					<div class="user-task-photo" style="background-image: url('{{userByTask.photo ? adress + userByTask.photo : 'app/views/task_id/user_default.jpg'}}')"><p class="text-name"> {{userByTask.firstname}} {{userByTask.lastname}} </p></div>
 			</div>
-			<div class="col-md-9 date-publish" >
+			<div class="col-md-8 col-xs-12 date-publish" >
 				<span>Дата публикации: <span class="date"> {{task.date_added | date: 'HH:mm (dd.MM.yyyy)' }}</span></span><br>
 				<div ng-if='validateTime > 0 || isNan(validateTime)'>
 				<span>Осталось времени:
