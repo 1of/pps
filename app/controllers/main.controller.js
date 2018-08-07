@@ -17,9 +17,11 @@
             //Adress of our server
             $rootScope.adress = 'http://node4.fe.a-level.com.ua/';
 
+            var isAuthorized = localStorage.getItem('authToken') ? true : false;
+
             //Получаем список всех задач и список всех городов из него
             $scope.selectedCity = null;
-            tasksRepository.getTasks( )
+            isAuthorized && tasksRepository.getTasks( )
                 .then(function(response){
                     $scope.tasks = response.data;
                     var cities = [];
@@ -32,20 +34,20 @@
                 }, function(error) {});
 
             //Получаем список всех пользователей
-            usersRepository.getAllUsers()
+            isAuthorized && usersRepository.getAllUsers()
                 .then(function(response){
                     $scope.usersList = response.data;
                 }, function(error) {console.log(error)});
 
             //Получаем нашего пользователя
-            usersRepository.getUserById($scope.myUserId)
+            isAuthorized && usersRepository.getUserById($scope.myUserId)
                 .then(function(response) {
                     $scope.me = response.data;
                 }, function(error) {console.log(error)});
 
             //Получаем список наших задач
             function getMyTasks() {
-                usersRepository.getUsersTasks($scope.myUserId)
+                isAuthorized && usersRepository.getUsersTasks($scope.myUserId)
                 .then(function(response) {
                     $scope.myTasks = response.data;
                 }, function(error) {console.log(error)});
@@ -55,7 +57,7 @@
 
             //Получаем список наших отслеживаемых задач
             function getUsersTrackingTasks() {
-                usersRepository.getUsersTrackingTasks($scope.myUserId)
+                isAuthorized && usersRepository.getUsersTrackingTasks($scope.myUserId)
                 .then(function(response) {
                     $scope.myTrackingTasks = response.data;
                 }, function(error) {console.log(error)});
@@ -66,7 +68,7 @@
 
             //Получаем список наших ставок
             function getUsersBetsTasks() {
-            usersRepository.getUsersBets($scope.myUserId)
+                isAuthorized && usersRepository.getUsersBets($scope.myUserId)
                 .then(function(response) {
                     $scope.myBets = response.data;
                 }, function(error) {console.log(error)});

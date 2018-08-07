@@ -21,6 +21,7 @@ app.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
 		return {
 			request: function(config) {
+				// console.log(config)
 				config.headers = config.headers || {};
 				if (localStorage.getItem('authToken')) {
 					config.headers.Authorization = 'Bearer ' + localStorage.getItem('authToken');
@@ -28,9 +29,10 @@ app.config(['$httpProvider', function($httpProvider) {
 				return config;
 			},
 			responseError: function(response) {
-				if (response.status === 401) {
-					$location.path('/login');
-				}
+				// console.log('aa')
+				// if (response.status === 401) {
+				// 	$location.path('/login');
+				// }
 				return $q.reject(response);
 			}
 		};
