@@ -1,3 +1,6 @@
+body {
+
+}
 h1, h2, h3 {
 	text-align: center;
 	font-weight: bold;
@@ -15,11 +18,27 @@ a:hover{
 }
 section {
 	padding: 0 0 20px 0;
-	margin: 1px;
+	margin: 10px;
 	overflow: hidden;
+	background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+/*секция комментарии и этапы прохождения*/
+div.panel-group {
+	margin: 0
+}
+section.header {
+	background: linear-gradient(-120deg,  #fff 71%, rgba(250, 250, 250, 0.8) 71%), #fff;
+  background-size: cover;
+  background-position: 50% 21%;
+}
+section.bets {
+	background: linear-gradient(30deg, rgba(250, 250, 250, 0.8)  30%, rgba(0,0,0,0) 30%), linear-gradient(30deg, #fff 60%, rgba(250, 250, 250, 0.8) 60%);
+}
+section.description {
+	background: linear-gradient(110deg, rgba(250, 250, 250, 0.8) 30%, #fff 30%);
 }
 section.header, .bets, .description {
-	border: 1px solid gray;
+	border: 1px solid black;
 	border-radius: 15px;
 }
 section.description p {
@@ -183,9 +202,6 @@ button.subscribe {
 }
 .promice-foto{
 	box-shadow:5px 5px 15px #2B1015;
-	min-height: 250px;
-	width: 250px;
-	border-radius: 50%;
 	transition: transform 1s linear;
 	border: 1px solid gray;
 }

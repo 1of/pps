@@ -105,12 +105,36 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 		if ($scope.user.balance < 1) {
 			utils.notify({message: 'Недостаточно средств на балансе', type: 'danger'});
 			return
-		} else {
+		} else if(id == $scope.task.id) {
+			$scope.error = {
+					status: true,
+					text: "Извините, Вы не можете ставить на свое обещание!"
+				};
+			return
+			} else	{
 
         var data = { value: +$scope.betAmount};
 			tasksRepository.addBetsById(+id, data).then(function(response) {
+
+					tasksRepository.getBetsById(id).then(function(response) {
+		$scope.bets = response.data;
+		$scope.sumAllBets = $scope.bets.map(function(item){
+			return item.value;
+		}).reduce(function(sum, current) {
+			return sum + current
+		}, 0);
+
+   $scope.maxBet = $scope.task.value - $scope.sumAllBets;
+		}, function(error) { });
+
 		}, function(error) {
-			if (error.status == 403) {
+			error.data.error = "Task is closed"
+			if (error.data.error = "Task is closed") {
+				$scope.error = {
+					status: true,
+					text: "Извините, данное обещание завершено!"
+				};
+			} else if (error.status == 403) {
 				$scope.error = {
 					status: true,
 					text: "Вы уже делали ставку на это обещание"

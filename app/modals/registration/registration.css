@@ -1,10 +1,53 @@
-.modal-dialog div {
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: 355;
+
+/*-------------------*/
+
+label {
+    animation-duration: 3s;
+    animation-delay: 1s;
+    margin: 0 auto;
+    background: #000;
+    font-family: "Roboto Slab";
+    font-weight: 900;
+    font-size: 1.5em;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 50px;
+
+    text-align: center;
+    
 }
+input.form-control {
+    width: 50%;
+}
+input[type="submit"] {
+    display: flex;
+    animation-duration: 1.2s;
+    color: black;
+    font-weight: 900;
+    width: 50%;
+    justify-content: center;
+    align-self: center;
+}
+div.modal-body {
+    display: flex;
+    flex-direction: row;
+}
+form[name="regForm"] {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+form[name="regForm"] input {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+div.responce-text {
+    color: #000;
+    text-decoration: underline;
+}
+/*registration template style */
 div.reg-container {
     position: relative;
     z-index: 2;
@@ -22,7 +65,7 @@ div.bg-r-wrapper {
     background-repeat: no-repeat;
     -webkit-filter: blur(15px);
     -moz-filter: blur(15px);
-    filter: blur(15px);
+    filter: blur(4px);
 }
 button{
     -o-transition: all 0.3s ease-in-out;
@@ -41,4 +84,8 @@ div.reg-container input {
 div.reg-container input:focus {
     opacity: 1;
     font-size: 1.1em;
+}
+.modal-title {
+    color: #fff;
+    font-weight: bold;
 }
