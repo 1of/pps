@@ -130,6 +130,8 @@
 	    };
 	});
 })();
+
+
 jQuery(document).ready(function(){
 	setTimeout(function() {
 		 $('#3D').mousemove(function(e){
@@ -147,7 +149,7 @@ jQuery(document).ready(function(){
 	     var rYP1 = (z.pageY - this.offsetTop-$(this).height()/2);
 	     $('#3D2').css('text-shadow', +rYP1/1410 +'px '+rXP1/280 +'px rgba(227,6,19,.8), '+rYP1/1208 +'px '+rXP1/260 +'px rgba(255,237,0,1), '+rXP1/270 +'px '+rYP1/1412 +'px rgba(0,159,227,.7)');
 	     });
-	}, 2000);
+	}, 5000);
 
 
 });

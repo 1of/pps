@@ -14,6 +14,12 @@ label {
 	text-align: center;
 	
 }
+div.container h1 {
+	color: #fff;
+	text-shadow: black 1px 1px 0, black -1px -1px 0, 
+                 black -1px 1px 0, black 1px -1px 0;
+
+}
 input.form-control {
 	width: 50%;
 }
@@ -139,4 +145,223 @@ div.reg-container input {
 div.reg-container input:focus {
 	opacity: 1;
 	font-size: 1.1em;
+}
+/*Header*/
+header {
+	position: fixed;
+	z-index: 10000;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	background-color: rgba(0,0,0,0.2);
+	box-shadow: 0 0.1em 0.15em 0 rgba(0,0,0,.11);
+	transition: color .2s ease-in-out,background .2s ease-in-out;
+	height: 50px;
+
+}
+.menu-container li a{
+	margin-top: 10px;
+}
+.light header {
+	background-color: #fff;
+}
+
+.top-menu {
+	width: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: inherit;
+	padding: 0 5%;
+}
+
+.logo-container {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.l3d {
+	height: 40px;
+	width: 40px;
+	padding: 6px 5px 2px 5px;
+	border-right: 2px solid red; 
+	perspective: 1000px;
+}
+
+.logo-container:hover .rotate {
+	transform: rotateY(180deg);
+}
+
+.rotate {
+	height: inherit;
+	position: relative;
+	transform-style: preserve-3d;
+	transition: 0.5s;
+}
+
+.logo-front {
+	backface-visibility: hidden;
+}
+
+.logo-back {
+	position: absolute;
+	top: 0;
+	left: 0;
+	backface-visibility: hidden;
+	transform: rotateY(180deg);
+}
+
+h1 a.logo-text {
+	color: rgb( 254, 255, 254 );
+	text-decoration: none;
+	font-size: 2.6rem;
+	line-height: 2.6rem;
+	font-weight: bold;
+	display: inline-block;
+	padding: 10px 0 10px 10px;
+}
+.logo-container h1 {
+	margin: 0;
+}
+
+.light .logo-text {
+	color: initial;
+}
+
+.menu-container {
+	display: inline-flex;
+
+}
+.top-menu a {
+	text-decoration: none;
+}
+.top-menu a:hover{
+	text-decoration: none;
+}
+nav>ul>li {
+	list-style: none;
+	margin: 0px 15px;
+	border-bottom: 1px solid transparent;
+	transition: all 0.5s;
+	display: flex;
+	align-items: flex-end;
+}
+
+
+
+
+nav>ul>li:hover {
+	border-bottom: 1px solid rgb( 254, 255, 254 );
+	cursor: pointer;
+}
+nav>ul>li a:hover {
+	color: #fff;
+}
+.light nav>ul>li:hover {
+	border-bottom: 1px solid #9b9b9b;
+}
+
+nav>ul>li:last-child a {
+	text-transform: none;
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
+.light nav>ul>li:last-child a {
+	color: initial;
+}
+
+nav>ul>li:last-child:hover {
+	border-bottom: 1px solid transparent;
+}
+
+nav>ul>li:last-child .login-icon {
+	height: 20px;
+	width: 20px;
+	margin-top: 2px;
+	margin-right: 5px;
+	background-image: url(../icons/enter-icon-green.png);
+	background-position: center 0%;
+  	background-size: cover;
+  	transform: rotate(180deg);
+}
+span.badge {
+	padding: 4px;
+}
+nav ul li a {
+	color: rgb( 254, 255, 254 );
+	text-decoration: none;
+	font-size: 1.5rem;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+
+.light header nav>ul>li>a  {
+	color: #9b9b9b;
+	transition: color .2s ease-in-out;
+}
+
+div.fix-fix {
+	height: 65px;
+}
+
+/*cg-notify styles*/
+.alert-box-shadow{
+	box-shadow: inset 0px 0px 1px 5px rgba(0,0,0,0.2);
+}
+/*Preloader Spinner*/
+.preloader-all {
+	position: fixed;
+	display: flex;
+	left: 0;
+	top: 50px;
+	height: 100%;
+	width: 100%;
+	background: url('../../../icons/logo-front.png') center no-repeat rgba(0,0,0,0.1);
+	z-index: 10000;
+    overflow: hidden;
+    opacity: 0.9;
+    background-size: 50px 50px;
+}
+/*Preloader Spinner*/
+.preloader-all:after {
+  content: '';
+  margin: auto;
+  display: block;
+  border-radius: 50%;
+  font-size: 10px;
+  width: 5em;
+  height: 5em;
+  border-top: 0.5em dotted rgba(255,0,0, 0.7);
+  border-right: 0.5em dotted rgba(0,0,255, 0.7);
+  border-bottom: 0.5em dotted rgba(0,0,0, 0.7);
+  border-left: 0.5em dotted rgba(0,255,0, 0.7);
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load 0.9s infinite linear;
+  animation: load 1.2s infinite linear;
+}
+/*Preloader Spinner*/
+@-webkit-keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg) ;
+  }
 }

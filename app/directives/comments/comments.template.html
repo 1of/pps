@@ -3,9 +3,11 @@
 	<div class="comments-list row" ng-repeat="item in comments" >
 		<div>
 		<div class="col-md-2 comments-all">
-			<a href="#/account/{{item.user_id}}/account_info"><img class="img-responsive" ng-show="item.photo.length !== 0" ng-src="{{adress + item.photo || 'app/directives/comments/img/no_ava_user.png'}}" alt="somebody"></a>
+			<a href="#/account/{{item.user_id}}/account_info">
+<div class="user-task-photo" ng-show="item.photo.length !== 0" style="background-image: url('{{item.photo ? adress + item.photo : 'app/directives/comments/img/no_ava_user.png'}}')"></div>
 			<span class="name">{{item.firstname}}</span>	
-			<span class="name" ng-if="item.firstname.length == 0 || item.lastname.length == 0 ">неизвестный</span>	
+			<span class="name" ng-if="item.firstname.length == 0 || item.lastname.length == 0 ">неизвестный</span> </a>
+
 		</div>	
 			<p class="col-md-8">{{item.content}}</p>
 			<span class="col-md-2">
@@ -23,9 +25,9 @@
 		</div>
 	</div>
 	<span class="alert" ng-if="comments.length === 0">Нет комментариев к данному обещанию. Оставьте своё мнение, будьте первым</span>
-	<div class="add-comment row">
+	<div class="add-comment row bg-news">
 			<div class="col-md-2 my-photo">
-				<img class=" img-responsive" ng-src="{{adress + myfoto || 'app/directives/comments/img/no_ava_user.png'}}" alt="user">
+				<a href="#/account/{{mydata.id}}/account_info"><div class="my-photo-comment" style="background-image: url('{{myfoto ? adress + myfoto : 'app/directives/comments/img/no_ava_user.png'}}')"></div></a>
 			</div>	
 			<textarea class="col-md-8 " name="comment" id="comment" cols="50" rows="10" placeholder="Оставьте свой комментарий..." ng-model="commentText"></textarea>
 			<button class="btn btn-default col-md-2 send-btn" ng-click="sendComment()">

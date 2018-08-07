@@ -1,7 +1,11 @@
-<link href="../../../css/style.css" rel="stylesheet" type="text/css"/>
+
+
 <link href="app/views/login_page/login.template.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+
+
 <div ng-if="loading" class="preloader-all"></div>
+
 <header id="menu">
     <div class="top-menu">
         <div class="logo-container">
@@ -12,13 +16,15 @@
                 </div>
             </div>
             <h1>
-                <a class="logo-text" ng-class="{active: currentMenuItem == '/'}" href="/">
+                <a class="logo-text" ng-class="{active: currentMenuItem == '/'}" href="../../../index.html">
                     BetWill
                 </a>
             </h1>
         </div>
+
     </div>
 </header>
+
 
 <body ng-controller="Registration">
     <div class="bg-wrapper"></div>

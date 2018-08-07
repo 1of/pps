@@ -1,7 +1,6 @@
 <link rel="stylesheet" type="text/css" href="app/views/task_id/task_id.css">
 
-<div ng-if="loading" class="preloader-all">
-</div>
+<div ng-if="loading" class="preloader-all"></div>
 
 <div class="container-fluid" ng-controller="TaskId">
 
@@ -13,11 +12,10 @@
 		<div class="row">
 			<div class="col-md-1">
 			</div>
-			<div class="col-md-2">
-					<div class="user-task-photo" style="background-image: url('{{userByTask.photo ? adress + userByTask.photo : 'app/views/task_id/user_default.jpg'}}')">
-				<p> {{userByTask.firstname}} {{userByTask.lastname}} </p>
+			<div class="col-md-2 user-block-foto">
+					<div class="user-task-photo promice-foto" style="background-image: url('{{userByTask.photo ? adress + userByTask.photo : 'app/views/task_id/user_default.jpg'}}')"><p class="text-name"> {{userByTask.firstname}} {{userByTask.lastname}} </p></div>
 			</div>
-			<div class="col-md-9 date-publish" >
+			<div class="col-md-8 col-xs-12 date-publish" >
 				<span>Дата публикации: <span class="date"> {{task.date_added | date: 'HH:mm (dd.MM.yyyy)' }}</span></span><br>
 				<div ng-if='validateTime > 0 || isNan(validateTime)'>
 				<span>Осталось времени:
@@ -60,7 +58,8 @@
 								<i ng-class="isTracking ? 'glyphicon glyphicon-star' : 'glyphicon glyphicon-star-empty'" ></i> Отслеживать</button>
 								<div class="col-md-1"></div>
 		<div class="col-md-2 promice-block">
-			<img class="promice-foto" ng-src="{{task.picture ? adress + task.picture : 'app/views/task_id/noimage.png'}}" alt="img" data-toggle="modal" data-target=".bs-example-modal-lg">
+			
+		<div class="user-task-photo promice-foto" style="background-image: url('{{task.picture ? adress + task.picture : 'app/views/task_id/noimage.png'}}')" data-toggle="modal" data-target=".bs-example-modal-lg"></div>
 		</div>
 		<div class="col-md-9">
 			<p>{{task.description}}</p>
