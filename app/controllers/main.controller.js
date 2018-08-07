@@ -65,11 +65,14 @@
             $rootScope.$on('Refresh tracking', function(){getUsersTrackingTasks();});
 
             //Получаем список наших ставок
+            function getUsersBetsTasks() {
             usersRepository.getUsersBets($scope.myUserId)
                 .then(function(response) {
                     $scope.myBets = response.data;
                 }, function(error) {console.log(error)});
-
+            }
+            getUsersBetsTasks();
+            $rootScope.$on('Refresh bets', function(){getUsersBetsTasks();});
 
             //Возвращает обьект с данными о пользователе
             $rootScope.getMyInfo = function(){

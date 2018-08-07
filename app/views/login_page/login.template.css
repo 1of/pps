@@ -18,7 +18,8 @@ div.container h1 {
 	color: #fff;
 	text-shadow: black 1px 1px 0, black -1px -1px 0, 
                  black -1px 1px 0, black 1px -1px 0;
-
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
 }
 input.form-control {
 	width: 50%;

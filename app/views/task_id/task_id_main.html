@@ -1,19 +1,17 @@
-<link rel="stylesheet" type="text/css" href="app/views/task_id/task_id.css">
+<link rel="stylesheet" href="app/views/task_id/task_id.css"/>
 
-<div ng-if="loading" class="preloader-all"></div>
-
-<div class="container-fluid" ng-controller="TaskId">
+<div class="container-fluid" ng-controller="TaskId" ng-class="{'bd0' : task.state == 0, 'bd1' : task.state == 1, 'bd0' : task.state == 2}">
 
 	<section class="header row">
 		<div class="row">
-			<h2 class="col-md-12">{{task.name}}</h2>
+			<h2 class="col-md-12">{{task.name}}  {{task.state}}</h2>
 			<button type="button" class="btn btn-default btn-xs back" ng-click="backPath()"> <i class="glyphicon glyphicon-arrow-left"></i> </button>
 		</div>
 		<div class="row">
 			<div class="col-md-1">
 			</div>
 			<div class="col-md-2 user-block-foto">
-					<div class="user-task-photo promice-foto" style="background-image: url('{{userByTask.photo ? adress + userByTask.photo : 'app/views/task_id/user_default.jpg'}}')"><p class="text-name"> {{userByTask.firstname}} {{userByTask.lastname}} </p></div>
+					<a href="#/account/{{task.user_id}}/account_info"><div class="user-task-photo promice-foto" style="background-image: url('{{userByTask.photo ? adress + userByTask.photo : 'app/views/task_id/user_default.jpg'}}')"><p class="text-name"> {{userByTask.firstname}} {{userByTask.lastname}} </p></div></a>
 			</div>
 			<div class="col-md-8 col-xs-12 date-publish" >
 				<span>Дата публикации: <span class="date"> {{task.date_added | date: 'HH:mm (dd.MM.yyyy)' }}</span></span><br>
@@ -29,16 +27,16 @@
 		</div>
 	</section>
 
-	<section class="bets row">
+	<section class="bets row" ng-controller="TaskId">
 		<div class="statistics col-md-9">
-			<h3>Стоимость: <span class="badge">{{ task.value }}</span> </br> Максимальная ставка: <span class="badge" >{{maxBet || 0}}</span>   </h3>
-			<p><a ng-click="showTrackingUsersList()">Отслеживают: </a><span class="badge">{{ trackingUsers.length }}</span> чел.</p>
+			<h3>Стоимость: <span class="badge">{{ task.value }}</span> </br> Максимальная ставка: <span class="badge" >{{mmaxBet}}{{maxBet}}</span>   </h3>
+			<p><a ng-click="showTrackingUsersList()">Отслеживают</a>: <span class="badge">{{ trackingUsers.length }}</span> чел.</p>
 			<p> <a  ng-click="showBetsList()">Ставок</a>: <span class="badge">{{ bets.length || 0 }}</span></p>
 			<p>Комментарии: <span class="badge">{{comments.length}}</span></p>
 		</div>
 		<div class="bet col-md-3">
 		<p class="text-info">Ваш баланс: {{user.balance}}</p>
-		<form ng-controller="TaskId">
+		<form>
 				<div class="incdec_bet">
 					<button class="btn btn-danger btn-md" ng-click="inc()"><i class="glyphicon glyphicon-plus"></i></button>
 					<input   type="number" min="1" max="{{maxBet}}" ng-model="betAmount">
@@ -47,8 +45,8 @@
 					<button type="submit" class="btn btn-success bet" ng-click="addBet()">
 					 <i class="glyphicon glyphicon-ok-circle"></i>
 					Ставить</button>
-					<p ng-if="error.status" class="text-danger">{{error.text}}</p>
 		</form>
+		<p ng-if="error.status" class="text-danger">{{error.text}}</p>
 		</div>
 	</section>
 
@@ -103,7 +101,7 @@
 
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg" role="document" >
-    <div class="modal-content" style="background-image: url({{task.picture ? adress + task.picture : 'app/views/task_id/noimage.png'}});height: 600px; background-size: cover">
+    <div class="modal-content" style="background-image: url({{task.picture ? adress + task.picture : 'app/views/task_id/noimage.png'}});height: 600px; background-size: contain; background-repeat: no-repeat;background-position: center">
              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
   </div>

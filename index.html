@@ -20,7 +20,9 @@
     <link rel="stylesheet" href="./node_modules/angular-xeditable/dist/css/xeditable.min.css">
 </head>
 <body ng-controller="Main" scroll id="page" ng-class="{light:boolChangeClass}">
-<main ng-view> </main>
+<main ng-view>
+<div ng-if="loading" class="preloader-all"></div>
+ </main>
 <!--все конфигурации подключаемые к проекту-->
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="plugins/slick/slick.min.js"></script>
