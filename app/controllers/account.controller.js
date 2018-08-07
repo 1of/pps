@@ -98,30 +98,29 @@
             }
         };
 
-        // Добавлениу обещания
-        $scope.showAddTask = function () {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'app/modals/add-task/add-task.template.html',
-                controller: 'AddTask',
-                size: 'l'
+       // Добавлениу обещания
+       $scope.showAddTask = function () {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'app/modals/add-task/add-task.template.html',
+            controller: 'AddTask',
+            size: 'l'
+        });
+        modalInstance.result.then(function (result) {
+            if (!result) return;
+            taskRepository.addTask(result)
+                .then(function(response) {
+                    getMytasks();
+                    utils.notify({
+                        message: 'Обещание создано',
+                        type: 'success'
+                    });
+                    $scope.$emit('taskAdded');
+                    getMytasks();
+            }, function (error) {
+                console.log(error);
             });
-
-            modalInstance.result.then(function (result) {
-                if (!result) return;
-
-                taskRepository.addTask(result)
-                    .then(function(response) {
-                        getMytasks();
-                        utils.notify({
-                            message: 'Обещание создано',
-                            type: 'success'
-                        });
-                        $scope.$emit('taskAdded');
-                }, function (error) {
-                    console.log(error);
-                });
-            })
-        }
+        })
+    }
 
     }]);
 })()

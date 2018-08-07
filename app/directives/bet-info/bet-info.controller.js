@@ -21,15 +21,15 @@
                         var getState = function () {
                             if($scope.task.state === 0) {
                                 $scope.betState = "В процессе";
-                                $scope.bgColor = "cadetblue";
+                                $scope.bgColor = "#f7f7f7";
                             };
                             if($scope.task.state === 1) {
                                 $scope.betState = "Проигрыш";
-                                $scope.bgColor = "palevioletred";
+                                $scope.bgColor = "#ffeaec";
                             };
                             if($scope.task.state === 2) {
                                 $scope.betState = "Выигрыш";
-                                $scope.bgColor = "aquamarine";
+                                $scope.bgColor = "#bef7df";
                             };
                         };
                         getState();

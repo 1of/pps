@@ -50,6 +50,7 @@
                                         type: 'success'
                                     });
                                 }
+                                $rootScope.$emit('Refresh tracking');
                     }, function (error) {
                         console.log(error)
                     });

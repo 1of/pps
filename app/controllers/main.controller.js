@@ -50,10 +50,22 @@
             }, function(error) {console.log(error)});
 
             //Получаем список наших отслеживаемых задач
-            usersRepository.getUsersTrackingTasks($scope.myUserId)
-            .then(function(response) {
-                $scope.myTrackingTasks = response.data;
-            }, function(error) {console.log(error)});
+            function getUsersTrackingTasks() {
+                usersRepository.getUsersTrackingTasks($scope.myUserId)
+                .then(function(response) {
+                    $scope.myTrackingTasks = response.data;
+                }, function(error) {console.log(error)});
+            }
+            getUsersTrackingTasks();
+
+            $rootScope.$on('Refresh tracking', function(){getUsersTrackingTasks();});
+
+            //Получаем список наших ставок
+            usersRepository.getUsersBets($scope.myUserId)
+                .then(function(response) {
+                    $scope.myBets = response.data;
+                }, function(error) {console.log(error)});
+
 
             //Возвращает обьект с данными о пользователе
             $rootScope.getMyInfo = function(){
