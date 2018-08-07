@@ -44,10 +44,14 @@
                 }, function(error) {console.log(error)});
 
             //Получаем список наших задач
-            usersRepository.getUsersTasks($scope.myUserId)
-            .then(function(response) {
-                $scope.myTasks = response.data;
-            }, function(error) {console.log(error)});
+            function getMyTasks() {
+                usersRepository.getUsersTasks($scope.myUserId)
+                .then(function(response) {
+                    $scope.myTasks = response.data;
+                }, function(error) {console.log(error)});
+            }
+            getMyTasks();
+            $scope.$on('taskAdded', function() {getMyTasks});
 
             //Получаем список наших отслеживаемых задач
             function getUsersTrackingTasks() {

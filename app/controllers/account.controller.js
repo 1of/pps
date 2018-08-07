@@ -115,7 +115,6 @@
                         type: 'success'
                     });
                     $scope.$emit('taskAdded');
-                    getMytasks();
             }, function (error) {
                 console.log(error);
             });
