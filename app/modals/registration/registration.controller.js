@@ -7,8 +7,7 @@ app.controller('Registration', ['$scope', 'account.repository', '$location', 'ut
 
     $scope.new_user = {
         email: '',
-        password: '',
-        repeatpassword: ''
+        password: ''
     };
 
     $scope.cancel = function() {
@@ -39,16 +38,18 @@ app.controller('Registration', ['$scope', 'account.repository', '$location', 'ut
         utils.notify({message: $scope.new_user.email + ', приветсвуем Вас на сервисе!', type: 'success'});
         localStorage.setItem('authToken', responce.data.authToken);
     }, function(error){
-        utils.notify({message: 'Вы ввели неправильные данные!', type: 'danger'});
         if (error.status == 403) {
-            $scope.responceText = "Такой пользователь уже зарегестрирован!";
+            $scope.responceText = "Такой пользователь уже зарегистрирован!";
+            utils.notify({message: 'Такой пользователь уже зарегистрирован!', type: 'danger'});
         }
         else if (error.status == 452) {
             $scope.responceText = "Неверный Email...";
+            utils.notify({message: 'Неверный Email...', type: 'danger'});
             $scope.emailNotification = true;
         }
         else if (error.config.data.email == '') {
             $scope.responceText = "Неверный формат Emeil!";
+            utils.notify({message: 'Неверный формат Emeil!', type: 'danger'});
             $scope.emailNotification = true;
         }
         else if (error.data.error[0].field == 'email' && error.data.error[1].field == 'password' ) {
@@ -58,14 +59,17 @@ app.controller('Registration', ['$scope', 'account.repository', '$location', 'ut
         }
         else if (error.data.error[0].field == 'password') {
             $scope.responceText = "Неверный Пароль";
+            utils.notify({message: 'Неверный пароль...', type: 'danger'});
             $scope.passNotification = true;
         }
         else if (error.data.error[0].field == 'email') {
             $scope.responceText = "Неверный Email";
+            utils.notify({message: 'Неверный Email...', type: 'danger'});
             $scope.emailNotification = true;
         }
         else if (error.status == 422) {
             $scope.responceText = "Неверный ввод данных";
+            utils.notify({message: 'Неверный ввод данных', type: 'danger'});
         }
 
     })

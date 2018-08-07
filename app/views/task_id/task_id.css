@@ -30,17 +30,25 @@ div.container-fluid {
 	margin-left: 15px;
 	margin-right: 15px;
 }
+.status-task{
+	position: absolute;
+	right: 15px;
+	top: 0;
+}
 .bd2 {
-	border: 5px solid red;
-	background: red;
+	border: 5px solid pink;
+	background: pink;
+	border-radius: 15px;
 }
 .bd1 {
-	border: 5px solid green;
-	background: green;
+	border: 5px solid lightgreen;
+	background: lightgreen;
+	border-radius: 15px;
 }
 .bd0 {
-	border: 5px solid gray;
-	background: gray;
+	border: 5px solid lightgray;
+	background: lightgray;
+	border-radius: 15px;
 }
 section.header {
 	background: linear-gradient(-120deg,  #fff 71%, rgba(250, 250, 250, 0.8) 71%), #fff;
