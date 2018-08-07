@@ -81,6 +81,19 @@ footer {
 #account_info span {
 	font-weight: 400;
 }
+#user-img-account:hover {
+	cursor: pointer;
+}
+button.close{
+	margin-right: 4px;
+	opacity: 1;
+	font-size: 3em;
+	color: black;
+	line-height: 0.7;
+  }
+div.modal-content {
+	margin-top: 55px;
+}
 form input[type=checkbox] {
     display: none;
     }

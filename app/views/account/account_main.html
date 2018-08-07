@@ -41,6 +41,16 @@
             <p>Пол: <span editable-select="user.gender" e-ng-options="s.value as s.text for s in statuses" e-ng-model="user.gender" e-form="editableForm" e-ng-model="user.gender" e-name="gender">{{user.gender === 0 ? 'мужской' : 'женский'}}</span></p>
             <p>Професиия: <span editable-text="user.job" e-ng-model="user.job" e-form="editableForm" e-ng-model="user.job" e-name="job">{{user.job}}</span></p>
             <p>О пользователе: <span editable-textarea="user.about" e-ng-model="user.about" e-form="editableForm" e-ng-model="user.about" e-name="about">{{user.about}}</span></p>
-            <p>Фото: <span editable-file="user.photo" e-ng-model="user.photo" e-form="editableForm" e-ng-model="user.photo" e-name="photo"><img ng-src="{{fileAdress + user.photo || './app/directives/user-info/img/No_Image_Available.jpg'}}" alt="user_photo" style="height: 100px"></p>
+            <p>Фото: <span editable-file="user.photo" e-ng-model="user.photo" e-form="editableForm" e-ng-model="user.photo" e-name="photo"><img id="user-img-account" ng-src="{{fileAdress + user.photo || './app/directives/user-info/img/No_Image_Available.jpg'}}" alt="user_photo" style="height: 100px" data-toggle="modal" data-target=".bs-example-modal-lg"></p>
         </div>
     </div>
+
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document" >
+    <div class="modal-content" style="background-image: url({{user.photo ? fileAdress + user.photo : 'app/views/task_id/noimage.png'}});height: 600px; background-size: contain; background-repeat: no-repeat; background-position: center">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+  </div>
+</div>
