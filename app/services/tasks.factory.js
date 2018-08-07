@@ -12,7 +12,9 @@
             addBetsById: _addBetsById,
             getCategories: _getCategories,
             addTask: _addTask,
-            getUsersWhoTracking: _getUsersWhoTracking
+            getUsersWhoTracking: _getUsersWhoTracking,
+            updateTask: _updateTask
+
         };
 
         function _getTasks() {
@@ -58,6 +60,9 @@
         }
         function _getUsersWhoTracking(id) {
             return $http.get(webApi.DOMAIN + '/api/v1/tasks/'+ id +'/tracking_users');
+        }
+        function _updateTask(id, data) {
+            return $http.put(webApi.DOMAIN + '/api/v1/tasks/' + id, data);
         }
 
     }]);

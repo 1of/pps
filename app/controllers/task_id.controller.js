@@ -242,6 +242,26 @@ $scope.backPath = function() {
                         console.log(error)
                     });
                 };
+                //Кнопки изменения статуса задачи state
+                $scope.taskdone = function() {
+                	let newTask = $scope.task;
+                	newTask.state = 1;
+                	tasksRepository.updateTask($scope.task.id, newTask).then(function(response) {
+						utils.notify({message: 'Статус обещания изменен на "Выполнено"', type: 'success'});
+
+					}, function(error) {});
+
+                	console.log($scope.task);
+                }; 
+
+                $scope.surrend = function() {
+                	let newTask = $scope.task;
+                	newTask.state = 2;
+                	tasksRepository.updateTask($scope.task.id, newTask).then(function(response) {
+						 utils.notify({message: 'Статус обещания изменен на "Не выполнено"', type: 'danger'});
+					}, function(error) {});
+
+                };
 
 
 

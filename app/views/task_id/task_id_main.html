@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="app/views/task_id/task_id.css"/>
+<div ng-if="loading" class="preloader-all"></div>
 
 <div class="container-fluid" ng-controller="TaskId" ng-class="{'bd0' : task.state == 0, 'bd1' : task.state == 1, 'bd0' : task.state == 2}">
 
 	<section class="header row">
 		<div class="row">
-			<h2 class="col-md-12">{{task.name}}  {{task.state}}</h2>
+			<h2 class="col-md-12">{{task.name}}</h2>
 			<button type="button" class="btn btn-default btn-xs back" ng-click="backPath()"> <i class="glyphicon glyphicon-arrow-left"></i> </button>
 		</div>
 		<div class="row">
@@ -13,7 +14,7 @@
 			<div class="col-md-2 user-block-foto">
 					<a href="#/account/{{task.user_id}}/account_info"><div class="user-task-photo promice-foto" style="background-image: url('{{userByTask.photo ? adress + userByTask.photo : 'app/views/task_id/user_default.jpg'}}')"><p class="text-name"> {{userByTask.firstname}} {{userByTask.lastname}} </p></div></a>
 			</div>
-			<div class="col-md-8 col-xs-12 date-publish" >
+			<div class="col-md-6 col-xs-12 date-publish" >
 				<span>Дата публикации: <span class="date"> {{task.date_added | date: 'HH:mm (dd.MM.yyyy)' }}</span></span><br>
 				<div ng-if='validateTime > 0 || isNan(validateTime)'>
 				<span>Осталось времени:
@@ -23,6 +24,10 @@
 				<span class="sec">{{timeLeft.sec}}</span>
 				</span>
 				</div>
+			</div>
+			<div class="state col-md-2"  ng-if="task.user_id == myId && task.state == 0">
+			<button class="btn btn-success" ng-click="taskdone()">Выполнено</button>
+			<button class="btn btn-danger" ng-click="surrend()">Сдаться</button>
 			</div>
 		</div>
 	</section>
