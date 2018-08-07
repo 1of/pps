@@ -75,16 +75,19 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 
 	}, function(error) {});
 //Получение ставок Обещания
-	tasksRepository.getBetsById(id).then(function(response) {
-		$scope.bets = response.data;
-		$scope.sumAllBets = $scope.bets.map(function(item){
-			return item.value;
-		}).reduce(function(sum, current) {
-			return sum + current
-		}, 0);
+	$scope.getBets = function () {
+		tasksRepository.getBetsById(id).then(function(response) {
+			$scope.bets = response.data;
+			$scope.sumAllBets = $scope.bets.map(function(item){
+				return item.value;
+			}).reduce(function(sum, current) {
+				return sum + current
+			}, 0);
 
-   $scope.maxBet = $scope.task.value - $scope.sumAllBets;
-		}, function(error) { });
+	   $scope.maxBet = $scope.task.value - $scope.sumAllBets;
+			}, function(error) { });
+		};
+		$scope.getBets();
 //Получение списка отслеживающих
 	tasksRepository.getUsersWhoTracking(id).then(function(response) {
 		$scope.trackingUsers = response.data;
@@ -94,10 +97,12 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 	$scope.betAmount = 0;
 
 	$scope.inc = function() {
+		console.log("$scope.bets-", $scope.bets, "$scope.maxBet", $scope.maxBet, "$scope.task", $scope.task)
 		$scope.betAmount++;
 	};
 
 	$scope.dec = function() {
+		if ($scope.betAmount < 0) return
 		$scope.betAmount--;
 	};
 
@@ -105,46 +110,52 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 		if ($scope.user.balance < 1) {
 			utils.notify({message: 'Недостаточно средств на балансе', type: 'danger'});
 			return
-		} else if(id == $scope.task.id) {
+		} else if($scope.task.user_id == +$scope.myId) {
 			$scope.error = {
 					status: true,
 					text: "Извините, Вы не можете ставить на свое обещание!"
 				};
 			return
-			} else	{
+			} else if($scope.task.state === 2) {
+			$scope.error = {
+					status: true,
+					text: "Извините, обещание имеет статус Завершено"
+				};
+			return
+			} 	else	{
 
         var data = { value: +$scope.betAmount};
+
 			tasksRepository.addBetsById(+id, data).then(function(response) {
+console.log($scope.bets, $scope.maxBet, $scope.betAmount, response);
+				$scope.$emit('trackingTaskTogle', $scope.task);
+				$rootScope.$emit('Refresh bets');
+        		$scope.bets.push({date_added: new Date().toISOString(), id: null, state: $scope.bets[0].state,task_id: +id,user_id:+$scope.myId, value: $scope.betAmount});
+				$scope.maxBet = $scope.maxBet - $scope.betAmount;
+        		$scope.getBets();
+				$scope.maxBet = $scope.maxBet - $scope.betAmount;
+								$scope.error = {
+					status: true,
+					text: "Ставка принята!"
+				};
 
-					tasksRepository.getBetsById(id).then(function(response) {
-		$scope.bets = response.data;
-		$scope.sumAllBets = $scope.bets.map(function(item){
-			return item.value;
-		}).reduce(function(sum, current) {
-			return sum + current
-		}, 0);
-
-   $scope.maxBet = $scope.task.value - $scope.sumAllBets;
-		}, function(error) { });
-
+				console.log($scope.bets, $scope.maxBet, $scope.betAmount, response);
 		}, function(error) {
-			error.data.error = "Task is closed"
 			if (error.data.error = "Task is closed") {
 				$scope.error = {
 					status: true,
-					text: "Извините, данное обещание завершено!"
+					text: "Извините, вы уже ставили на данное обещание!"
 				};
-			} else if (error.status == 403) {
+			} else if (error.status == 2) {
 				$scope.error = {
 					status: true,
 					text: "Вы уже делали ставку на это обещание"
 				};
 			}
 
-		});
-
-		}
-
+		});		
+	}
+//----End Bet
 
 	};
 //Подписаться на ставку
@@ -211,26 +222,26 @@ $scope.backPath = function() {
 						$scope.isTracking = $scope.trackingTasks.filter(task => task.id === $scope.task.id).length === 1 ? true : false;
 				}
 
-				$scope.togleTrackingTask = function () {
-						usersRepository.addTrackingTask($scope.myUserId, {task_id: $scope.task.id})
-								.then(function (response) {
-										$scope.$emit('trackingTaskTogle', $scope.task);
-										$scope.isTracking = !$scope.isTracking;
-												if (!$scope.isTracking) {
-														utils.notify({
-																message: 'Вы прекратили отслеживать обещание',
-																type: 'danger'
-														});
-												} else {
-														utils.notify({
-																message: 'Обещание отслеживается',
-																type: 'success'
-														});
-												}
-						}, function (error) {
-								console.log(error)
-						});
-				};
+                $scope.togleTrackingTask = function () {
+                    usersRepository.addTrackingTask($scope.myUserId, {task_id: $scope.task.id})
+                        .then(function (response) {                            
+                            $scope.isTracking = !$scope.isTracking;
+                                if (!$scope.isTracking) {
+                                    utils.notify({
+                                        message: 'Вы прекратили отслеживать обещание',
+                                        type: 'danger'
+                                    });
+                                } else {
+                                    utils.notify({
+                                        message: 'Обещание отслеживается',
+                                        type: 'success'
+                                    });
+                                }
+                                $rootScope.$emit('Refresh tracking');
+                    }, function (error) {
+                        console.log(error)
+                    });
+                };
 
 
 
