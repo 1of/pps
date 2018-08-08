@@ -22,13 +22,13 @@
                       </thead>
 
                       <tbody>
-                        <tr ng-repeat="bet in allbets | orderBy: sortField track by $index">
+                        <tr ng-repeat="bet in allbets | orderBy: sortField track by $index" ng-class="{'gray-bg' : bet.user_id == betTask.user_id}">
                           <td>{{bet.index}}</td>
-                          <td><a href="#/account/{{bet.user_id}}/account_info" ng-click="cancel()">{{bet.firstname}}</a></td>
+                          <td><a href="#/account/{{bet.user_id}}/account_info" ng-click="cancel()" >{{bet.firstname}}</a></td>
                           <td><a href="#/account/{{bet.user_id}}/account_info" ng-click="cancel()">{{bet.lastname}}</a></td>
                           <td>{{bet.value}}</td>
                           <td>{{bet.date_added
-                     | date: 'HH:mm (dd.MM.yyyy)'}}</td>
+                     | date: 'HH:mm (dd.MM.yyyy)' : '+0300'}}</td>
                         </tr>
                         <tr>
                           <td>Итого</td>

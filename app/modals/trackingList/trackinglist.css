@@ -4,10 +4,10 @@
 
 }
 a{
-	color: black;
+	color: #222;
 }
 a:hover{
-	color: black;
+	color: #222;
 }
 .bg-r-wrapper {
 	position: absolute;
@@ -18,4 +18,22 @@ a:hover{
 	background-repeat: no-repeat;
 	filter: opacity(15%) contrast(200%);
 	z-index: -5;
+}
+
+.gray-bg{
+	background: rgba(50,50,50,0.1);
+	color: black;
+}
+
+.blue-bg{
+	background: rgba(0,0,100,0.2);
+}
+.pink-bg {
+	background: rgba(100,0,0,0.2);
+}
+.userlistico{
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
 }

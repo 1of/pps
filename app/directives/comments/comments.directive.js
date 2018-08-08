@@ -9,7 +9,7 @@
 			templateUrl: './app/directives/comments/comments.template.html',
 			scope: {
 				comments: '=commentslist',
-				userIds: '=userids',
+				task: '=',
 				mydata: '='
 
 			},
@@ -20,6 +20,7 @@
 				var myId = localStorage.getItem('userId');
 				usersRepository.getUserById(+myId).then(function (response){
 					$scope.myfoto = response.data.photo;
+					$scope.myinf = response.data;
 				}, function (error){ });
 
 				$scope.commentText = "";
@@ -54,7 +55,6 @@
 
 				$scope.$watch('comments', function(newValue, oldValue) {
 					if (newValue !== oldValue) {
-
 //Добавить в массив с комментариями фото и имена участников
 						// $scope.comments.forEach(function(item, i, arr) { 
 						// 	usersRepository.getUserById(item.user_id).then(function (response){

@@ -3,10 +3,10 @@
 	position: relative;
 }
 a{
-	color: black;
+	color: #222;
 }
 a:hover{
-	color: black;
+	color: #222;
 }
 
 .bg-r-wrapper {
@@ -18,4 +18,8 @@ a:hover{
 	background-repeat: no-repeat;
 	filter: invert(100%) opacity(15%) contrast(200%);
 	z-index: -5;
+}
+.gray-bg{
+	background: rgba(50,50,50,0.1);
+	color: black;
 }

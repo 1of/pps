@@ -1,7 +1,9 @@
 <link rel="stylesheet" type="text/css" href="app/modals/addProof/proofs.css" />
 <section class="proofs">
 <gallery proofs="proofs" ng-if="proofs.lenght !== 0"></gallery>
-<p ng-if="proofs.length === 0"> К сожалению, подтверждения отсутсвуют. Зайдите позже или попросите человека добавить доказательства</p>
+<p ng-if="myId != task.user_id && proofs.length === 0"> К сожалению, подтверждения отсутсвуют. Зайдите позже или попросите человека добавить доказательства</p>
+<p ng-if="proofs.length === 0 && myId == task.user_id"> Вы еще не добавляли никаких подтверждений к своему обещанию. Добавляйте только качественный контент</p>
+
 	<div>
 		<ol ng-repeat="proof in proofs track by $index">
 			<li class="list-group-item row"> 

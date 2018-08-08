@@ -22,13 +22,13 @@
                       </thead>
 
                       <tbody>
-                        <tr ng-repeat="user in allTrackingUsers | orderBy: sortField track by $index" ng-class="{'gray-bg' : user.gender == 0, 'blue-bg' : user.gender == 1, 'pink-bg' : user.gender == 2}">
+                        <tr ng-repeat="user in allTrackingUsers | orderBy: sortField track by $index" ng-class="{'gray-bg' : taskArr.user_id == user.user_id}">
                           <td>{{user.index}}</td>
                           <td><img class="userlistico" ng-src="{{user.photo ? adress + user.photo : 'app/modals/trackingList/userico.png'}}"></td>
                           <td><a href="#/account/{{user.user_id}}/account_info" ng-click="cancel()">{{user.firstname}}</a></td>
                           <td><a href="#/account/{{user.user_id}}/account_info" ng-click="cancel()">{{user.lastname}}</a></td>
                           <td>{{user.date_added
-                     | date: 'HH:mm (dd.MM.yyyy)'}}</td>
+                     | date: 'HH:mm (dd.MM.yyyy)' : '-0000'}}</td>
                         </tr>
                         </tbody>
 

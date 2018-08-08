@@ -28,7 +28,7 @@ app.controller('Registration', ['$scope', 'account.repository', '$location', 'ut
         $scope.passNotification = false; // добавление классов анимации в registration.template.html
 
         accountRepository.register($scope.new_user).then(function(responce){
-            $('#myModal').modal('hide'); //закрытие модального окна регистрации
+            //$('#myModal').modal('hide'); //закрытие модального окна регистрации
             $scope.login = function() {
                 accountRepository.login($scope.new_user).then(function(responce){
                     localStorage.setItem('authToken', responce.data.authToken);

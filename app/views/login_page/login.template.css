@@ -56,6 +56,7 @@ div.responce-text {
 	margin-top: 5px;
 }
 .text a{
+	color: #fff;
 	font-size: 1.2em;
 	text-decoration: none;
 }
@@ -73,7 +74,7 @@ div.responce-text {
 }
 
 form.login {
-	margin-top: 20%;
+	margin-top: 17%;
 	display: flex;
 	flex-direction: column;
 	border-radius: 10px;

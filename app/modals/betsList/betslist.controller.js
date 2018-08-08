@@ -5,6 +5,7 @@ app.controller('Betslist', ['$scope', '$uibModal', '$uibModalInstance', '$uibMod
 $scope.allbets = betsArr;
 $scope.betTask = taskArr;
 $scope.sumBets = sumAllBets;
+console.log($scope.betTask);
 betsArr.forEach(function(item, i) {
 $scope.usersBetsList = [];
 usersRepository.getUserById(item.user_id).then(function(response) {

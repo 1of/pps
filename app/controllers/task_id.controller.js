@@ -94,11 +94,13 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 		}, function(error) { });
 
 //Добавление ставки ставок Обещания
-	$scope.betAmount = 0;
+	$scope.betAmount = 1;
 
 	$scope.inc = function() {
-		console.log("$scope.bets-", $scope.bets, "$scope.maxBet", $scope.maxBet, "$scope.task", $scope.task)
-		$scope.betAmount++;
+		// console.log("$scope.bets-", $scope.bets, "$scope.maxBet", $scope.maxBet, "$scope.task", $scope.task);
+		 // $scope.bets.push({date_added: new Date().toISOString(), id: null, state: $scope.bets[0].state,task_id: +id,user_id:+$scope.myId, value: $scope.betAmount});
+		 // $scope.maxBet = $scope.maxBet - $scope.betAmount;
+		$scope.betAmount++
 	};
 
 	$scope.dec = function() {
@@ -107,54 +109,45 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 	};
 
 	$scope.addBet = function() {
-		if ($scope.user.balance < 1) {
-			utils.notify({message: 'Недостаточно средств на балансе', type: 'danger'});
-			return
-		} else if($scope.task.user_id == +$scope.myId) {
+		if( $scope.betAmount<1 || $scope.betAmount>$scope.maxBet ) {
 			$scope.error = {
 					status: true,
-					text: "Извините, Вы не можете ставить на свое обещание!"
+					text: "Минимальная сумма ставки - 1 willcoin. Максимальная - " + $scope.maxBet + " willcoin's"
 				};
 			return
-			} else if($scope.task.state === 2) {
-			$scope.error = {
-					status: true,
-					text: "Извините, обещание имеет статус Завершено"
-				};
-			return
-			} 	else	{
+			} else { 
 
-        var data = { value: +$scope.betAmount};
 
-			tasksRepository.addBetsById(+id, data).then(function(response) {
-console.log($scope.bets, $scope.maxBet, $scope.betAmount, response);
-				$scope.$emit('trackingTaskTogle', $scope.task);
-				$rootScope.$emit('Refresh bets');
-        		$scope.bets.push({date_added: new Date().toISOString(), id: null, state: $scope.bets[0].state,task_id: +id,user_id:+$scope.myId, value: $scope.betAmount});
-				$scope.maxBet = $scope.maxBet - $scope.betAmount;
-        		$scope.getBets();
-				$scope.maxBet = $scope.maxBet - $scope.betAmount;
+				        var data = { value: +$scope.betAmount};
+
+							tasksRepository.addBetsById(+id, data).then(function(response) {
+								$scope.$emit('trackingTaskTogle', $scope.task);
+								$rootScope.$emit('Refresh bets');
+				        		$scope.bets.push({date_added: new Date().toISOString(), id: null, state: $scope.bets[0].state,task_id: +id,user_id:+$scope.myId, value: $scope.betAmount});
+								$scope.maxBet = $scope.maxBet - $scope.betAmount;
+				        		$scope.getBets();
+								$scope.maxBet = $scope.maxBet - $scope.betAmount;
+												$scope.error = {
+									status: true,
+									text: "Ставка принята!"
+								};
+
+								
+						}, function(error) {
+							if (error.data.error = "Task is closed") {
 								$scope.error = {
-					status: true,
-					text: "Ставка принята!"
-				};
+									status: true,
+									text: "Извините, вы уже ставили на данное обещание!"
+								};
+							} else if (error.status == 2) {
+								$scope.error = {
+									status: true,
+									text: "Вы уже делали ставку на это обещание"
+								};
+							}
 
-				console.log($scope.bets, $scope.maxBet, $scope.betAmount, response);
-		}, function(error) {
-			if (error.data.error = "Task is closed") {
-				$scope.error = {
-					status: true,
-					text: "Извините, вы уже ставили на данное обещание!"
-				};
-			} else if (error.status == 2) {
-				$scope.error = {
-					status: true,
-					text: "Вы уже делали ставку на это обещание"
-				};
-			}
-
-		});		
-	}
+						});		
+					}
 //----End Bet
 
 	};
@@ -188,6 +181,9 @@ $scope.backPath = function() {
 						resolve: {
 						   trackingUsersArr: function() {
 						       return $scope.trackingUsers
+						   },
+						   taskArr: function() {
+						       return $scope.task
 						   }
 						}
 					});
@@ -244,6 +240,7 @@ $scope.backPath = function() {
                 };
                 //Кнопки изменения статуса задачи state
                 $scope.taskdone = function() {
+                	$scope.task.state = 0;
                 	let newTask = $scope.task;
                 	newTask.state = 1;
                 	tasksRepository.updateTask($scope.task.id, newTask).then(function(response) {
@@ -251,7 +248,6 @@ $scope.backPath = function() {
 
 					}, function(error) {});
 
-                	console.log($scope.task);
                 }; 
 
                 $scope.surrend = function() {

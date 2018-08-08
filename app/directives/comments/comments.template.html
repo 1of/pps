@@ -24,7 +24,8 @@
 			</span>
 		</div>
 	</div>
-	<span class="alert" ng-if="comments.length === 0">Нет комментариев к данному обещанию. Оставьте своё мнение, будьте первым</span>
+	<span class="alert" ng-if="comments.length === 0 && myinf.id !== task.user_id">Нет комментариев к данному обещанию. Оставьте своё мнение, будьте первым</span>
+	<span class="alert" ng-if="comments.length === 0 && myinf.id == task.user_id"> К вашему обещанию еще никто не оставил комментария</span>
 	<div class="add-comment row bg-news">
 			<div class="col-md-2 my-photo">
 				<a href="#/account/{{mydata.id}}/account_info"><div class="my-photo-comment" style="background-image: url('{{myfoto ? adress + myfoto : 'app/directives/comments/img/no_ava_user.png'}}')"></div></a>

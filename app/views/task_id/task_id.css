@@ -32,8 +32,12 @@ div.container-fluid {
 }
 .status-task{
 	position: absolute;
-	right: 15px;
+	right: 10px;
 	top: 0;
+	width: 125px;
+	height: 35px;
+	border-bottom-left-radius: 15px;
+	cursor: default;
 }
 .bd2 {
 	border: 5px solid pink;
@@ -127,6 +131,7 @@ p.head{
 	position: relative;
 	text-align: center;
 	margin-bottom: 15px;
+
 }
 .user-task-photo {
 	display: flex;
@@ -141,6 +146,7 @@ p.head{
 	background-size: cover;
 	background-position: center center;
 	text-align: center;
+
   }
 .text-name {
 	text-align: center;
@@ -200,7 +206,7 @@ span.sec:after{
 	content: 'сек.';
 }
 .date-publish {
-	margin-left: 20px;
+	margin: 0 auto;
 	
 }
 div.date-publish span{
@@ -231,26 +237,14 @@ button.subscribe {
 	box-shadow:5px 5px 15px #2B1015;
 	transition: transform 1s linear;
 	border: 1px solid gray;
+
 }
 .promice-foto:hover{
 	cursor: pointer;
 	z-index: 150;
 	box-shadow:5px 5px 5px #2B1015;
 }
-.gray-bg {
-	background: rgba(0,0,0,0.2);
-}
-.blue-bg{
-	background: rgba(0,0,100,0.2);
-}
-.pink-bg {
-	background: rgba(100,0,0,0.2);
-}
-.userlistico{
-	display: block;
-	width: 50px;
-	height: 50px;
-}
+
 .statistics p {
 	font-weight: bold;
 	border-left: 2px solid red;
@@ -272,7 +266,8 @@ button.subscribe {
                0 10px 10px rgba(0,0,0,.2),
                0 20px 20px rgba(0,0,0,.15);
 transition: all 0.2s;
-margin-left: 45px;
+padding-right: 70px;
+padding-left: 50px;
 }
 .description p:hover{
   color: #000;

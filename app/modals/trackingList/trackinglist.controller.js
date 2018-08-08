@@ -1,9 +1,9 @@
 (function () {
 'use strict';
-app.controller('Trackinglist', ['$scope', '$uibModal', '$uibModalInstance', '$uibModalStack', 'users.repository', 'trackingUsersArr', function($scope, $uibModal, $uibModalInstance, $uibModalStack, usersRepository, trackingUsersArr) {
+app.controller('Trackinglist', ['$scope', '$uibModal', '$uibModalInstance', '$uibModalStack', 'users.repository', 'trackingUsersArr', 'taskArr', function($scope, $uibModal, $uibModalInstance, $uibModalStack, usersRepository, trackingUsersArr, taskArr) {
 $scope.adress = 'http://node4.fe.a-level.com.ua/';
 $scope.allTrackingUsers = trackingUsersArr;
-
+$scope.taskArr = taskArr;
 trackingUsersArr.forEach(function(item, i) {
 usersRepository.getUserById(item.user_id).then(function(response) {
         $scope.allTrackingUsers[i].firstname = response.data.firstname;
