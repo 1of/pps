@@ -31,12 +31,13 @@ app.controller('Registration', ['$scope', 'account.repository', '$location', 'ut
             //$('#myModal').modal('hide'); //закрытие модального окна регистрации
             $scope.login = function() {
                 accountRepository.login($scope.new_user).then(function(responce){
-                    localStorage.setItem('authToken', responce.data.authToken);
-                }, function(error){})};
 
-        $location.path('/') ? $window.location.reload() : $location.path('/'); //адресс куда переходить после логина
-        utils.notify({message: $scope.new_user.email + ', приветсвуем Вас на сервисе!', type: 'success'});
-        localStorage.setItem('authToken', responce.data.authToken);
+                    localStorage.setItem('authToken', responce.data.authToken);
+                    localStorage.setItem('userId', responce.data.id);
+                    $location.path('/') ? $window.location.reload() : $location.path('/');
+                }, function(error){})};
+$scope.login();
+
     }, function(error){
         if (error.status == 403) {
             $scope.responceText = "Такой пользователь уже зарегистрирован!";
