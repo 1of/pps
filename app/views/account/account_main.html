@@ -1,26 +1,28 @@
-<div ng-if="loading" class="preloader-all"></div>
 <user-info user="user" is-me="isMe" tracking-tasks="userTrackingTasks" tasks="userTasks" file-adress="fileAdress" my-bets="userBets"></user-info>
 
 <button ng-show="isMe" class="btn btn-primary btn-lg center-block" style="margin-bottom: 20px" ng-click="showAddTask()"><i class="glyphicon glyphicon-plus"></i>Добавить обещание</button>
 
 <ul class="nav nav-tabs">
-    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/tasks'}"><a href="#/account/{{userId}}/tasks"><span ng-show="isMe">Мои обещания</span><span ng-show="!isMe">Обещания</span></a></li>
-    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/tracking_tasks'}"><a href="#/account/{{userId}}/tracking_tasks">Отслеживаемые обещания</a></li>
+    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/tasks'}"><a href="#/account/{{userId}}/tasks"><span ng-show="isMe">Мои обещания</span><span ng-show="!isMe">Созданые бещания</span></a></li>
+    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/tracking_tasks'}"><a href="#/account/{{userId}}/tracking_tasks"><span ng-show="isMe">Мои отслеживаемые обещания</span><span ng-show="!isMe">Отслеживаемые обещания</span></a></li>
     <li ng-class="{active: currentMenuItem === '/account/{{userId}}/bets'}"><a href="#/account/{{userId}}/bets"><span ng-show="isMe">Мои ставки</span><span ng-show="!isMe">Ставки</span></a></li>
-    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/account_info' || currentMenuItem === '/account/{{userId}}'}"><a href="#/account/{{userId}}/account_info">Профиль</a></li>
+    <li ng-class="{active: currentMenuItem === '/account/{{userId}}/account_info' || currentMenuItem === '/account/{{userId}}'}"><a href="#/account/{{userId}}/account_info"><span ng-show="isMe">Мой профиль</span><span ng-show="!isMe">Профиль</span></a></li>
 </ul>
 
 <div class="tab-content"></div>
     <div ng-show="currentMenuItem === '/account/{{userId}}/tasks'" class="tab-pane" id="my_tasks">
         <task-info ng-repeat="task in userTasks" task="task" my-user-id="myUserId" tracking-tasks="myTrackingTasks" file-adress="fileAdress"></task-info>
+        <div class="text-center" ng-if="userTasks.length == 0 || !userTasks">Пока нету созданных обещаний</div>
     </div>
 
     <div ng-show="currentMenuItem === '/account/{{userId}}/tracking_tasks'" class="tab-pane" id="tracking_tasks">
         <task-info ng-repeat="task in userTrackingTasks" task="task" my-user-id="myUserId" tracking-tasks="myTrackingTasks" file-adress="fileAdress"></task-info>
+        <div class="text-center" ng-if="userTrackingTasks.length == 0 || !userTrackingTasks">Пока нету отслеживаемых обещаний</div>
     </div>
 
     <div ng-show="currentMenuItem === '/account/{{userId}}/bets'" class="tab-pane" id="my_bets">
         <bet-info ng-repeat="bet in userBets" bet="bet" file-adress="fileAdress"></bet-info>
+        <div class="text-center" ng-if="userBets.length == 0 || !userBets">Пока нету ставок</div>
     </div>
 
     <div ng-show="currentMenuItem === '/account/{{userId}}' || currentMenuItem === '/account/{{userId}}/account_info'" class="tab-pane" id="account_info">
@@ -38,8 +40,8 @@
 
             <p>Имя: <span editable-text="user.firstname" e-ng-model="user.firstname" e-form="editableForm" e-ng-model="user.firstname" e-name="firstname">{{user.firstname}}</span></p>
             <p>Фамилия: <span editable-text="user.lastname" e-ng-model="user.lastname" e-form="editableForm" e-ng-model="user.lastname" e-name="lastname">{{user.lastname}}</span></p>
-            <p>Дата рождения: <span editable-date="user.birthdate" e-ng-model="user.birthdate" e-form="editableForm" e-ng-model="user.birthdate" e-name="birthdate">{{user.birthdate | date: 'fullDate'}}</span></p>
-            <p>Пол: <span editable-select="user.gender" e-ng-options="s.value as s.text for s in statuses" e-ng-model="user.gender" e-form="editableForm" e-ng-model="user.gender" e-name="gender">{{user.gender === 0 ? 'мужской' : 'женский'}}</span></p>
+            <p>Дата рождения: <span editable-date="user.birthdate" e-ng-model="user.birthdate" e-form="editableForm" e-ng-model="user.birthdate" e-name="birthdate" >{{user.birthdate | date: 'fullDate'}}</span></p>
+            <p>Пол: <span editable-select="user.gender" e-ng-options="s.value as s.text for s in statuses" e-ng-model="user.gender" e-form="editableForm" e-ng-model="user.gender" e-name="gender">{{gender}}</span></p>
             <p>Професиия: <span editable-text="user.job" e-ng-model="user.job" e-form="editableForm" e-ng-model="user.job" e-name="job">{{user.job}}</span></p>
             <p>О пользователе: <span editable-textarea="user.about" e-ng-model="user.about" e-form="editableForm" e-ng-model="user.about" e-name="about">{{user.about}}</span></p>
             <p>Фото: <span editable-file="user.photo" e-ng-model="user.photo" e-form="editableForm" e-ng-model="user.photo" e-name="photo"><img id="user-img-account" ng-src="{{fileAdress + user.photo || './app/directives/user-info/img/No_Image_Available.jpg'}}" alt="user_photo" style="height: 100px" data-toggle="modal" data-target=".bs-example-modal-lg"></p>

@@ -2,14 +2,14 @@
 	<h3 class="modal-title text-center">{{'Добавление обещания'}}</h3>
 </div>
 <div class="modal-body">
-	<form enctype="multipart/form-data">
+	<form enctype="multipart/form-data" id="add-task-form" ng-submit="ok()">
 		<div class="form-group">
 			<label for="name">Заголовок</label>
-			<input type="text" class="form-control" id="name" placeholder="Введите заголовок обещания..." ng-model="name">
+			<input type="text" class="form-control" id="name" placeholder="Введите заголовок обещания..." ng-model="name" required>
 		</div>
-		<div class="form-group">
+		<div class="form-group"
 			<label for="description">Описание</label>
-			<textarea class="form-control" id="description" placeholder="Введите описание обещания..." ng-model="description"></textarea>
+			<textarea class="form-control" id="description" placeholder="Введите описание обещания..." ng-model="description" required></textarea>
 		</div>
 		<div class="form-group">
 			<label for="picture">Выберите картинку обещания</label>
@@ -17,15 +17,15 @@
 		</div>
 		<div class="form-group">
 			<label for="endDate">Дата окончания</label>
-			<input type="date" class="form-control" id="endDate" ng-model="endDate">
+			<input type="date" class="form-control" id="endDate" ng-model="endDate" required>
 		</div>
 		<div class="form-group">
 			<label for="location">Город</label>
-			<input type="text" class="form-control" id="location" placeholder="Введите город..." ng-model="location">
+			<input type="text" class="form-control" id="location" placeholder="Введите город..." ng-model="location" required>
 		</div>
 		<div class="form-group">
 			<label for="difficulty">Выберите сложность</label>
-			<select type="text" class="form-control" id="difficulty" placeholder="Введите заголовок обещания..." ng-model="difficulty">
+			<select type="text" class="form-control" id="difficulty" placeholder="Введите заголовок обещания..." ng-model="difficulty" required>
 				<option value="0">Легко</option>
 				<option value="1">Средне</option>
 				<option value="2">Сложно</option>
@@ -33,17 +33,17 @@
 		</div>
 		<div class="form-group">
 			<label for="category_id">Выберите категорию обещания</label>
-			<select type="text" class="form-control" id="category_id" placeholder="Введите заголовок обещания..." ng-model="category">
+			<select type="text" class="form-control" id="category_id" placeholder="Введите заголовок обещания..." ng-model="category" required>
 				<option ng-repeat="category in categories" value="{{category.id}}">{{category.title}}</option>
 			</select>
 		</div>
 		<div class="form-group">
 			<label for="value">Стоимость</label>
-			<input type="number" class="form-control" id="value" placeholder="Введите вашу ставку..." ng-model="value" max="{{me.balance}}">
+			<input type="number" class="form-control" id="value" placeholder="Введите вашу ставку..." ng-model="value" min="1" max="{{user.balance}}" required>
 		</div>
 	</form>
 </div>
 <div class="modal-footer">
 	<button class="btn btn-danger" ng-click="cancel()">{{'Отмена'}}</button>
-	<button class="btn btn-success" ng-click="ok()">{{'Создать обещание'}}</button>
+	<button class="btn btn-success" type="submit" form="add-task-form" >{{'Создать обещание'}}</button>
 </div>

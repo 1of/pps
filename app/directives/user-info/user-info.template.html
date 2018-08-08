@@ -4,7 +4,7 @@
     <div class="main-info">
         <h2>{{user.firstname}} {{user.lastname}}</h2>        
         <button ng-show="isMe" class="btn btn-xs btn-primary pull-right"  ng-click="balanceRefill()">Пополнить</button>
-        <p ng-show="isMe" class="pull-right" style="margin-right: 10px">Баланс: {{user.balance}}$</p>
+        <p ng-show="isMe" class="pull-right" style="margin-right: 10px">Баланс: {{user.balance}} WillCoins</p>
         <p>Создано обещаний: {{tasks.length || 0}}</p>
         <p>Отслеживается обещаний: {{trackingTasks.length || 0}}</p>
         <p>Сделано ставок: {{myBets.length || 0}}</p>

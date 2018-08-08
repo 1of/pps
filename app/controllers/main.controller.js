@@ -23,7 +23,8 @@
             $scope.selectedCity = null;
             isAuthorized && tasksRepository.getTasks( )
                 .then(function(response){
-                    $scope.tasks = response.data;
+                    $scope.tasks = response.data.reverse();
+                    $scope.tasksToShow = $scope.tasks.filter(task => task.state == 0);
                     var cities = [];
                     $scope.tasks.forEach(task => {
                         if ( !cities.includes(task.location) && (task.location !== "") ) {
@@ -33,6 +34,7 @@
                     $rootScope.cities_root = cities;
                 }, function(error) {});
 
+            
             //Получаем список всех пользователей
             isAuthorized && usersRepository.getAllUsers()
                 .then(function(response){
@@ -49,17 +51,17 @@
             function getMyTasks() {
                 isAuthorized && usersRepository.getUsersTasks($scope.myUserId)
                 .then(function(response) {
-                    $scope.myTasks = response.data;
+                    $scope.myTasks = response.data.reverse();
                 }, function(error) {console.log(error)});
             }
             getMyTasks();
-            $scope.$on('taskAdded', function() {getMyTasks});
+            $rootScope.$on('taskAdded', function() {getMyTasks()});
 
             //Получаем список наших отслеживаемых задач
             function getUsersTrackingTasks() {
                 isAuthorized && usersRepository.getUsersTrackingTasks($scope.myUserId)
                 .then(function(response) {
-                    $scope.myTrackingTasks = response.data;
+                    $scope.myTrackingTasks = response.data.reverse();
                 }, function(error) {console.log(error)});
             }
             getUsersTrackingTasks();
@@ -70,7 +72,7 @@
             function getUsersBetsTasks() {
                 isAuthorized && usersRepository.getUsersBets($scope.myUserId)
                 .then(function(response) {
-                    $scope.myBets = response.data;
+                    $scope.myBets = response.data.reverse();
                 }, function(error) {console.log(error)});
             }
             getUsersBetsTasks();
@@ -171,7 +173,7 @@
             //Получаем новый список задач в зависимости от фильтров
             tasksRepository.getTasksFiltered(searchStr)
                 .then(function(response){
-                    $scope.tasks = response.data;
+                    $scope.tasks = response.data.reverse();
 
                 }, function(error) {});
             };

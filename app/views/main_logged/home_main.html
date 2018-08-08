@@ -1,8 +1,15 @@
 <div ng-if="loading" class="preloader-all"></div>
 <main ng-controller="Main">
-    <form class="form-inline text-center" id="search_form" ng-submit="search()">
-        <input class="form-control" type="text" placeholder="Обещание содержит..." ng-model="searchString">
-    </form>
+    <form class="form-inline text-center" >
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+            <input class="form-control" type="text" placeholder="Обещание содержит..." ng-model="searchString">
+          </div>
+        </div>
+      </form>
+    
     <aside class="panel panel-default pull-left" id="home_aside">
     	<div class="panel-heading text-center">Фильтр</div>
   		<div class="panel-body">
@@ -102,7 +109,8 @@
     	<div class="panel panel-default">
 			<div class="panel-heading text-center">Обещания</div>
 			<div class="panel-body">
-				<task-info ng-repeat="task in tasks  | orderBy:sortField | filter: searchString track by $index" task="task" file-adress="fileAdress" my-user-id="myUserId" tracking-tasks="myTrackingTasks"></task-info>
+        <task-info ng-repeat="task in tasksToShow  | orderBy:sortField | filter: searchString track by $index" task="task" file-adress="fileAdress" my-user-id="myUserId" tracking-tasks="myTrackingTasks"></task-info>
+        <div class="text-center" ng-if="tasksToShow.length == 0 || !tasksToShow">Пока нету обещаний</div>
 			</div>
 		</div>
 	</section>

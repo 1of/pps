@@ -2,8 +2,8 @@
     'use strict';
 
     app.controller('Account',
-        ['$scope', 'tasks.repository', 'users.repository', '$location', '$routeParams', '$uibModal', 'utils', '$filter',
-            function($scope, taskRepository, usersRepository, $location, $routeParams, $uibModal, utils, $filter) {
+        ['$scope', '$rootScope', 'tasks.repository', 'users.repository', '$location', '$routeParams', '$uibModal', 'utils', '$filter',
+            function($scope, $rootScope, taskRepository, usersRepository, $location, $routeParams, $uibModal, utils, $filter) {
 
         $scope.userId = $routeParams.userId;
 
@@ -12,14 +12,14 @@
         //Получаем список задач пользователя
         usersRepository.getUsersTasks($scope.userId)
         .then(function(response) {
-            $scope.userTasks = response.data;
+            $scope.userTasks = response.data.reverse();
         }, function(error) {console.log(error)});
 
         //Получаем список отслеживаемых пользователя
         function getUsersTracking() {
             usersRepository.getUsersTrackingTasks($scope.userId)
                 .then(function(response) {
-                    $scope.userTrackingTasks = response.data;
+                    $scope.userTrackingTasks = response.data.reverse();
                 }, function(error) {console.log(error)});
             };
 
@@ -29,16 +29,22 @@
         function getMytasks() {
             usersRepository.getUsersBets($scope.userId)
                 .then(function(response) {
-                    $scope.userBets = response.data;
+                    $scope.userBets = response.data.reverse();
             }, function(error) {console.log(error)});
         }
         getMytasks();
 
                 //Получаем пользователя
-        usersRepository.getUserById($scope.userId)
-        .then(function(response) {
-            $scope.user = response.data;
-        }, function(error) {console.log(error)});
+        function getUser() {
+            usersRepository.getUserById($scope.userId)
+            .then(function(response) {
+                $scope.user = response.data;
+                if($scope.user.gender == 0 || !$scope.user.gender) {$scope.gender = "Пол не указан"};
+                if($scope.user.gender == 1) {$scope.gender = "Мужской"};
+                if($scope.user.gender == 2) {$scope.gender = "Женский"};
+            }, function(error) {console.log(error)});
+        }
+        getUser();
 
         //Select for user.gender
         $scope.statuses = [
@@ -59,6 +65,8 @@
 
 
         //Сохранение userInfo после редактирования
+        
+
         $scope.saveUserInfo = function (data, userId) {
 
             var user = data;
@@ -103,18 +111,20 @@
         var modalInstance = $uibModal.open({
             templateUrl: 'app/modals/add-task/add-task.template.html',
             controller: 'AddTask',
-            size: 'l'
+            size: 'l',
+            resolve: {me: function() { return $scope.user} }
         });
         modalInstance.result.then(function (result) {
             if (!result) return;
             taskRepository.addTask(result)
                 .then(function(response) {
+                    getUser();
                     getMytasks();
                     utils.notify({
                         message: 'Обещание создано',
                         type: 'success'
                     });
-                    $scope.$emit('taskAdded');
+                    $rootScope.$emit('taskAdded');
             }, function (error) {
                 console.log(error);
             });

@@ -17,6 +17,20 @@
                 ['$scope', '$rootScope', 'users.repository', 'utils', 'tasks.repository',
                     function ($scope, $rootScope, usersRepository, utils, tasksRepository) {
 
+                //Определяем сосотояние
+                if($scope.task.state === 0) {
+                    $scope.taskState = "В процессе";
+                    $scope.bgColor = "#f7f7f7";
+                };
+                if($scope.task.state === 1) {
+                    $scope.taskState = "Выполнено";
+                    $scope.bgColor = "#bef7df";
+                };
+                if($scope.task.state === 2) {
+                    $scope.taskState = "Не выполнено";
+                    $scope.bgColor = "#ffeaec";
+                };
+
                 //Считаем доступную ставку
                 tasksRepository.getBetsById($scope.task.id)
                     .then(function (response) {

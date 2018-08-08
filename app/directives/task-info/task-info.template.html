@@ -1,12 +1,17 @@
-<div class="task-info panel panel-default">
+<div class="task-info panel panel-default" style="background: {{bgColor}}">
     <div class="task-photo" style="background-image: url('{{task.picture !== '' ? fileAdress + task.picture : './app/directives/task-info/img/No_Image_Available.jpg'}}')">
     </div>
 
     <div class="task-all">
         <div class="task-all-text">
             <h2>{{task.name}}</h2>
-            <span class="task-date pull-left">Дата: {{task.date_added | date : "longDate"}}</span>
-            <span class="task-price pull-right">Стоимость: {{task.value ? task.value : '0'}} / Максимальная ставка: {{maxBet ? maxBet : task.value || '0'}}</span>
+            <div class="pull-left">
+                <p>Дата: {{task.date_added | date : "longDate"}}</p>
+                <p>Состояние: {{taskState}}</p>
+            </div>
+            <div class="pull-right">
+                <span class="task-price" ng-if="task.state == 0">Стоимость: {{task.value ? task.value : '0'}} / Максимальная ставка: {{maxBet ? maxBet : task.value || '0'}}</span>
+            </div>                         
         </div>
         <div class="task-all-buttons">
             <button ng-if="!isTracking" class="btn btn-default" ng-click="togleTrackingTask()">Следить</button>
