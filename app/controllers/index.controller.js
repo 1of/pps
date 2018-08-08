@@ -200,20 +200,23 @@
 
 	});
 	app.directive("scroll", function ($window) {
+	    	
+				    return function($scope, element, attrs) {
+				    	if (!localStorage.getItem('authToken') ) {
+console.log( localStorage.getItem('authToken') )
+				        angular.element($window).bind("scroll", function() {
+				             if (this.pageYOffset <= $window.visualViewport.height - angular.element(document.querySelector("#menu"))[0].clientHeight || this.pageYOffset >= $window.visualViewport.height + angular.element(document.querySelector("#how"))[0].clientHeight + angular.element(document.querySelector("#category"))[0].clientHeight + angular.element(document.querySelector("#who"))[0].clientHeight && this.pageYOffset <= $window.visualViewport.height + angular.element(document.querySelector("#how"))[0].clientHeight + angular.element(document.querySelector("#category"))[0].clientHeight + angular.element(document.querySelector("#who"))[0].clientHeight + angular.element(document.querySelector(".parallax__layer2"))[0].clientHeight - angular.element(document.querySelector("#menu"))[0].clientHeight ) {
+				                 $scope.boolChangeClass = false;
+				             }else {
+				             	$scope.boolChangeClass = true;
+				             }
+				            $scope.$apply();
+			// angular.element($window).off('scroll');
+				        });
 
-	    return function($scope, element, attrs) {
-	        angular.element($window).bind("scroll", function() {
-	             if (this.pageYOffset <= $window.visualViewport.height - angular.element(document.querySelector("#menu"))[0].clientHeight || this.pageYOffset >= $window.visualViewport.height + angular.element(document.querySelector("#how"))[0].clientHeight + angular.element(document.querySelector("#category"))[0].clientHeight + angular.element(document.querySelector("#who"))[0].clientHeight && this.pageYOffset <= $window.visualViewport.height + angular.element(document.querySelector("#how"))[0].clientHeight + angular.element(document.querySelector("#category"))[0].clientHeight + angular.element(document.querySelector("#who"))[0].clientHeight + angular.element(document.querySelector(".parallax__layer2"))[0].clientHeight - angular.element(document.querySelector("#menu"))[0].clientHeight ) {
-	                 $scope.boolChangeClass = false;
-	             }else {
-	             	$scope.boolChangeClass = true;
-	             }
-	            $scope.$apply();
-angular.element($window).off('scroll');
-	        });
-
-	    };
-
+}
+				    };
+			
 	});
 })();
 
