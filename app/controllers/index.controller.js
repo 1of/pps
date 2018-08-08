@@ -209,7 +209,7 @@
 	             	$scope.boolChangeClass = true;
 	             }
 	            $scope.$apply();
-//angular.element($window).off('scroll');
+angular.element($window).off('scroll');
 	        });
 
 	    };
