@@ -2,6 +2,88 @@
 'use strict';
 	app.controller('Index', function($scope) {
 
+		$scope.aims = [
+			[
+				{
+					aim: `Я обещаю покорить Эверест до 1 января 2019 года...`
+				},
+				{
+					aim: `Я обещаю пробежать харьковский марафон "Освобождение" 19 августа 2018 года...`
+				},
+				{
+					aim: `Я обещаю выиграть грант на бесплатное обучение в Швейцарии в сентябре 2018 года...`
+				},
+
+			],
+			[
+				{
+					aim: `Я обещаю бросить курить до 1 сентября 2018 года...`
+				},
+				{
+					aim: `Я обещаю делать утреннюю зарядку каждый день...`
+				},
+				{
+					aim: `Я обещаю прочитывать по 1 новой книжке каждый месяц...`
+				},
+
+			],
+			[
+				{
+					aim: `Я обещаю увеличить свою зароботную плату в 2 раза до 1 декабря 2018 года...`
+				},
+				{
+					aim: `Я обещаю составить свое резюме и подать его в 100 IT-компаний до конца лета 2018...`
+				},
+				{
+					aim: `Я обещаю создать и заполнить свой профиль в LinkedIn...`
+				},
+
+			],
+			[
+				{
+					aim: `Я обещаю выполнять все домашки на курсах A-level...`
+				},
+				{
+					aim: `Я обещаю пройти курсы и освоить новую специальность до конца лета 2018...`
+				},
+				{
+					aim: `Я обещаю закончить университет с красным дипломом...`
+				},
+
+			],
+			[
+				{
+					aim: `Я обещаю купить родителям круиз по средиземноморью в 2019 году...`
+				},
+				{
+					aim: `Я обещаю купить жене годовой абонемент в тренажерный зал на 2019 год...`
+				},
+				{
+					aim: `Я обещаю прыгнуть с парашютом до конца 2018 года...`
+				},
+
+			],
+			[
+				{
+					aim: `Я обещаю починить смеситель до конца этого месяца...`
+				},
+				{
+					aim: `Я обещаю научить сына плавать до 10 лет...`
+				},
+				{
+					aim: `Я обещаю, что сервис BetWill вам понравится...`
+				},
+
+			],
+
+		];
+
+		$scope.currentCategory = $scope.aims[0];
+
+		$scope.changeCategory = function(category) {
+			$scope.currentCategory = $scope.aims[category];
+		}
+
 
 		$scope.questions = [
 			[
@@ -91,13 +173,13 @@
 				},
 			]
 		];
-		$scope.currentCategory = $scope.questions[0];
+		$scope.currentFAQCategory = $scope.questions[0];
 		setTimeout(function() {
 			$scope.activeElement = angular.element( document.querySelector( '.faq-item0' ) );
 			$scope.activeElement.addClass('active');
 		}, 50);
-		$scope.changeCategory = function(category) {
-			$scope.currentCategory = $scope.questions[category];
+		$scope.changeFAQCategory = function(category) {
+			$scope.currentFAQCategory = $scope.questions[category];
 			$scope.questionOpened = null;
 			$scope.activeElement.removeClass('active');
 			$scope.activeElement = angular.element( document.querySelector( '.faq-item' + category ) );
@@ -105,13 +187,13 @@
 		}
 
 		$scope.openFAQ = function(id) {
-			if($scope.currentCategory[id].opened !== true) {
-				for (var i = 0; i < $scope.currentCategory.length ; i++) {
-						$scope.currentCategory[i].opened = false;
+			if($scope.currentFAQCategory[id].opened !== true) {
+				for (var i = 0; i < $scope.currentFAQCategory.length ; i++) {
+						$scope.currentFAQCategory[i].opened = false;
 				}
-				$scope.currentCategory[id].opened = true;
+				$scope.currentFAQCategory[id].opened = true;
 			} else {
-				$scope.currentCategory[id].opened = false;
+				$scope.currentFAQCategory[id].opened = false;
 			}
 		}
 
@@ -135,115 +217,3 @@
 	});
 })();
 
-
-jQuery(document).ready(function(){
-	setTimeout(function() {
-		 $('#3D').mousemove(function(e){
-	     var rXP = (e.pageX - this.offsetLeft-$(this).width()/2);
-	     var rYP = (e.pageY - this.offsetTop-$(this).height()/2);
-	     $('#3D').css('text-shadow', +rYP/110+'px '+rXP/180+'px rgba(227,6,19,.8), '+rYP/108 +'px '+rXP/160+'px rgba(255,237,0,1), '+rXP/170+'px '+rYP/112+'px rgba(0,159,227,.7)');
-	 	 });
-	     $('#3D1').mousemove(function(z){
-	     var rXP1 = (z.pageX - this.offsetLeft-$(this).width()/2);
-	     var rYP1 = (z.pageY - this.offsetTop-$(this).height()/2);
-	     $('#3D1').css('text-shadow', +rYP1/810 +'px '+rXP1/280 +'px rgba(227,6,19,.8), '+rYP1/708 +'px '+rXP1/260 +'px rgba(255,237,0,1), '+rXP1/270 +'px '+rYP1/812 +'px rgba(0,159,227,.7)');
-	     });
-	     $('#3D2').mousemove(function(z){
-	     var rXP1 = (z.pageX - this.offsetLeft-$(this).width()/2);
-	     var rYP1 = (z.pageY - this.offsetTop-$(this).height()/2);
-	     $('#3D2').css('text-shadow', +rYP1/1410 +'px '+rXP1/280 +'px rgba(227,6,19,.8), '+rYP1/1208 +'px '+rXP1/260 +'px rgba(255,237,0,1), '+rXP1/270 +'px '+rYP1/1412 +'px rgba(0,159,227,.7)');
-	     });
-	}, 5000);
-
-
-});
-//______________________________________________________________SLICK SLIDER__________________________________
-jQuery(document).ready(function(){
-	setTimeout(function() {
-		var mql = window.matchMedia('all and (max-width: 400px)');
-		var mql1 = window.matchMedia('all and (max-width: 768px)');
-		var mql2 = window.matchMedia('all and (max-width: 1024px)');
-		if (mql.matches) {
-			$('.face-slider').slick({
-			draggable: false,
-			arrows: false,
-			centerMode: true,
-			centerPadding: '0%',
-		  	slidesToShow: 1,
-		  	variableWidth: true,
-		  	focusOnSelect: true,
-		  	cssEase: 'ease-in',
-		  	asNavFor: '.text-slider',
-		  	
-			
-			});
-		} else if (mql1.matches) {
-			$('.face-slider').slick({
-			arrows: false,
-			draggable: false,
-			centerMode: true,
-			centerPadding: '0%',
-		  	slidesToShow: 3,
-		  	variableWidth: true,
-		  	focusOnSelect: true,
-		  	cssEase: 'ease-in',
-		  	asNavFor: '.text-slider',
-		  	
-			
-			});
-			
-		} else if (mql2.matches) {
-			$('.face-slider').slick({
-			arrows: false,
-			draggable: false,
-			centerMode: true,
-			centerPadding: '0%',
-		  	slidesToShow: 5,
-		  	variableWidth: true,
-		  	focusOnSelect: true,
-		  	cssEase: 'ease-in',
-		  	asNavFor: '.text-slider',
-		  	
-			
-			});
-			
-		} else { $('.face-slider').slick({
-			draggable: false,
-			centerMode: true,
-			centerPadding: '0%',
-		  	slidesToShow: 7,
-		  	variableWidth: true,
-		  	focusOnSelect: true,
-		  	cssEase: 'ease-in',
-		  	asNavFor: '.text-slider',
-		  	
-			
-			});
-		}
-		if (mql.matches) {
-			$('.text-slider').slick({
-			autoplay: true,
-			autoplaySpeed: 5000,
-		  	slidesToShow: 1,
-		  	arrows: false,
-		  	pauseOnFocus: false,
-		  	cssEase: 'ease-in',
-		  	asNavFor: '.face-slider'
-		  	
-			});
-			
-		} else {
-			$('.text-slider').slick({
-			autoplay: true,
-			autoplaySpeed: 5000,
-			dots: true,
-		  	slidesToShow: 1,
-		  	arrows: false,
-		  	pauseOnFocus: false,
-		  	cssEase: 'ease-in',
-		  	asNavFor: '.face-slider'
-		  	
-			});
-		}
-	}, 5000);
-});

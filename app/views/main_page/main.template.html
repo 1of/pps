@@ -42,45 +42,55 @@
     <section id="category">
     	<h2>Категории</h2>
     	<div class="category-container">
-    		<div class="category-item">
-    			<div class="category-item-container">
-    				<div class="category-icon сompetitions"></div>
-    				<h3>Соревнования</h3>
-    			</div>
-    		</div>
-    		<div class="category-item">
-    			<div class="category-item-container">
-    				<div class="category-icon habits"></div>
-    				<h3>Привычки</h3>
-    			</div>
-    		</div>
-    		<div class="category-item">
-    			<div class="category-item-container">
-    				<div class="category-icon career"></div>
-    				<h3>Карьера</h3>
-    			</div>
-    		</div>
-    		<div class="category-item">
-    			<div class="category-item-container">
-    				<div class="category-icon study"></div>
-    				<h3>Учеба</h3>
-    			</div>
-    		</div>
-    		<div class="category-item">
-    			<div class="category-item-container">
-    				<div class="category-icon shoping"></div>
-    				<h3>Покупки</h3>
-    			</div>
-    		</div>
-    		<div class="category-item">
-    			<div class="category-item-container">
-    				<div class="category-icon other"></div>
-    				<h3>Другое</h3>
-    			</div>
-    		</div>
+        <div class="first3">
+      		<div class="category-item" ng-click="changeCategory(0)">
+      			<div class="category-item-container">
+      				<div class="category-icon сompetitions"></div>
+      				<h3>Соревнования</h3>
+      			</div>
+      		</div>
+      		<div class="category-item" ng-click="changeCategory(1)">
+      			<div class="category-item-container">
+      				<div class="category-icon habits"></div>
+      				<h3>Привычки</h3>
+      			</div>
+      		</div>
+      		<div class="category-item" ng-click="changeCategory(2)">
+      			<div class="category-item-container">
+      				<div class="category-icon career"></div>
+      				<h3>Карьера</h3>
+      			</div>
+      		</div>
+        </div>
+        <div class="second3">
+      		<div class="category-item" ng-click="changeCategory(3)">
+      			<div class="category-item-container">
+      				<div class="category-icon study"></div>
+      				<h3>Учеба</h3>
+      			</div>
+      		</div>
+      		<div class="category-item" ng-click="changeCategory(4)">
+      			<div class="category-item-container">
+      				<div class="category-icon shoping"></div>
+      				<h3>Покупки</h3>
+      			</div>
+      		</div>
+      		<div class="category-item" ng-click="changeCategory(5)"> 
+      			<div class="category-item-container">
+      				<div class="category-icon other"></div>
+      				<h3>Другое</h3>
+      			</div>
+      		</div>
+        </div>
     	</div>
-      <br><br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br><br><br>
+      <div class="category-list-container">
+        <div class="category-list">
+          <div ng-repeat="item in currentCategory track by $index"
+          class="category-raw">
+            <h1 class="category-aim">{{item.aim}}</h1>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
   <section id="who">
@@ -207,19 +217,19 @@
     <h2>Частые вопросы</h2>
     <div class="line-after-h2"></div>
     <div class="faq-buttons-container">
-        <div ng-click="changeCategory(0)" class="faq-item faq-item0">
+        <div ng-click="changeFAQCategory(0)" class="faq-item faq-item0">
           <div class="faq-item-container">
             <div class="faq-icon rules"></div>
             <h3>Правила</h3>
           </div>
         </div>
-        <div ng-click="changeCategory(1)" class="faq-item faq-item1">
+        <div ng-click="changeFAQCategory(1)" class="faq-item faq-item1">
           <div class="faq-item-container">
             <div class="faq-icon bets"></div>
             <h3>Ставки</h3>
           </div>
         </div>
-        <div ng-click="changeCategory(2)" class="faq-item faq-item2">
+        <div ng-click="changeFAQCategory(2)" class="faq-item faq-item2">
           <div class="faq-item-container">
             <div class="faq-icon issues"></div>
             <h3>Споры</h3>
@@ -228,10 +238,10 @@
       </div>
       <div class="faq-list-container">
         <div class="faq-list">
-          <div ng-repeat="item in currentCategory track by $index"
-          ng-click="openFAQ(this.$index)" class="faq-raw" ng-class="{ opened: currentCategory[$index].opened}">
+          <div ng-repeat="item in currentFAQCategory track by $index"
+          ng-click="openFAQ(this.$index)" class="faq-raw" ng-class="{ opened: currentFAQCategory[$index].opened}">
             <h1 class="faq-question">{{item.question}} <div class="chevron"></div></h1>
-            <p class="faq-answer" ng-if="currentCategory[$index].opened">{{item.answer}}</p>
+            <p class="faq-answer" ng-if="currentFAQCategory[$index].opened">{{item.answer}}</p>
           </div>
         </div>
       </div>
@@ -258,6 +268,9 @@
 
 <ng-include src="'app/views/main_page/footer.template.html'"></ng-include>
 </div>
+
+<script src="../../../plugins/slick/slick.min.js"></script>
+<script src="../../../script/jquery-script.js"></script>
 
 
 
