@@ -244,6 +244,7 @@ h2 {
 }
 
 .category-list-container {
+	width: 80%;
 	margin: 0 auto;
 	text-align: center;
 	display: flex;

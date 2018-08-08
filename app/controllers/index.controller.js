@@ -174,10 +174,10 @@
 			]
 		];
 		$scope.currentFAQCategory = $scope.questions[0];
-		setTimeout(function() {
+		
 			$scope.activeElement = angular.element( document.querySelector( '.faq-item0' ) );
 			$scope.activeElement.addClass('active');
-		}, 50);
+		
 		$scope.changeFAQCategory = function(category) {
 			$scope.currentFAQCategory = $scope.questions[category];
 			$scope.questionOpened = null;
