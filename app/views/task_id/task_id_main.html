@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div class="state col-md-2"  ng-if="task.user_id == myId && task.state == 0">
-				<button class="btn btn-success" ng-click="taskdone()">Выполнено</button>
+				<button class="btn btn-success succ" ng-click="taskdone()" >Выполнено</button>
 				<button class="btn btn-danger" ng-click="surrend()">Сдаться</button>
 			</div>
 			<div>
@@ -40,7 +40,7 @@
 			</div>
 	</section>
 
-	<section class="bets row" ng-controller="TaskId">
+	<section class="bets row">
 		<div class="statistics col-md-9">
 			<h3>Стоимость: <span class="badge">{{ task.value }}</span> </br> Максимальная ставка: <span class="badge" >{{maxBet}}</span>   </h3>
 			<p><a ng-click="showTrackingUsersList()">Отслеживают</a>: <span class="badge">{{ trackingUsers.length }}</span> чел.</p>
@@ -48,17 +48,17 @@
 			<p>Комментарии: <span class="badge">{{comments.length}}</span></p>
 		</div>
 		<div class="bet col-md-3">
-		<p class="text-info">Ваш баланс: {{user.balance}}  - {{betAmount}}</p>
-		<div ng-if='task.user_id !== +myId && task.state == 0 && maxBet > 0'>
+		<p class="text-info">Ваш баланс: {{user.balance}} WillCoin's</p>
+		<form ng-show='task.user_id !== +myId && task.state == 0 && maxBet > 0'>
 				<div class="incdec_bet">
-					<button class="btn btn-danger btn-md" ng-click="inc()"><i class="glyphicon glyphicon-plus"></i></button>
-					<input   type="number" ng-model="betAmount">
+					<button class="btn btn-danger btn-md" ng-click="inc()"><i class="glyphicon glyphicon-plus"></i></button>  
+					<input   type="number" min="0" max="{{maxBet}}" ng-model="betAmount"/>
 					<button  class="btn btn-danger btn-md" ng-click="dec()"><i class="glyphicon glyphicon-minus"></i></button>
 				</div>
 					<button type="submit" class="btn btn-success bet" ng-click="addBet()">
 					 <i class="glyphicon glyphicon-ok-circle"></i>
 					Ставить</button>
-		</div>
+		</form>
 		<p ng-if="error.status" class="text-danger">{{error.text}}</p>
 		<p ng-if="maxBet <= 0" class="text-info">На данное обещание уже нельзя поставить. Достигнут максимальный лимит ставок</p>
 		</div>

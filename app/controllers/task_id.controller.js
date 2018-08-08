@@ -97,6 +97,7 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 	$scope.betAmount = 1;
 
 	$scope.inc = function() {
+		if ($scope.betAmount >= $scope.maxBet) return
 		// console.log("$scope.bets-", $scope.bets, "$scope.maxBet", $scope.maxBet, "$scope.task", $scope.task);
 		 // $scope.bets.push({date_added: new Date().toISOString(), id: null, state: $scope.bets[0].state,task_id: +id,user_id:+$scope.myId, value: $scope.betAmount});
 		 // $scope.maxBet = $scope.maxBet - $scope.betAmount;
@@ -104,7 +105,7 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 	};
 
 	$scope.dec = function() {
-		if ($scope.betAmount < 0) return
+		if ($scope.betAmount <= 0) return
 		$scope.betAmount--;
 	};
 
@@ -112,7 +113,13 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 		if( $scope.betAmount<1 || $scope.betAmount>$scope.maxBet ) {
 			$scope.error = {
 					status: true,
-					text: "Минимальная сумма ставки - 1 willcoin. Максимальная - " + $scope.maxBet + " willcoin's"
+					text: "Минимальная сумма ставки - 1 WillCoin's. Максимальная - " + $scope.maxBet + " WillCoin's"
+				};
+			return
+			} 	else	if( $scope.user.balance < $scope.betAmount) {
+			$scope.error = {
+					status: true,
+					text: "Недостаточно WillCoin's на счету"
 				};
 			return
 			} else { 
@@ -120,10 +127,11 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 
 				        var data = { value: +$scope.betAmount};
 
+
 							tasksRepository.addBetsById(+id, data).then(function(response) {
 								$scope.$emit('trackingTaskTogle', $scope.task);
 								$rootScope.$emit('Refresh bets');
-				        		$scope.bets.push({date_added: new Date().toISOString(), id: null, state: $scope.bets[0].state,task_id: +id,user_id:+$scope.myId, value: $scope.betAmount});
+				        		$scope.bets.push({date_added: new Date().toISOString(), id: null, state: 0 ,task_id: +id,user_id:+$scope.myId, value: $scope.betAmount});
 								$scope.maxBet = $scope.maxBet - $scope.betAmount;
 				        		$scope.getBets();
 								$scope.maxBet = $scope.maxBet - $scope.betAmount;
@@ -131,6 +139,7 @@ $scope.htmlPopoverSubscribe = $sce.trustAsHtml('<b>Добавить обещан
 									status: true,
 									text: "Ставка принята!"
 								};
+								$scope.user.balance -= $scope.betAmount;   
 
 								
 						}, function(error) {
@@ -240,7 +249,7 @@ $scope.backPath = function() {
                 };
                 //Кнопки изменения статуса задачи state
                 $scope.taskdone = function() {
-                	$scope.task.state = 0;
+                	$scope.user.balance = $scope.user.balance + $scope.sumAllBets + $scope.task.value; 
                 	let newTask = $scope.task;
                 	newTask.state = 1;
                 	tasksRepository.updateTask($scope.task.id, newTask).then(function(response) {
@@ -251,6 +260,7 @@ $scope.backPath = function() {
                 }; 
 
                 $scope.surrend = function() {
+                	
                 	let newTask = $scope.task;
                 	newTask.state = 2;
                 	tasksRepository.updateTask($scope.task.id, newTask).then(function(response) {

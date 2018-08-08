@@ -59,6 +59,9 @@ section.header {
   background-size: cover;
   background-position: 50% 21%;
 }
+.bets form {
+	padding-right: 25px;
+}
 section.bets {
 	background: linear-gradient(30deg, rgba(250, 250, 250, 0.8)  30%, rgba(0,0,0,0) 30%), linear-gradient(30deg, #fff 60%, rgba(250, 250, 250, 0.8) 60%);
 }
@@ -333,3 +336,15 @@ button.subscribe {
 }
 
   }
+
+div.state {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+
+}
+.succ {
+	margin-right: 5px;
+}

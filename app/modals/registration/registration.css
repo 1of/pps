@@ -65,7 +65,7 @@ div.bg-r-wrapper {
     background-repeat: no-repeat;
     -webkit-filter: blur(15px);
     -moz-filter: blur(15px);
-    filter: blur(4px);
+    filter: blur(2px) grayscale(70%) !important;
 }
 button{
     -o-transition: all 0.3s ease-in-out;
