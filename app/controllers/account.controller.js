@@ -10,10 +10,14 @@
         $scope.isMe = $scope.userId == $scope.myUserId;
 
         //Получаем список задач пользователя
-        usersRepository.getUsersTasks($scope.userId)
-        .then(function(response) {
-            $scope.userTasks = response.data.reverse();
-        }, function(error) {console.log(error)});
+        function getUsersTasks() {
+            usersRepository.getUsersTasks($scope.userId)
+            .then(function(response) {
+                $scope.userTasks = response.data.reverse();
+            }, function(error) {console.log(error)});
+        }
+
+        getUsersTasks();
 
         //Получаем список отслеживаемых пользователя
         function getUsersTracking() {
@@ -34,7 +38,7 @@
         }
         getMytasks();
 
-                //Получаем пользователя
+        //Получаем пользователя
         function getUser() {
             usersRepository.getUserById($scope.userId)
             .then(function(response) {
@@ -65,7 +69,6 @@
 
 
         //Сохранение userInfo после редактирования
-        
 
         $scope.saveUserInfo = function (data, userId) {
 
@@ -120,6 +123,7 @@
                 .then(function(response) {
                     getUser();
                     getMytasks();
+                    getUsersTasks();
                     utils.notify({
                         message: 'Обещание создано',
                         type: 'success'

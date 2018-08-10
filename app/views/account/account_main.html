@@ -41,7 +41,7 @@
 
             <p>Имя: <span editable-text="user.firstname" e-ng-model="user.firstname" e-form="editableForm" e-ng-model="user.firstname" e-name="firstname">{{user.firstname}}</span></p>
             <p>Фамилия: <span editable-text="user.lastname" e-ng-model="user.lastname" e-form="editableForm" e-ng-model="user.lastname" e-name="lastname">{{user.lastname}}</span></p>
-            <p>Дата рождения: <span editable-date="user.birthdate" e-ng-model="user.birthdate" e-form="editableForm" e-ng-model="user.birthdate" e-name="birthdate" >{{user.birthdate | date: 'fullDate'}}</span></p>
+            <p>Дата рождения: <span editable-date="user.birthdate" e-ng-model="user.birthdate" e-form="editableForm" e-name="birthdate" >{{user.birthdate | date: 'fullDate'}}</span></p>
             <p>Пол: <span editable-select="user.gender" e-ng-options="s.value as s.text for s in statuses" e-ng-model="user.gender" e-form="editableForm" e-ng-model="user.gender" e-name="gender">{{gender}}</span></p>
             <p>Професиия: <span editable-text="user.job" e-ng-model="user.job" e-form="editableForm" e-ng-model="user.job" e-name="job">{{user.job}}</span></p>
             <p>О пользователе: <span editable-textarea="user.about" e-ng-model="user.about" e-form="editableForm" e-ng-model="user.about" e-name="about">{{user.about}}</span></p>

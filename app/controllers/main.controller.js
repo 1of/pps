@@ -136,7 +136,8 @@
             let searchStr = "";
             tasksRepository.getTasksFiltered(searchStr)
                 .then(function(response){
-                    $scope.tasks = response.data;
+                    $scope.tasks = response.data.reverse();
+                    $scope.tasksToShow = $scope.tasks.filter(task => task.state == 0);
                 }, function(error) {});
 
             tasksRepository.getTasks( )
@@ -174,7 +175,7 @@
             tasksRepository.getTasksFiltered(searchStr)
                 .then(function(response){
                     $scope.tasks = response.data.reverse();
-
+                    $scope.tasksToShow = $scope.tasks.filter(task => task.state == 0);
                 }, function(error) {});
             };
 
