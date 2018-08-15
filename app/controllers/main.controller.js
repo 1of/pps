@@ -3,11 +3,11 @@
 
         app.controller('Main', ['$scope', '$rootScope', 'tasks.repository', 'users.repository','$location',
          function($scope, $rootScope, tasksRepository, usersRepository, $location) {
-            
+
             //Адрес для загрузки файлов
             $scope.fileAdress = 'http://node4.fe.a-level.com.ua/';
 
-            
+
             //Наш Id
             $scope.myUserId = localStorage.getItem('userId');
 
@@ -18,6 +18,43 @@
             $rootScope.adress = 'http://node4.fe.a-level.com.ua/';
 
             var isAuthorized = localStorage.getItem('authToken') ? true : false;
+
+             //Получаем нашего пользователя
+             isAuthorized && usersRepository.getUserById($scope.myUserId)
+                 .then(function(response) {
+                     $scope.me = response.data;
+                 }, function(error) {console.log(error)});
+
+             //Получаем список наших задач
+             function getMyTasks() {
+                 isAuthorized && usersRepository.getUsersTasks($scope.myUserId)
+                     .then(function(response) {
+                         $scope.myTasks = response.data.reverse();
+                     }, function(error) {console.log(error)});
+             }
+             getMyTasks();
+             $rootScope.$on('taskAdded', function() {getMyTasks()});
+
+             //Получаем список наших отслеживаемых задач
+             function getUsersTrackingTasks() {
+                 isAuthorized && usersRepository.getUsersTrackingTasks($scope.myUserId)
+                     .then(function(response) {
+                         $scope.myTrackingTasks = response.data.reverse();
+                     }, function(error) {console.log(error)});
+             }
+             getUsersTrackingTasks();
+
+             $rootScope.$on('Refresh tracking', function(){getUsersTrackingTasks();});
+
+             //Получаем список наших ставок
+             function getUsersBetsTasks() {
+                 isAuthorized && usersRepository.getUsersBets($scope.myUserId)
+                     .then(function(response) {
+                         $scope.myBets = response.data.reverse();
+                     }, function(error) {console.log(error)});
+             }
+             getUsersBetsTasks();
+             $rootScope.$on('Refresh bets', function(){getUsersBetsTasks();});
 
             //Получаем список всех задач и список всех городов из него
             $scope.selectedCity = null;
@@ -34,49 +71,12 @@
                     $rootScope.cities_root = cities;
                 }, function(error) {});
 
-            
+
             //Получаем список всех пользователей
             isAuthorized && usersRepository.getAllUsers()
                 .then(function(response){
                     $scope.usersList = response.data;
                 }, function(error) {console.log(error)});
-
-            //Получаем нашего пользователя
-            isAuthorized && usersRepository.getUserById($scope.myUserId)
-                .then(function(response) {
-                    $scope.me = response.data;
-                }, function(error) {console.log(error)});
-
-            //Получаем список наших задач
-            function getMyTasks() {
-                isAuthorized && usersRepository.getUsersTasks($scope.myUserId)
-                .then(function(response) {
-                    $scope.myTasks = response.data.reverse();
-                }, function(error) {console.log(error)});
-            }
-            getMyTasks();
-            $rootScope.$on('taskAdded', function() {getMyTasks()});
-
-            //Получаем список наших отслеживаемых задач
-            function getUsersTrackingTasks() {
-                isAuthorized && usersRepository.getUsersTrackingTasks($scope.myUserId)
-                .then(function(response) {
-                    $scope.myTrackingTasks = response.data.reverse();
-                }, function(error) {console.log(error)});
-            }
-            getUsersTrackingTasks();
-
-            $rootScope.$on('Refresh tracking', function(){getUsersTrackingTasks();});
-
-            //Получаем список наших ставок
-            function getUsersBetsTasks() {
-                isAuthorized && usersRepository.getUsersBets($scope.myUserId)
-                .then(function(response) {
-                    $scope.myBets = response.data.reverse();
-                }, function(error) {console.log(error)});
-            }
-            getUsersBetsTasks();
-            $rootScope.$on('Refresh bets', function(){getUsersBetsTasks();});
 
             //Возвращает обьект с данными о пользователе
             $rootScope.getMyInfo = function(){
